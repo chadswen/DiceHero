@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qml/board.png</file>
+        <file>qml/d6.png</file>
+        <file>qml/dice.png</file>
+        <file>qml/main.qml</file>
+    </qresource>
+</RCC>
