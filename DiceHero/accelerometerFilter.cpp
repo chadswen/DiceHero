@@ -1,10 +1,11 @@
 #include "accelerometerFilter.h"
 #include <QDebug>
 
-#define SENSITIVITY .154500
+#define SENSITIVITY 0 // filters out updates with (change since previous reading) < (SENSITIVITY) .154500 is lowest increment
 #define FREQUENCY 40 //hz
 #define cQSize 20 //size of circular queues
-#define PRECISION 2 //number of decimal points
+#define PRECISION 1 //number of decimal points
+#define LOWEND 0.1 //  values with [abs(reading)] < (LOWEND) are set to 0
 
 accelerometerFilter::accelerometerFilter()
     : outX(0),outY(0),outZ(0)
@@ -74,13 +75,13 @@ void accelerometerFilter::processXYZ() //filters raw data and applies calibratio
 {
 
 
-    /* //adjust sensitivity scale
+    //adjust sensitivity scale (low pass filter)
     if(qAbs(rawX - filtX) < SENSITIVITY)
         rawX=filtX;
     if(qAbs(rawY - filtY) < SENSITIVITY)
         rawY=filtY;
     if(qAbs(rawZ - filtZ) < SENSITIVITY)
-        rawZ=filtZ;*/
+        rawZ=filtZ;
 
     // circular queue filter
     if(queuePos == cQSize)
@@ -134,6 +135,10 @@ void accelerometerFilter::processXYZ() //filters raw data and applies calibratio
     filtY = sumY/cQSize;
     filtZ = sumZ/cQSize;
 
+    /* for geo mean
+    filtX = pow(prodX, 1.0/cQSize);
+    filtY = pow(prodY, 1.0/cQSize);
+    filtZ = pow(prodZ, 1.0/cQSize);*/
 
     //vect =(sqrt(filtX*filtX + filtY*filtY + filtZ*filtZ)); // calculate acceleration vector
 
@@ -142,14 +147,23 @@ void accelerometerFilter::processXYZ() //filters raw data and applies calibratio
         processXYZ();
 
 
-    /*filtX = pow(prodX, 1.0/cQSize);
-    filtY = pow(prodY, 1.0/cQSize);
-    filtZ = pow(prodZ, 1.0/cQSize);*/
 
-    //final calibrated value
-    outX = filtX + calX;
-    outY = filtY + calY;
-    outZ = filtZ + calZ;
+    //final calibrated value, with lowend filter
+    if(qAbs(filtX + calX) > LOWEND)
+        outX = filtX + calX;
+    else
+        outX=0.0f;
+    if(qAbs(filtY + calY) > LOWEND)
+        outY = filtY + calY;
+    else
+        outY=0.0f;
+    if(qAbs(filtZ + calZ) > LOWEND)
+        outZ = filtZ + calZ;
+    else
+        outZ=0.0f;
+
+
+
 
     // for debug purposes
     qDebug()  << "processed x" << endl;
@@ -170,7 +184,7 @@ void accelerometerFilter::processXYZ() //filters raw data and applies calibratio
 }
 
 
-QVector<QString> accelerometerFilter::getXYZ() //get processed vector with applied calibrations
+QVector<QString> accelerometerFilter::getXYZ() //get processed QVector with applied calibrations
 {
     // create a string QVector of the current values
     QVector<QString> vectXYZ(3);

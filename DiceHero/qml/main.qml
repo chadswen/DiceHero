@@ -6,6 +6,7 @@ Image {
     property real accX
     property real accY
     property real accZ
+    property bool currentlyRolling: false
 
     // signaled just as the player initiates movement input (start rolling)
     signal calibrate()
@@ -20,22 +21,17 @@ Image {
     function updateZ(outVZ) {
         board.accZ = outVZ
     }
-
+    SystemPalette {
+        id: activePalette
+    }
     anchors.fill: parent
     source: "board.png"
     smooth: true
 
-    MouseArea {
-        anchors.fill: parent
-        onClicked: {
-            //do something
-        }
-    }
-
     Image {
         id: d6
-        x: 626
-        y: 78
+        x: 60
+        y: 60
         width: 75
         height: 75
         smooth: true
@@ -54,6 +50,16 @@ Image {
             font.bold: true
             font.pixelSize: 18
         }
+        MouseArea {
+            anchors.fill: parent
+            drag.target: d6
+            drag.axis: Drag.XandYAxis
+            drag.minimumX: 0
+            drag.maximumX: board.width - d6.width
+            drag.minimumY: 0
+            drag.maximumY: board.height - d6.height
+            drag.filterChildren: true
+        }
     }
 
     Text {
@@ -61,7 +67,7 @@ Image {
         x: 395
         y: 137
         color: "#45c3c3"
-        text: "X Accereration: " + board.accX
+        text: "X Acceleration: " + board.accX
         anchors.verticalCenterOffset: -92
         anchors.horizontalCenterOffset: 1
         anchors.centerIn: parent
@@ -78,7 +84,7 @@ Image {
         x: 395
         y: 212
         color: "#45c3c3"
-        text: "Y Accereration: " + board.accY
+        text: "Y Acceleration: " + board.accY
         anchors.verticalCenterOffset: -17
         anchors.horizontalCenterOffset: 1
         anchors.centerIn: parent
@@ -94,7 +100,7 @@ Image {
         x: 395
         y: 282
         color: "#45c3c3"
-        text: "Z Accereration: " + board.accZ
+        text: "Z Acceleration: " + board.accZ
         anchors.verticalCenterOffset: 53
         anchors.horizontalCenterOffset: 1
         anchors.centerIn: parent
@@ -103,5 +109,20 @@ Image {
         style: Text.Sunken
         font.bold: true
         font.pixelSize: 18
+    }
+
+    Button {
+                id: calibrateBtn
+                anchors {
+                    bottom: board.bottom
+                    bottomMargin: 75
+                    horizontalCenter: board.horizontalCenter
+                }
+                text: "Calibrate"
+                onClicked: {
+                    calibrate();
+                    currentlyRolling: true
+                }
+
     }
 }
