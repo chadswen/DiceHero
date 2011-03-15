@@ -4,5 +4,6 @@
         <file>qml/d6.png</file>
         <file>qml/dice.png</file>
         <file>qml/main.qml</file>
+        <file>qml/Button.qml</file>
     </qresource>
 </RCC>
