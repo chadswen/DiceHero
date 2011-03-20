@@ -3,7 +3,7 @@
 #include <QAccelerometer>
 
 #include "accelerometerfilter.h"
-
+#include <box2dplugin.h>
 
 QAccelerometer *acc;
 accelerometerFilter *accF;
@@ -22,6 +22,11 @@ int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
+    //associate and install box2d
+
+    Box2DPlugin plugin;
+    plugin.registerTypes("Box2D");
+
     //setup QML viewer
     #ifdef Q_OS_SYMBIAN
         // Lock orientation to portrait in Symbian
@@ -32,11 +37,9 @@ int main(int argc, char *argv[])
         )
     #endif
 
-    //! [0]
     QDeclarativeView view;
     view.setSource(QUrl("qrc:/qml/main.qml"));
     view.setResizeMode(QDeclarativeView::SizeRootObjectToView);
-    //! [0]
 
     //setup accelerometer
     acc= new QAccelerometer(0);
@@ -45,8 +48,7 @@ int main(int argc, char *argv[])
 
     QObject *rootObject = dynamic_cast<QObject*>(view.rootObject());
 
-    // Associate Qt / QML signals and slots
-
+    //associate Qt / QML signals and slots
     QObject::connect(&accF, SIGNAL(xChanged(const QVariant&)),
                      rootObject, SLOT(updateX(const QVariant&)));
     QObject::connect(&accF, SIGNAL(yChanged(const QVariant&)),
@@ -59,6 +61,8 @@ int main(int argc, char *argv[])
 
     QObject::connect((QObject*)view.engine(), SIGNAL(quit()),
                      &app, SLOT(quit()));
+
+
 
     //start the acceleromter
     acc->start();

@@ -8,6 +8,9 @@ symbian:TARGET.CAPABILITY += NetworkServices
 
 CONFIG += mobility
 MOBILITY += sensors
+INCLUDEPATH += .
+include(qmlbox2d/box2d-static.pri)
+
 INCLUDEPATH += ../../../src/sensors
 
 TARGET = dicehero
@@ -16,14 +19,16 @@ VERSION = 1.0
 
 
 SOURCES += main.cpp \
-    accelerometerFilter.cpp
+    accelerometerFilter.cpp \
 
 
 HEADERS += \
-    accelerometerFilter.h
+    accelerometerFilter.h \
+
+
 
 OTHER_FILES += qml/*.qml \
-    qml/*.png
+    qml/*.png \
 
 RESOURCES = resources.qrc
 

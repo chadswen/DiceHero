@@ -3,7 +3,7 @@
 
 #define SENSITIVITY 0 // filters out updates with (change since previous reading) < (SENSITIVITY) .154500 is lowest increment
 #define FREQUENCY 40 //hz
-#define cQSize 20 //size of circular queues
+#define cQSize 4 //size of circular queues
 #define PRECISION 1 //number of decimal points
 #define LOWEND 0.1 //  values with [abs(reading)] < (LOWEND) are set to 0
 
@@ -165,7 +165,7 @@ void accelerometerFilter::processXYZ() //filters raw data and applies calibratio
 
 
 
-    // for debug purposes
+    /*// for debug purposes
     qDebug()  << "processed x" << endl;
     qDebug()  << filtX << endl;
 
@@ -173,7 +173,7 @@ void accelerometerFilter::processXYZ() //filters raw data and applies calibratio
     qDebug()  << filtY << endl;
 
     qDebug()  << "processed z" << endl;
-    qDebug()  << filtZ << endl;
+    qDebug()  << filtZ << endl;*/
 
     /*qDebug()  << "component vector" << endl;
     qDebug()  << vect << endl;*/

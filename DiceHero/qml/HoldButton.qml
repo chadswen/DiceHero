@@ -3,11 +3,12 @@ import QtQuick 1.0
  Rectangle {
      id: container
 
-     property string text: "Button"
+     property string text: "HoldButton"
 
-     signal clicked
+     signal pressed
+     signal released
 
-     width: buttonLabel.width + 100; height: buttonLabel.height + 20
+     width: buttonLabel.width + 20; height: buttonLabel.height + 100
      border {
          width: 1;
          color: Qt.darker(activePalette.button)
@@ -32,7 +33,8 @@ import QtQuick 1.0
      MouseArea {
          id: mouseArea
          anchors.fill: parent
-         onClicked: container.clicked();
+         onPressed: container.pressed();
+         onReleased: container.released();
      }
 
      Text {
