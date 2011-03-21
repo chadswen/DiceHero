@@ -3,6 +3,7 @@ import QtQuick 1.0
 import Box2D 1.0
 
 Body {
+	id: dieBody
     width: 70;
     height: 70;
     sleepingAllowed: false
