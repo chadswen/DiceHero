@@ -9,25 +9,6 @@ Image {
     width: 360;
     height: 640;
 
-    property real accX
-    property real accY
-    property real accZ
-    property bool currentlyRolling: false
-
-    // signaled just as the player initiates movement input (start rolling)
-    signal calibrate()
-
-    // functions are used as Qt slots when acceleromter changes
-    function updateX(outVX) {
-        screen.accX = outVX
-    }
-    function updateY(outVY) {
-        screen.accY = outVY
-    }
-    function updateZ(outVZ) {
-        screen.accZ = outVZ
-    }
-
 
     SystemPalette {
         id: activePalette
