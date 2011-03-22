@@ -5,6 +5,8 @@ import Box2D 1.0
 
 Image {
 
+	signal showScreen(string msg)
+
     id: screen
     width: 360;
     height: 640;
