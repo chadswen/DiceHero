@@ -2,12 +2,13 @@ import QtQuick 1.0
 import "boardLogic.js" as Script
 
 Rectangle {
-
     signal showScreen(string msg)
 
     id: screenBase
 
     width: 360; height: 640
+
+    Component.onCompleted: Script.clearData()
 
     SystemPalette {
         id: activePalette
@@ -34,7 +35,7 @@ Rectangle {
                 top: parent.top
             }
             text: "D4"
-            onClicked: Script.incd4
+            onClicked: Script.incd4()
         }
 
         Button {
@@ -43,7 +44,7 @@ Rectangle {
                 left: selectD4.right
             }
             text: "D6"
-            onClicked: Script.incd6
+            onClicked: Script.incd6()
         }
 
         Button {
@@ -52,7 +53,7 @@ Rectangle {
                 left: selectD6.right
             }
             text: "D8"
-            onClicked: Script.incd8
+            onClicked: Script.incd8()
         }
 
         Button {
@@ -62,7 +63,7 @@ Rectangle {
                 top: selectD4.bottom
             }
             text: "D10"
-            onClicked: Script.incd10
+            onClicked: Script.incd10()
         }
 
         Button {
@@ -72,7 +73,7 @@ Rectangle {
                 top: selectD6.bottom
             }
             text: "D12"
-            onClicked: Script.incd12
+            onClicked: Script.incd12()
         }
 
         Button {
@@ -82,7 +83,7 @@ Rectangle {
                 top: selectD8.bottom
             }
             text: "D20"
-            onClicked: Script.incd20
+            onClicked: Script.incd20()
         }
 
         Button {

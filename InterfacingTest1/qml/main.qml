@@ -2,6 +2,7 @@ import QtQuick 1.0
 
 Rectangle {
 
+    id: main
     width: 360; height: 640
 
     property real accX

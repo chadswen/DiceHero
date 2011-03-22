@@ -6,7 +6,6 @@
         <file>qml/Button2.qml</file>
         <file>qml/d6.png</file>
         <file>qml/D6.qml</file>
-        <file>qml/dice.png</file>
         <file>qml/Die.qml</file>
         <file>qml/engine.qml</file>
         <file>qml/HoldButton.qml</file>
