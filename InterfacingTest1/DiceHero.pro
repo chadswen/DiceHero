@@ -29,8 +29,7 @@ HEADERS += \
 
 OTHER_FILES += qml/*.qml \
     qml/*.png \
-    qml/table.qml \
-    qml/boardLogic.js
+    qml/*.js
 
 RESOURCES = resources.qrc
 

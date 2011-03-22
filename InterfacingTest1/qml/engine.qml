@@ -57,7 +57,7 @@ Image {
         x: 395
         y: 137
         color: "#45c3c3"
-        text: "X Acceleration: " + screen.accX
+        text: "X Acceleration: " + accX
         anchors.verticalCenterOffset: -92
         anchors.horizontalCenterOffset: 1
         anchors.centerIn: parent
@@ -74,7 +74,7 @@ Image {
         x: 395
         y: 212
         color: "#45c3c3"
-        text: "Y Acceleration: " + screen.accY
+        text: "Y Acceleration: " + accY
         anchors.verticalCenterOffset: -17
         anchors.horizontalCenterOffset: 1
         anchors.centerIn: parent
@@ -90,7 +90,7 @@ Image {
         x: 395
         y: 282
         color: "#45c3c3"
-        text: "Z Acceleration: " + screen.accZ
+        text: "Z Acceleration: " + accZ
         anchors.verticalCenterOffset: 53
         anchors.horizontalCenterOffset: 1
         anchors.centerIn: parent
