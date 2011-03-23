@@ -31,6 +31,7 @@ OTHER_FILES += qml/*.qml \
     qml/*.png \
     qml/*.js
 
+
 RESOURCES = resources.qrc
 
 symbian {

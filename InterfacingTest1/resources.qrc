@@ -1,13 +1,19 @@
 <RCC>
     <qresource prefix="/">
         <file>qml/board.png</file>
-        <file>qml/boardLogic.js</file>
         <file>qml/Button.qml</file>
         <file>qml/Button2.qml</file>
+        <file>qml/createDice.js</file>
+        <file>qml/D4.qml</file>
         <file>qml/d6.png</file>
         <file>qml/D6.qml</file>
+        <file>qml/D8.qml</file>
+        <file>qml/D10.qml</file>
+        <file>qml/D12.qml</file>
+        <file>qml/D20.qml</file>
         <file>qml/Die.qml</file>
         <file>qml/engine.qml</file>
+        <file>qml/globalDice.js</file>
         <file>qml/HoldButton.qml</file>
         <file>qml/main.qml</file>
         <file>qml/selectdice.qml</file>

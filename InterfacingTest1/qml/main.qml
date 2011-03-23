@@ -1,4 +1,6 @@
 import QtQuick 1.0
+import "globalDice.js" as GlobalDice
+import "createDice.js" as Script
 
 Rectangle {
 
@@ -8,6 +10,9 @@ Rectangle {
     property real accX
     property real accY
     property real accZ
+
+    property variant myDice: GlobalDice.numDice
+
     property bool currentlyRolling: false
 
     // signaled just as the player initiates movement input (start rolling)
@@ -23,7 +28,6 @@ Rectangle {
     function updateZ(outVZ) {
         accZ = outVZ
     }
-
 
     Loader {
         id: loader

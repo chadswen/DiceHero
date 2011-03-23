@@ -1,5 +1,5 @@
 import QtQuick 1.0
-import "boardLogic.js" as Script
+import "createDice.js" as Script
 
 Rectangle {
     signal showScreen(string msg)
@@ -8,7 +8,11 @@ Rectangle {
 
     width: 360; height: 640
 
-    Component.onCompleted: Script.clearData()
+    Component.onCompleted: {
+        var temp = myDice;
+        Script.clearData(temp);
+        myDice = temp;
+    }
 
     SystemPalette {
         id: activePalette
@@ -35,7 +39,11 @@ Rectangle {
                 top: parent.top
             }
             text: "D4"
-            onClicked: Script.incd4()
+            onClicked: {
+                var temp = myDice;
+                Script.incd4(temp);
+                myDice = temp;
+            }
         }
 
         Button {
@@ -44,7 +52,11 @@ Rectangle {
                 left: selectD4.right
             }
             text: "D6"
-            onClicked: Script.incd6()
+            onClicked: {
+                var temp = myDice;
+                Script.incd6(temp);
+                myDice = temp;
+            }
         }
 
         Button {
@@ -53,7 +65,11 @@ Rectangle {
                 left: selectD6.right
             }
             text: "D8"
-            onClicked: Script.incd8()
+            onClicked: {
+                var temp = myDice;
+                Script.incd8(temp);
+                myDice = temp;
+            }
         }
 
         Button {
@@ -63,7 +79,11 @@ Rectangle {
                 top: selectD4.bottom
             }
             text: "D10"
-            onClicked: Script.incd10()
+            onClicked: {
+                var temp = myDice;
+                Script.incd10(temp);
+                myDice = temp;
+            }
         }
 
         Button {
@@ -73,7 +93,11 @@ Rectangle {
                 top: selectD6.bottom
             }
             text: "D12"
-            onClicked: Script.incd12()
+            onClicked: {
+                var temp = myDice;
+                Script.incd12(temp);
+                myDice = temp;
+            }
         }
 
         Button {
@@ -83,7 +107,11 @@ Rectangle {
                 top: selectD8.bottom
             }
             text: "D20"
-            onClicked: Script.incd20()
+            onClicked: {
+                var temp = myDice;
+                Script.incd20(temp);
+                myDice = temp;
+            }
         }
 
         Button {
@@ -93,7 +121,7 @@ Rectangle {
                 horizontalCenter: screen.horizontalCenter
             }
             text: "Roll Dice"
-            onClicked: /*Script.finalizeBoard(),*/ screenBase.showScreen("engine.qml")
+            onClicked: screenBase.showScreen("engine.qml")
         }
     }
 }

@@ -1,13 +1,12 @@
 import Qt 4.7
 import QtQuick 1.0
 import Box2D 1.0
-import "boardLogic.js" as Script
+import "createDice.js" as Script
+
 
 Image {
-
-	signal showScreen(string msg)
-
-    id: screen
+    signal showScreen(string msg)
+    id: engine
     width: 360;
     height: 640;
 
@@ -23,23 +22,17 @@ Image {
     World {
             id: world;
             anchors.fill: parent
-            gravity: Qt.point(-accX*20*currentlyRolling +2, -accY*20*currentlyRolling -3); // 20 is the current scale up factor
-
-			//New Line
-			Component.onCompleted: Script.finalizeBoard();
-			
-       /* Repeater {
-            model: 8
-            delegate: D6 {
-                x: Math.random() * (screen.width - 70)+35; //randomly placed 35px away from edge
-                y: Math.random() * (screen.height / 3); //randomly placed in top third of screen
-                rotation: Math.random() * 90;
+            gravity: Qt.point(-accX*20*currentlyRolling, -accY*20*currentlyRolling -5*!currentlyRolling); // 20 is the current scale up factor
+            Component.onCompleted: {
+                var temp = myDice;
+                Script.finalizeBoard(temp);
+                myDice = temp;
             }
-        }*/
 
         Wall {
             id: ground
-            anchors { left: parent.left; right: parent.right; top: parent.bottom }
+            anchors { left: parent.left; right: parent.right; bottom: parent.bottom;
+                bottomMargin: 50; }
         }
         Wall {
             id: ceiling
@@ -56,7 +49,8 @@ Image {
 
     }
 
-    Text {
+//for debug purposes
+   /* Text {
         id:xLabel
         x: 395
         y: 137
@@ -103,14 +97,13 @@ Image {
         style: Text.Sunken
         font.bold: true
         font.pixelSize: 18
-    }
+    }*/
 
     HoldButton {
                 id: rollBtn
                 anchors {
-                    bottom: screen.bottom
-                    bottomMargin: 50
-                    horizontalCenter: screen.horizontalCenter
+                    bottom: engine.bottom
+                    horizontalCenter: engine.horizontalCenter
                 }
                 text: "Hold to Roll!"
                 onPressed: {
@@ -121,7 +114,4 @@ Image {
                     currentlyRolling =  false;
                 }
     }
-
-
-
 }
