@@ -1,7 +1,7 @@
 import Qt 4.7
 import QtQuick 1.0
 import Box2D 1.0
-
+import "boardLogic.js" as Script
 
 Image {
 
@@ -25,7 +25,9 @@ Image {
             anchors.fill: parent
             gravity: Qt.point(-accX*20*currentlyRolling +2, -accY*20*currentlyRolling -3); // 20 is the current scale up factor
 
-
+			//New Line
+			Component.onCompleted: Script.finalizeBoard();
+			
        /* Repeater {
             model: 8
             delegate: D6 {

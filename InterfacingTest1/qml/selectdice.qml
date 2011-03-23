@@ -93,7 +93,7 @@ Rectangle {
                 horizontalCenter: screen.horizontalCenter
             }
             text: "Roll Dice"
-            onClicked: Script.finalizeBoard(), screenBase.showScreen("engine.qml")
+            onClicked: /*Script.finalizeBoard(),*/ screenBase.showScreen("engine.qml")
         }
     }
 }
