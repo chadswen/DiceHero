@@ -3,6 +3,7 @@ import QtQuick 1.0
 import Box2D 1.0
 
 Body {
+	id: dieBody
     width: 70;
     height: 70;
     sleepingAllowed: false
@@ -16,7 +17,7 @@ Body {
 
 
     property string currentNumber: "NULL"
-    property string currentSource: "d6.png"
+    property string currentSource: d6.png
     //property int edgeBounceDistance: 200 // make this greater than die width to avoid clipping
 
 
@@ -44,6 +45,8 @@ Image {
         drag.target: die
         drag.axis: Drag.XandYAxis
         drag.filterChildren: true
+        drag.maximumX: screen.width
+        drag.maximumY: screen.height
     }
 
     /*onXChanged: collisionDetection(die)

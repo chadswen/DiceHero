@@ -8,7 +8,7 @@ import QtQuick 1.0
      signal pressed
      signal released
 
-     width: buttonLabel.width + 20; height: buttonLabel.height + 100
+     width: parent.width; height: buttonLabel.height+30
      border {
          width: 1;
          color: Qt.darker(activePalette.button)

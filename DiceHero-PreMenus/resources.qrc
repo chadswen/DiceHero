@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qml/board.png</file>
+        <file>qml/d6.png</file>
+        <file>qml/D6.qml</file>
+        <file>qml/dice.png</file>
+        <file>qml/Die.qml</file>
+        <file>qml/main.qml</file>
+        <file>qml/Wall.qml</file>
+        <file>qml/HoldButton.qml</file>
+    </qresource>
+</RCC>
