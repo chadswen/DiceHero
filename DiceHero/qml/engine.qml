@@ -15,7 +15,7 @@ Image {
         id: activePalette
     }
     anchors.fill: parent
-    source: "felt.jpg"
+    source: "wood.jpg"
     //source: "board.png"
     smooth: true
 
@@ -85,6 +85,7 @@ Image {
             text:  Script.getNumberDice(myDice);
         }
     }
+
     // box2d elements start here
     World {
             id: world;
@@ -113,7 +114,8 @@ Image {
                 id: rightWall
                 anchors { left: parent.right; bottom: ground.top; top: ceiling.bottom }
             }
-    }
+
+  }
 
 //for debug purposes
    /* Text {

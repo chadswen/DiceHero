@@ -32,7 +32,8 @@ OTHER_FILES += qml/*.qml \
     qml/*.js \
     qml/diceheroicon.png \
     qml/diceheroheader.png \
-    qml/felt.jpg
+    qml/felt.jpg \
+    qml/wood.jpg
 
 
 RESOURCES = resources.qrc
