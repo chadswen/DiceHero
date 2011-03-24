@@ -10,6 +10,14 @@ function clearData(numDice) {
         numDice[5] = 0;
 }
 
+function getNumberDice(numDice) {
+    var sum = 0;
+    for (var i =0; i < 6; i++) {
+        sum += numDice[i];
+    }
+    return sum;
+}
+
 function incd4(numDice) {
         numDice[0]++;
 }
@@ -35,18 +43,15 @@ function incd20(numDice) {
 }
 
 
-
 function finalizeBoard(numDice) {
     for (var dieIndex = 0; dieIndex < 6; dieIndex++) {
         component = Qt.createComponent(diceLabels[dieIndex]+".qml");
         for (var specIndex = 0; specIndex < numDice[dieIndex]; specIndex++) {
             var dieObject = component.createObject(world);
-
             if (dieObject == null) {
                 console.log("error creating die");
                 console.log(component.errorString());
             }
-
             dieObject.x = Math.random() * (engine.width - 70)+35;
             dieObject.y = Math.random() * (engine.height / 3);
             dieObject.rotation = Math.random() * 90;

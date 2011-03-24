@@ -1,4 +1,5 @@
 import QtQuick 1.0
+import "createDice.js" as Script
 
 Rectangle {
 
@@ -44,46 +45,42 @@ Rectangle {
             anchors.right: topToolbar.right
         }
         Rectangle {
-            id: status
-
-            height:  clearButton.height; width: 180
-            border.color:  "black"
-            border.width:  2
-            radius: 10
-
-            anchors {
-                left: topToolbar.left
-                leftMargin:20
-            }
-
-            Text {
-                id: statusText
-                smooth: true
-                font.bold: false
-                font.pixelSize: 20
-                color: "#000000"
-                wrapMode: Text.WordWrap
-                text: "Dice on Table: "
-                anchors.left: status.left
-                anchors.leftMargin: 7
-                anchors.top: status.top
-                anchors.topMargin: 5
-                anchors.bottom:  status.bottom
-                anchors.bottomMargin: 5
-            }
-            /******************RESERVED DYNAMIC AREA***********/
-            Text {
-                id: statusDynamicText
-                font.bold: false
-                smooth: true
-                font.family: "Helvetica [Cronyx]"
-                font.pixelSize: 20
-                color: "#000000"
-                wrapMode: Text.WordWrap
-                style: Text.Raised
-                anchors.left: statusText.right
-            }
-            /*******************************************************/
+                id: status
+                 height: clearButton.height; width: 180
+                border.color:  "black"
+                border.width:  2
+                opacity: .4
+                radius: 10
+                anchors {
+                    left: topToolbar.left
+                    leftMargin:20
+                }
+    }
+        Text {
+            id: statusText
+            smooth: true
+            font.bold: false
+            font.pixelSize: 20
+            color: "#000000"
+            wrapMode: Text.WordWrap
+            text: "Dice on Table: "
+            anchors.left: status.left
+            anchors.leftMargin: 7
+            anchors.top: status.top
+            anchors.topMargin: 5
+            anchors.bottom:  status.bottom
+            anchors.bottomMargin: 5
+        }
+        Text {
+            id: statusDynamicText
+            font.bold: false
+            smooth: true
+            font.family: "Helvetica [Cronyx]"
+            font.pixelSize: 20
+            color: "#000000"
+            wrapMode: Text.WordWrap
+            style: Text.Raised
+            anchors.left: statusText.right
         }
     }
     Button {
@@ -97,10 +94,4 @@ Rectangle {
         text: "Choose Dice"
         onClicked: screen.showScreen("selectdice.qml")
     }
-
-    /**************RESERVED FOR DYNAMIC AREA*********************
-    Item {
-
-    }
-    *************************************************************/
 }

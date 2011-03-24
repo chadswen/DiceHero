@@ -28,9 +28,9 @@ Rectangle {
             right: parent.right
         }
 
-        Rectangle {
+        Image {
                 anchors.fill: parent
-                color: "purple"
+                source: "felt.jpg"
         }
 
         Button {

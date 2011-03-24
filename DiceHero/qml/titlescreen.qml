@@ -30,6 +30,8 @@ signal showScreen(string msg)
                     color: "black"
             }
         }
+
+
         Rectangle {
             id: textHolder
 
@@ -46,21 +48,15 @@ signal showScreen(string msg)
             smooth: true
             radius: 50
 
-            Text {
+            Image {
                 id: titleText
+                width: 289; height: 64
                 anchors {
                     top: textHolder.top;
                     topMargin: 50
                     horizontalCenter: parent.horizontalCenter
                 }
-                font.bold: true
-                smooth: true
-                font.family: "Arial"
-                font.pixelSize: 50
-                color: "#FF9933"
-                wrapMode: Text.WordWrap
-                style: Text.Raised
-                text: "Dice App"
+                source: "diceheroheader.png"
             }
 
             Text {
@@ -109,6 +105,6 @@ signal showScreen(string msg)
                 horizontalCenter: textHolder.horizontalCenter
             }
             text: "Select Dice"
-            onClicked: screen.showScreen("table.qml")
+            onClicked: screen.showScreen("selectdice.qml")
         }
 }

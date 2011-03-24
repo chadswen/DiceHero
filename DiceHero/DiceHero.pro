@@ -29,7 +29,10 @@ HEADERS += \
 
 OTHER_FILES += qml/*.qml \
     qml/*.png \
-    qml/*.js
+    qml/*.js \
+    qml/diceheroicon.png \
+    qml/diceheroheader.png \
+    qml/felt.jpg
 
 
 RESOURCES = resources.qrc
