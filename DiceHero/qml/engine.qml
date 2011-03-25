@@ -15,8 +15,8 @@ Image {
         id: activePalette
     }
     anchors.fill: parent
-    source: "wood.jpg"
-    //source: "board.png"
+    //source: "wood.jpg"
+    source: "board.png"
     smooth: true
 
 
@@ -97,20 +97,27 @@ Image {
                 myDice = temp;
             }
 
-        Wall {
+            Wall {
             id: ground
+            height: 1
             anchors { left: parent.left; right: parent.right; bottom: parent.bottom;
-                bottomMargin: 50; }
+                bottomMargin: 49; }
             }
             Wall {
+                height: 1
+                width: parent.width
                 id: ceiling
                 anchors { left: parent.left; right: parent.right; bottom: parent.top }
             }
             Wall {
+                height: parent.height
+                width: 1
                 id: leftWall
                 anchors { right: parent.left; bottom: ground.top; top: ceiling.bottom }
             }
             Wall {
+                height: parent.height
+                width: 1
                 id: rightWall
                 anchors { left: parent.right; bottom: ground.top; top: ceiling.bottom }
             }
