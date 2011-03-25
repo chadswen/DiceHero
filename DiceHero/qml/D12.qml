@@ -18,9 +18,9 @@ Die {
     }
 
     fixtures: Polygon {
-        density: 5
-        friction: 0.3
-        restitution: 0.65
+        density: myDensity
+        friction: myFriction
+        restitution: myRestitution
         vertices: [
             Qt.point(0, 0),
             Qt.point(0, 70),

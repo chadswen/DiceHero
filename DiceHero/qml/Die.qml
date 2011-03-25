@@ -9,6 +9,10 @@ Body {
     height: 70
 
     property string currentSource
+    property real myDensity: 5
+    property real myFriction: .3
+    property real myRestitution: .65
+
 
     Image {
         id:die
