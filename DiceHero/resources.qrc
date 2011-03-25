@@ -22,9 +22,6 @@
         <file>qml/titlescreen.qml</file>
         <file>qml/Wall.qml</file>
         <file>qml/welcometext.qml</file>
-        <file>qml/diceheroicon.png</file>
-        <file>qml/diceheroheader.png</file>
-        <file>qml/felt.jpg</file>
-        <file>qml/wood.jpg</file>
+        <file>qml/d20_side_blue.png</file>
     </qresource>
 </RCC>

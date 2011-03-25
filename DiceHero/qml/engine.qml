@@ -115,6 +115,19 @@ Image {
                 anchors { left: parent.right; bottom: ground.top; top: ceiling.bottom }
             }
 
+            DebugDraw {
+                id: debugDraw
+                world: world
+                anchors.fill: world
+                opacity: 0.75
+                visible: false
+            }
+            MouseArea {
+                id: debugMouseArea
+                anchors.fill: world
+                onPressed: debugDraw.visible = !debugDraw.visible
+            }
+
   }
 
 //for debug purposes

@@ -1,52 +1,46 @@
 //Base class for dice
+import Qt 4.7
 import QtQuick 1.0
 import Box2D 1.0
 
 Body {
-    width: 70;
-    height: 70;
     sleepingAllowed: false
-
-    fixtures: Box {
-        anchors.fill: parent
-        density: 20;
-        friction: 0.3;
-        restitution: .8;
-    }
-
+    width: 70
+    height: 70
 
     property string currentNumber: "NULL"
-    property string currentSource: "d6.png"
+    property string currentSource
     //property int edgeBounceDistance: 200 // make this greater than die width to avoid clipping
 
 
-Image {
-    id:die
-    anchors.fill: parent
-    smooth: false // once animations stop, we can turn on smooth, otherwise it's a performance hit
-    source: currentSource
+    Image {
+        id:die
 
-
-    Text {
-        id: number
-        color: "#45c3c3"
-        text: currentNumber
-        anchors.centerIn: parent
-        horizontalAlignment: Text.AlignHCenter
-        styleColor: "#000000"
-        style: Text.Sunken
-        font.bold: true
-        font.pixelSize: 18
-    }
-
-    MouseArea {
         anchors.fill: parent
-        drag.target: die
-        drag.axis: Drag.XandYAxis
-        drag.filterChildren: true
-    }
+        smooth: false // once animations stop, we can turn on smooth, otherwise it's a performance hit
+        source: currentSource
 
-    /*onXChanged: collisionDetection(die)
+
+        Text {
+            id: number
+            color: "#45c3c3"
+            text: currentNumber
+            anchors.centerIn: parent
+            horizontalAlignment: Text.AlignHCenter
+            styleColor: "#000000"
+            style: Text.Sunken
+            font.bold: true
+            font.pixelSize: 18
+        }
+
+        MouseArea {
+            anchors.fill: parent
+            drag.target: die
+            drag.axis: Drag.XandYAxis
+            drag.filterChildren: true
+        }
+
+        /*onXChanged: collisionDetection(die)
     onYChanged: collisionDetection(die)
 
     Behavior on x { SmoothedAnimation {velocity: 100 } }
@@ -70,5 +64,5 @@ Image {
         }
 
     }*/
-}
+    }
 }
