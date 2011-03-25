@@ -77,12 +77,6 @@ Image {
             anchors.rightMargin: 7
             anchors.bottom:  status.bottom
             anchors.bottomMargin: 5
-            Component.onCompleted: {
-                var temp = myDice;
-                Script.getNumberDice(myDice);
-                myDice = temp;
-            }
-            text:  Script.getNumberDice(myDice);
         }
     }
 
@@ -92,31 +86,30 @@ Image {
             anchors.fill: parent
             gravity: Qt.point(-accX*20*currentlyRolling, -accY*20*currentlyRolling -5*!currentlyRolling); // 20 is the current scale up factor
             Component.onCompleted: {
+                Script.finalizeBoard(myDice);
+                statusDynamicText.text = Script.getNumberDice(myDice);
                 var temp = myDice;
-                Script.finalizeBoard(temp);
+                Script.clearData(temp);
                 myDice = temp;
             }
 
             Wall {
-            id: ground
-            height: 1
-            anchors { left: parent.left; right: parent.right; bottom: parent.bottom;
+                id: ground
+                height: 1
+                anchors { left: parent.left; right: parent.right; bottom: parent.bottom;
                 bottomMargin: 49; }
             }
             Wall {
                 height: 1
-                width: parent.width
                 id: ceiling
                 anchors { left: parent.left; right: parent.right; bottom: parent.top }
             }
             Wall {
-                height: parent.height
                 width: 1
                 id: leftWall
                 anchors { right: parent.left; bottom: ground.top; top: ceiling.bottom }
             }
             Wall {
-                height: parent.height
                 width: 1
                 id: rightWall
                 anchors { left: parent.right; bottom: ground.top; top: ceiling.bottom }
