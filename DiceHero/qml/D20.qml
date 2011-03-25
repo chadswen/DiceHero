@@ -1,11 +1,22 @@
-import Qt 4.7
 import QtQuick 1.0
 import Box2D 1.0
 
 Die {
     id: d20
     currentSource: "d20_side_blue.png"
-    currentNumber: Math.floor(Math.random()*20) +1
+
+    Text {
+        id: number
+        color: "#45c3c3"
+        text: Math.floor(Math.random()*20) +1
+        anchors.centerIn: parent
+        horizontalAlignment: Text.AlignHCenter
+        styleColor: "#000000"
+        style: Text.Sunken
+        font.bold: true
+        font.pixelSize: 18
+    }
+
     fixtures: Polygon {
         density: 5
         friction: 0.3
