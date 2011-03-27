@@ -10,12 +10,13 @@ Image {
     width: 360;
     height: 640;
 
+    property int timeout: 0
+
 
     SystemPalette {
         id: activePalette
     }
     anchors.fill: parent
-    //source: "wood.jpg"
     source: "board.png"
     smooth: true
 
@@ -29,24 +30,25 @@ Image {
             horizontalCenter: engine.horizontalCenter
         }
         Button2 {
-            id: clearButton
-            text: "Clear Dice"
+            id: returnButton
+            text: "Return"
             anchors.rightMargin:20
             onClicked: console.log("nothingyet")
             anchors.right: topToolbar.right
+            visible: false
         }
         Rectangle {
-                id: status
-                height: clearButton.height; width: 180
-                border.color:  "#CCCCCC"
-                color: "black"
-                border.width:  4
-                opacity: .7
-                radius: 10
-                anchors {
-                    left: topToolbar.left
-                    leftMargin:20
-                }
+            id: status
+            height: returnButton.height; width: 180
+            border.color:  "#CCCCCC"
+            color: "black"
+            border.width:  4
+            opacity: .7
+            radius: 10
+            anchors {
+                left: topToolbar.left
+                leftMargin:20
+            }
         }
         Text {
             id: statusText
@@ -82,66 +84,94 @@ Image {
 
     // box2d elements start here
     World {
-            id: world;
-            anchors.fill: parent
-            gravity: Qt.point(-accX*20*currentlyRolling, -accY*20*currentlyRolling -5*!currentlyRolling); // 20 is the current scale up factor
-            Component.onCompleted: {
-                Script.finalizeBoard(myDice);
-                statusDynamicText.text = Script.getNumberDice(myDice);
-                var temp = myDice;
-                Script.clearData(temp);
-                myDice = temp;
-            }
+        id: world;
+        anchors.fill: parent
+        gravity: Qt.point(-accX*150*currentlyRolling, -accY*150*currentlyRolling); // 150 is the current scale up factor
+        Component.onCompleted: {
+            Script.finalizeBoard(myDice);
+            statusDynamicText.text = Script.getNumberDice(myDice);
+            calibrate();
+            currentlyRolling = true;
+            var temp = myDice;
+            Script.clearData(temp);
+            myDice = temp;
+        }
 
-            Wall {
-                id: ground
-                height: 1
-                anchors { left: parent.left; right: parent.right; bottom: parent.bottom;
-                bottomMargin: 49; }
-            }
-            Wall {
-                height: 1
-                id: ceiling
-                anchors { left: parent.left; right: parent.right; bottom: parent.top }
-            }
-            Wall {
-                width: 1
-                id: leftWall
-                anchors { right: parent.left; bottom: ground.top; top: ceiling.bottom }
-            }
-            Wall {
-                width: 1
-                id: rightWall
-                anchors { left: parent.right; bottom: ground.top; top: ceiling.bottom }
-            }
+        Wall {
+            id: ground
+            height: 1
+            anchors { left: parent.left; right: parent.right; bottom: parent.bottom;}
+        }
+        Wall {
+            height: 60
+            id: ceiling
+            anchors { left: parent.left; right: parent.right; top: parent.top;}
+        }
+        Wall {
+            width: 1
+            id: leftWall
+            anchors { right: parent.left; bottom: ground.top; top: ceiling.bottom }
+        }
+        Wall {
+            width: 1
+            id: rightWall
+            anchors { left: parent.right; bottom: ground.top; top: ceiling.bottom }
+        }
 
-            DebugDraw {
-                id: debugDraw
-                world: world
-                anchors.fill: world
-                opacity: 0.75
-                visible: false
+        Connections {
+            target: main
+            onAccXChanged: {
+                calibrate();
             }
-            MouseArea {
-                id: debugMouseArea
-                anchors.fill: world
-                onPressed: debugDraw.visible = !debugDraw.visible
+            onAccYChanged: {
+                calibrate();
             }
+        }
 
-  }
+        /*DebugDraw {
+            id: debugDraw
+            world: world
+            anchors.fill: world
+            opacity: 0.75
+            visible: false
+        }
+        MouseArea {
+            id: debugMouseArea
+            anchors.fill: world
+            onPressed: debugDraw.visible = !debugDraw.visible
+        }*/
+    }
 
-//for debug purposes
-   /* Text {
+    //timer to stop rolling, currently 3.5 seconds of no movement.
+    Timer{
+        interval: 50; running: currentlyRolling; repeat: true;
+        onTriggered:{
+            if(accX==0 && accY ==0)
+                timeout+=50;
+            else
+                timeout=0;
+
+            if(timeout>=3000){
+                currentlyRolling = false;
+                returnButton.visible= true;
+
+                for(var i = 0; i<6; i++)
+                    console.log("Rolls of diceNumType "+i+": "+rollResults[i]);
+                }
+            }
+    }
+    //for debug purposes
+    Text {
         id:xLabel
         x: 395
         y: 137
-        color: "#45c3c3"
+        color: "#CCCCCC"
         text: "X Acceleration: " + accX
         anchors.verticalCenterOffset: -92
         anchors.horizontalCenterOffset: 1
         anchors.centerIn: parent
         horizontalAlignment: Text.AlignLeft
-        styleColor: "#000000"
+        styleColor: "black"
         style: Text.Sunken
         font.bold: true
         font.pixelSize: 18
@@ -152,35 +182,35 @@ Image {
         id:yLabel
         x: 395
         y: 212
-        color: "#45c3c3"
+        color: "#CCCCCC"
         text: "Y Acceleration: " + accY
         anchors.verticalCenterOffset: -17
         anchors.horizontalCenterOffset: 1
         anchors.centerIn: parent
         horizontalAlignment: Text.AlignLeft
-        styleColor: "#000000"
+        styleColor: "black"
         style: Text.Sunken
         font.bold: true
         font.pixelSize: 18
     }
 
     Text {
-        id:zLabel
+        id:timeoutLabel
         x: 395
         y: 282
-        color: "#45c3c3"
-        text: "Z Acceleration: " + accZ
+        color: "#CCCCCC"
+        text: "Timeout clock: " + timeout
         anchors.verticalCenterOffset: 53
         anchors.horizontalCenterOffset: 1
         anchors.centerIn: parent
         horizontalAlignment: Text.AlignLeft
-        styleColor: "#000000"
+        styleColor: "black"
         style: Text.Sunken
         font.bold: true
         font.pixelSize: 18
-    }*/
+    }
 
-    HoldButton {
+    /*HoldButton {
                 id: rollBtn
                 anchors {
                     bottom: engine.bottom
@@ -194,5 +224,5 @@ Image {
                 onReleased: {
                     currentlyRolling =  false;
                 }
-    }
+    }*/
 }

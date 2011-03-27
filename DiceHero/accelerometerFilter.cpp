@@ -5,7 +5,7 @@
 #define FREQUENCY 40 //hz
 #define cQSize 4 //size of circular queues
 #define PRECISION 1 //number of decimal points
-#define LOWEND 0.1 //  values with [abs(reading)] < (LOWEND) are set to 0
+#define LOWEND 0.4 //  values with [abs(reading)] < (LOWEND) are set to 0
 
 accelerometerFilter::accelerometerFilter()
     : outX(0),outY(0),outZ(0)

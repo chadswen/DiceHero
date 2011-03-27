@@ -30,7 +30,7 @@ Rectangle {
 
         Image {
                 anchors.fill: parent
-                source: "wood.jpg"
+                source: "board.png"
         }
 
         Button {

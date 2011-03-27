@@ -12,6 +12,7 @@ Rectangle {
     property real accZ
 
     property variant myDice: GlobalDice.numDice
+    property variant rollResults: GlobalDice.rollResults
 
     property bool currentlyRolling: false
 

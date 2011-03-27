@@ -4,18 +4,7 @@ import Box2D 1.0
 Die {
     id: d10
     currentSource: "d6.png"
-
-    Text {
-        id: number
-        color: "#45c3c3"
-        text: Math.floor(Math.random()*10) +1
-        anchors.centerIn: parent
-        horizontalAlignment: Text.AlignHCenter
-        styleColor: "#000000"
-        style: Text.Sunken
-        font.bold: true
-        font.pixelSize: 18
-    }
+    sides: 10
 
     fixtures: Polygon {
         density: myDensity

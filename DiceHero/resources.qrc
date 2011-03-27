@@ -23,5 +23,6 @@
         <file>qml/Wall.qml</file>
         <file>qml/welcometext.qml</file>
         <file>qml/d20_side_blue.png</file>
+        <file>qml/diceheroheader.png</file>
     </qresource>
 </RCC>
