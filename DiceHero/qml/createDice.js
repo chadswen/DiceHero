@@ -10,6 +10,18 @@ function clearData(numDice) {
         numDice[5] = 0;
 }
 
+
+function clearResults(rollResults) {
+    rollResults[0] = [];
+    rollResults[1] = [];
+    rollResults[2] = [];
+    rollResults[3] = [];
+    rollResults[4] = [];
+    rollResults[5] = [];
+
+}
+
+
 function getNumberDice(numDice) {
     var sum = 0;
     for (var i =0; i < 6; i++) {

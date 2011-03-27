@@ -92,9 +92,16 @@ Image {
             statusDynamicText.text = Script.getNumberDice(myDice);
             calibrate();
             currentlyRolling = true;
+
+            //Clear select dice
             var temp = myDice;
             Script.clearData(temp);
             myDice = temp;
+
+            //Clear roll results
+            var temp = rollResults;
+            Script.clearResults(temp);
+            rollResults = temp;
         }
 
         Wall {
