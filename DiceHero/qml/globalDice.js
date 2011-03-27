@@ -1,5 +1,5 @@
 var numDice = new Array(6);
-
+var dieClicks = new Array(5);
 var rollResults = new Array(6);
 //up to 30 of each die type
 rollResults[0] = []
