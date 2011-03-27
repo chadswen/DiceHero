@@ -33,7 +33,7 @@ Image {
             id: returnButton
             text: "Return"
             anchors.rightMargin:20
-            onClicked: console.log("nothingyet")
+            onClicked: showScreen(returnFile)
             anchors.right: topToolbar.right
             visible: false
         }

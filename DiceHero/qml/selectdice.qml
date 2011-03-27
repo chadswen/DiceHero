@@ -121,7 +121,7 @@ Rectangle {
                 horizontalCenter: screen.horizontalCenter
             }
             text: "Roll Dice"
-            onClicked: screenBase.showScreen("engine.qml")
+            onClicked: returnFile="selectdice.qml", screenBase.showScreen("engine.qml")
         }
     }
 }

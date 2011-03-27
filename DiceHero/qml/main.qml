@@ -11,6 +11,8 @@ Rectangle {
     property real accY
     property real accZ
 
+    property string returnFile
+
     property variant myDice: GlobalDice.numDice
     property variant rollResults: GlobalDice.rollResults
 
