@@ -1,6 +1,7 @@
 import Qt 4.7
 import QtQuick 1.0
 import Box2D 1.0
+import QtMultimediaKit 1.1
 import "createDice.js" as Script
 
 
@@ -148,6 +149,25 @@ Image {
             onPressed: debugDraw.visible = !debugDraw.visible
         }*/
     }
+
+
+
+    //random sound effect played every second when rolling
+    SoundEffect {
+        id: playSound
+    }
+    Timer{
+        interval: 1000 ; running: currentlyRolling; repeat: true;
+        onTriggered:{
+        var soundNum = Math.floor(Math.random()*6) +1;
+        var sound = "clack"+ soundNum +".wav";
+        playSound.source= sound;
+        playSound.play();
+        }
+    }
+
+
+
 
     //timer to stop rolling, currently 3.5 seconds of no movement.
     Timer{
