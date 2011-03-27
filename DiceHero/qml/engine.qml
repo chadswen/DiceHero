@@ -153,8 +153,9 @@ Image {
 
 
     //random sound effect played every second when rolling
-    SoundEffect {
+    /*Audio {
         id: playSound
+        source: "clack1.wav"
     }
     Timer{
         interval: 1000 ; running: currentlyRolling; repeat: true;
@@ -163,8 +164,9 @@ Image {
         var sound = "clack"+ soundNum +".wav";
         playSound.source= sound;
         playSound.play();
+            console.log("Played sound: "+sound);
         }
-    }
+    }*/
 
 
 

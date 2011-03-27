@@ -29,7 +29,8 @@ HEADERS += \
 
 OTHER_FILES += qml/*.qml \
     qml/*.png \
-    qml/*.js
+    qml/*.js \
+    qml/*.wav
 
 
 RESOURCES = resources.qrc

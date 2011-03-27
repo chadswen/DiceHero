@@ -3,6 +3,12 @@
         <file>qml/board.png</file>
         <file>qml/Button.qml</file>
         <file>qml/Button2.qml</file>
+        <file>qml/clack1.wav</file>
+        <file>qml/clack2.wav</file>
+        <file>qml/clack3.wav</file>
+        <file>qml/clack4.wav</file>
+        <file>qml/clack5.wav</file>
+        <file>qml/clack6.wav</file>
         <file>qml/createDice.js</file>
         <file>qml/D4.qml</file>
         <file>qml/d6.png</file>
@@ -11,21 +17,21 @@
         <file>qml/D10.qml</file>
         <file>qml/D12.qml</file>
         <file>qml/D20.qml</file>
+        <file>qml/d20_side_blue.png</file>
+        <file>qml/diceheroheader.png</file>
         <file>qml/Die.qml</file>
         <file>qml/engine.qml</file>
         <file>qml/globalDice.js</file>
         <file>qml/HoldButton.qml</file>
+        <file>qml/holdingDice.js</file>
         <file>qml/main.qml</file>
+        <file>qml/RerollSelection.qml</file>
         <file>qml/selectdice.qml</file>
         <file>qml/selectdicebutton.qml</file>
         <file>qml/table.qml</file>
         <file>qml/titlescreen.qml</file>
+        <file>qml/TwoStateButton.qml</file>
         <file>qml/Wall.qml</file>
         <file>qml/welcometext.qml</file>
-        <file>qml/d20_side_blue.png</file>
-        <file>qml/diceheroheader.png</file>
-        <file>qml/holdingDice.js</file>
-        <file>qml/TwoStateButton.qml</file>
-        <file>qml/RerollSelection.qml</file>
     </qresource>
 </RCC>
