@@ -24,5 +24,8 @@
         <file>qml/welcometext.qml</file>
         <file>qml/d20_side_blue.png</file>
         <file>qml/diceheroheader.png</file>
+        <file>qml/holdingDice.js</file>
+        <file>qml/TwoStateButton.qml</file>
+        <file>qml/RerollSelection.qml</file>
     </qresource>
 </RCC>
