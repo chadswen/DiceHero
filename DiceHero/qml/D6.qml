@@ -12,9 +12,9 @@ Die {
         restitution: myRestitution
         vertices: [
             Qt.point(0, 0),
-            Qt.point(0, 70),
-            Qt.point(70, 70),
-            Qt.point(70, 0)
+            Qt.point(0, 90),
+            Qt.point(90, 90),
+            Qt.point(90, 0)
         ]
     }
 }

@@ -3,7 +3,7 @@ import Box2D 1.0
 
 Die {
     id: d20
-    currentSource: "d20_side_blue.png"
+    currentSource: "D20_animated_1.png"
     sides: 20
 
     fixtures: Polygon {
@@ -11,12 +11,34 @@ Die {
         friction: myFriction
         restitution: myRestitution
         vertices: [
-            Qt.point(18, 5),
-            Qt.point(3, 34),
-            Qt.point(21, 61),
-            Qt.point(56, 57),
-            Qt.point(67, 28),
-            Qt.point(49, 1)
+            Qt.point(6, 22),
+            Qt.point(10, 64),
+            Qt.point(46, 89),
+            Qt.point(82, 64),
+            Qt.point(84, 21),
+            Qt.point(45, 1)
         ]
     }
+    states: [
+        State {
+            name: "1"
+            PropertyChanges { target: d20; currentSource: "D20_animated_1.png"}
+        },
+        State {
+            name: "2"
+            PropertyChanges { target: d20; currentSource: "D20_animated_2.png"}
+        },
+        State {
+            name: "3"
+            PropertyChanges { target: d20; currentSource: "D20_animated_3.png"}
+        },
+        State {
+            name: "4"
+            PropertyChanges { target: d20; currentSource: "D20_animated_4.png"}
+        },
+        State {
+            name: "5"
+            PropertyChanges { target: d20; currentSource: "D20_animated_5.png"}
+        }
+    ]
 }

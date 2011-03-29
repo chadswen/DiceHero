@@ -113,7 +113,7 @@ signal showScreen(string msg)
                  lifeSpan: 700; lifeSpanDeviation: 600
                  angle: 0; angleDeviation: 360;
                  velocity: 100; velocityDeviation: 40
-                 source: d20_side_blue.png
+                 source: "d20_side_blue.png"
            }
            onClicked: screen.showScreen("selectdice.qml")
         }

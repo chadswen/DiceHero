@@ -88,7 +88,7 @@ Image {
     Rectangle {
         id: timeBar
         height: 30
-        width: ((parent.width * (2500-timeout)) / (2500))
+        width: ((parent.width * (2000-timeout)) / (2000))
         Behavior on width { SmoothedAnimation { velocity: 1200 } }
         border.color:  "#CCCCCC"
         color: "black"
@@ -220,10 +220,7 @@ Image {
         }
     }*/
 
-
-
-
-    //timer to stop rolling, currently 2.5 seconds of no movement.
+    //timer to stop rolling, currently 2 seconds of no movement.
     Timer{
         interval: 50; running: currentlyRolling; repeat: true;
         onTriggered:{
@@ -232,7 +229,7 @@ Image {
             else
                 timeout=0;
 
-            if(timeout>=2500){
+            if(timeout>=2000){
                 currentlyRolling = false;
                 returnButton.visible= true;
 
