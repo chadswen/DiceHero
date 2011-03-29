@@ -13,6 +13,7 @@ Body {
     property real myDensity: 25
     property real myFriction: .3
     property real myRestitution: .65
+    property int rollRate: 50
 
 
     Image {
@@ -31,13 +32,15 @@ Body {
         horizontalAlignment: Text.AlignHCenter
         styleColor: "black"
         style: Text.Outline
-        font.bold: true
-        font.pixelSize: 18
+        font.bold: false
+        font.pixelSize: 25
     }
 
     //Change random number at a rate congruent to velocity
-    Timer{ interval: 20000/Math.round(Math.sqrt(Math.pow(linearVelocity.x,2)+Math.pow(linearVelocity.y,2))); running: currentlyRolling; repeat: true;
-        onTriggered:{ number.text= number.text= Math.floor(Math.random()*sides) +1;
+    Timer{ interval: rollRate; running: currentlyRolling; repeat: true;
+        onTriggered:{
+            number.text= Math.floor(Math.random()*sides) +1;
+            rollRate = 20000/Math.floor(Math.sqrt(linearVelocity.x*linearVelocity.x+linearVelocity.y*linearVelocity.y));
             if(number.text == "6" || number.text == "9")
                 number.font.underline= true
             else
@@ -69,6 +72,8 @@ Body {
                 rollResults = temp;
 
                 linearVelocity= Qt.point(0,0);
+                angularDamping= .5;
+                linearDamping= 1.0;
 
             }
         }

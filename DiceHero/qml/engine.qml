@@ -12,6 +12,7 @@ Image {
     height: 640;
 
     property int timeout: 0
+    property int timein: 0
 
 
     SystemPalette {
@@ -21,7 +22,7 @@ Image {
     source: "board.png"
     smooth: true
 
-
+    //top bar
     Item {
         id: topToolbar
         width: parent.width; height: parent.height
@@ -83,16 +84,67 @@ Image {
         }
     }
 
+    // fill bar for no move timeout
+    Rectangle {
+        id: timeBar
+        height: 30
+        width: ((parent.width * (2500-timeout)) / (2500))
+        Behavior on width { SmoothedAnimation { velocity: 1200 } }
+        border.color:  "#CCCCCC"
+        color: "black"
+        border.width:  4
+        opacity: .7
+        radius: 10
+        anchors {
+            bottom: parent.bottom
+            bottomMargin: 4
+        }
+        gradient: Gradient {
+            GradientStop { id: gradient1; position: 0.0 }
+            GradientStop { id: gradient2; position: 1.0 }
+        }
+    }
+
+
+    //countdown
+    Text {
+        id: startText
+        text: "Ready"
+        font.pixelSize: 60
+        anchors.centerIn: parent
+        color:  "#CCCCCC"
+        styleColor: "black"
+        style: Text.Outline
+        font.bold: true
+        font.italic: true
+        font.family: "Impact"
+
+        Component.onCompleted:
+            SequentialAnimation {
+            NumberAnimation { target: startText; property: "opacity"; to: 0; duration: 700 }
+            PropertyAction{ target: startText; property: "font.pixelSize"; value: 70}
+            PropertyAction{ target: startText; property: "text"; value: "Set"}
+            NumberAnimation { target: startText; property: "opacity"; to: 1; }
+            NumberAnimation { target: startText; property: "opacity"; to: 0; duration: 700 }
+            PropertyAction{ target: startText; property: "font.pixelSize"; value: 110}
+            PropertyAction{ target: startText; property: "text"; value: "ROLL!"}
+            NumberAnimation { target: startText; property: "opacity"; to: 1; }
+            PropertyAction{ target: main; property: "currentlyRolling"; value: true}
+            NumberAnimation { target: startText; property: "opacity"; to: 0; duration: 1500 }
+        }
+
+    }
+
     // box2d elements start here
     World {
         id: world;
         anchors.fill: parent
-        gravity: Qt.point(-accX*150*currentlyRolling, -accY*150*currentlyRolling); // 150 is the current scale up factor
+        gravity: Qt.point(-accX*150*currentlyRolling, -accY*250*currentlyRolling); // accelerations are scaled up (y is less sensitive so it's scaled higher)
         Component.onCompleted: {
             Script.finalizeBoard(myDice);
             statusDynamicText.text = Script.getNumberDice(myDice);
             calibrate();
-            currentlyRolling = true;
+
 
             //Clear select dice
             var temp = myDice;
@@ -107,11 +159,11 @@ Image {
 
         Wall {
             id: ground
-            height: 1
+            height: 40
             anchors { left: parent.left; right: parent.right; bottom: parent.bottom;}
         }
         Wall {
-            height: 60
+            height: 50
             id: ceiling
             anchors { left: parent.left; right: parent.right; top: parent.top;}
         }
@@ -171,7 +223,7 @@ Image {
 
 
 
-    //timer to stop rolling, currently 3.5 seconds of no movement.
+    //timer to stop rolling, currently 2.5 seconds of no movement.
     Timer{
         interval: 50; running: currentlyRolling; repeat: true;
         onTriggered:{
@@ -180,16 +232,17 @@ Image {
             else
                 timeout=0;
 
-            if(timeout>=3000){
+            if(timeout>=2500){
                 currentlyRolling = false;
                 returnButton.visible= true;
 
                 for(var i = 0; i<6; i++)
                     console.log("Rolls of diceNumType "+i+": "+rollResults[i]);
-                }
             }
+        }
     }
     //for debug purposes
+    /*
     Text {
         id:xLabel
         x: 395
@@ -237,7 +290,7 @@ Image {
         style: Text.Sunken
         font.bold: true
         font.pixelSize: 18
-    }
+    }*/
 
     /*HoldButton {
                 id: rollBtn
