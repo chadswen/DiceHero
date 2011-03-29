@@ -1,5 +1,5 @@
 import QtQuick 1.0
-
+import Qt.labs.particles 1.0
 
 
 Rectangle {
@@ -104,7 +104,17 @@ signal showScreen(string msg)
                 bottomMargin: 75
                 horizontalCenter: textHolder.horizontalCenter
             }
-            text: "Select Dice"
-            onClicked: screen.showScreen("selectdice.qml")
+            text: "Select Dice"            
+            Particles {
+                 id: particles            
+                 width: 1; height: 1
+                 anchors.centerIn: parent            
+                 emissionRate: 0
+                 lifeSpan: 700; lifeSpanDeviation: 600
+                 angle: 0; angleDeviation: 360;
+                 velocity: 100; velocityDeviation: 40
+                 source: d20_side_blue.png
+           }
+           onClicked: screen.showScreen("selectdice.qml")
         }
 }
