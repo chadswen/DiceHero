@@ -34,7 +34,7 @@ Rectangle {
 
             Image {
                     anchors.fill: parent
-                    source: "wood.jpg"
+                    source: "board.png"
             }
         }
 
@@ -53,6 +53,7 @@ Rectangle {
                     var temp = dieClicks;
                     VarHold.die1Click(temp);
                     dieClicks = temp;
+                    console.log("Clicks on die 1: "+dieClicks[0]);
                 }
             }
 
@@ -71,6 +72,7 @@ Rectangle {
                     var temp = dieClicks;
                     VarHold.die2Click(temp);
                     dieClicks = temp;
+                    console.log("Clicks on die 2: "+dieClicks[1]);
                 }
             }
 
@@ -89,6 +91,7 @@ Rectangle {
                     var temp = dieClicks;
                     VarHold.die3Click(temp);
                     dieClicks = temp;
+                    console.log("Clicks on die 3: "+dieClicks[2]);
                }
             }
 
@@ -109,6 +112,7 @@ Rectangle {
                     var temp = dieClicks;
                     VarHold.die4Click(temp);
                     dieClicks = temp;
+                    console.log("Clicks on die 4: "+dieClicks[3]);
                 }
             }
 
@@ -128,12 +132,12 @@ Rectangle {
                 onClicked: {
                     var temp = dieClicks;
                     VarHold.die5Click(temp);
-                    console.log("Clicks on dice "+5+": "+dieClicks[4]);
                     dieClicks = temp;
+                    console.log("Clicks on die 5: "+dieClicks[4]);
                 }
             }
 
-            TwoStateButton {
+            Button {
                 id: finalize
                 x: 105
                 y: 567
