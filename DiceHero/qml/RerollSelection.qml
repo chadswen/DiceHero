@@ -64,9 +64,9 @@ Rectangle {
                     top: parent.top
                 }
                 text: {
-                         if(rollResults[1][0] < 1)
+                         if(rollResults[1][0] == null)
                          {
-                             saved[4]
+                             saved[4];
                          }
                          else
                          {
@@ -92,13 +92,15 @@ Rectangle {
                     left: selectDie1.right
                 }
                 text: {
-                    if(rollResults[1][1] < 1)
+                    if(rollResults[1][1] == null)
                     {
-                        saved[3];
+                        var temp = saved[3];
+                        return temp;
                     }
                     else
                     {
-                        rollResults[1][1];
+                        var temp = rollResults[1][1];
+                        return temp;
                     }
                 }
                 anchors.leftMargin: 26
@@ -120,7 +122,7 @@ Rectangle {
                     left: selectDie2.right
                 }
                 text: {
-                    if(rollResults[1][2] < 1)
+                    if(rollResults[1][2] == null)
                     {
                         saved[2];
                     }
@@ -149,7 +151,7 @@ Rectangle {
                     top: selectDie1.bottom
                 }
                 text: {
-                    if(rollResults[1][3] < 1)
+                    if(rollResults[1][3] == null)
                     {
                         saved[1];
                     }
@@ -179,13 +181,15 @@ Rectangle {
                     top: selectDie2.bottom
                 }
                 text: {
-                    if(rollResults[1][4] < 1)
+                    if(rollResults[1][4] == null)
                     {
-                        saved[0];
+                        var temp = saved[0];
+                        return temp;
                     }
                     else
                     {
-                        rollResults[1][4];
+                        var temp = rollResults[1][4];
+                        return temp;
                     }
                 }
                 anchors.leftMargin: 34

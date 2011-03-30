@@ -19,7 +19,7 @@ function finalize(myDice, dieClicks, rollResults, saved)
         }
         else
         {
-            saved[savecount] = rollResults[tempcount];
+            saved[savecount] = rollResults[1][tempcount];
             savecount++;
         }
     }
@@ -44,4 +44,17 @@ function motherloadDice(myDice)
 {
         myDice[1] = 5;
 }
-
+function gettext(rollResults, saved, num)
+{
+    var temp = rollResults;
+    if(temp[1][num] == null)
+    {
+        var temp = saved[4-num];
+        return temp;
+    }
+    else
+    {
+        var temp = rollResults[1][num];
+        return temp;
+    }
+}

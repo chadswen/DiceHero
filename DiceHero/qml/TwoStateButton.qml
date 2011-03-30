@@ -2,10 +2,6 @@ import QtQuick 1.0
 
  Rectangle {
      id: container
-     Component.onCompleted:{
-         var temp = activePalette.dark;
-         myColor = temp;
-     }
      property string text: "Button"
 
      signal clicked
