@@ -14,6 +14,10 @@ Body {
     property real myFriction: .3
     property real myRestitution: .65
     property int currentFrame: 1
+    property double xPos
+    property double yPos
+    property double yAngle: 0
+    property int textRot : 0
 
 
     Image {
@@ -28,69 +32,73 @@ Body {
         id: number
         color: "#CCCCCC"
         text: Math.floor(Math.random()*sides) +1
-        anchors.centerIn: parent
+        x:xPos
+        y:yPos
+        rotation: textRot
         styleColor: "black"
         style: Text.Outline
         font.bold: false
-        font.pixelSize: 25
+        font.pixelSize: 20
+        onTextChanged: {
+            if(number.text == "6" || number.text == "9")
+                number.font.underline= true;
+            else
+                number.font.underline= false;
+        }
+        transform: Rotation { origin.x: xPos; origin.y: yPos; axis {x:0; y:1; z:0} angle:yAngle }
+
+
     }
 
     //Change frames and random number at a rate congruent to velocity
-    Timer{
-        interval: Math.floor(20000/Math.sqrt(linearVelocity.x*linearVelocity.x+linearVelocity.y*linearVelocity.y+1+5000*!currentlyRolling));
-        running: (currentlyRolling || (!currentlyRolling & currentFrame>1)); repeat: true;
+    Timer {
+        interval: Math.floor(20000/Math.sqrt(linearVelocity.x*linearVelocity.x+linearVelocity.y*linearVelocity.y+1+1000*!currentlyRolling));
+        running: (currentlyRolling || (!currentlyRolling & currentFrame>1));
+        repeat: true;
         onTriggered:{
-            number.visible = true;
             if(currentFrame == 3){
                 number.visible = false;
-                if(currentlyRolling){
+                if(currentlyRolling)
                     number.text= Math.floor(Math.random()*sides) +1;
-                }
+            }
+            else{number.visible = true;}
+            state = currentFrame;
+
+            if(currentFrame == 5)
+                currentFrame = 0;
+
+            currentFrame++;
         }
-        state = currentFrame;
-
-        if(currentFrame == 5)
-        currentFrame = 0;
-
-        currentFrame++;
-
-
-        if(number.text == "6" || number.text == "9")
-        number.font.underline= true
-        else
-        number.font.underline= false
-    }
     }
 
-        Connections {
-            target: main
-            onCurrentlyRollingChanged: {
-                if(!currentlyRolling){
-                    var temp = rollResults;
+    Connections {
+        target: main
+        onCurrentlyRollingChanged: {
+            if(!currentlyRolling){
+                var temp = rollResults;
 
-                    var i;
-                    if (sides== 4){
-                        i = 0;}
-                    else if (sides== 6){
-                        i = 1;}
-                    else if (sides== 8){
-                        i = 2;}
-                    else if (sides== 10){
-                        i = 3;}
-                    else if (sides== 12){
-                        i = 4;}
-                    else if (sides== 20){
-                        i = 5;}
+                var i;
+                if (sides== 4){
+                    i = 0;}
+                else if (sides== 6){
+                    i = 1;}
+                else if (sides== 8){
+                    i = 2;}
+                else if (sides== 10){
+                    i = 3;}
+                else if (sides== 12){
+                    i = 4;}
+                else if (sides== 20){
+                    i = 5;}
 
-                    temp[i].push(number.text);
-                    rollResults = temp;
+                temp[i].push(number.text);
+                rollResults = temp;
 
-                    linearVelocity= Qt.point(0,0);
-                    angularDamping= .5;
-                    linearDamping= .5;
+                linearVelocity= Qt.point(0,0);
+                angularDamping= .5;
+                linearDamping= .5;
 
-                }
             }
         }
     }
-
+}

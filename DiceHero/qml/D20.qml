@@ -3,7 +3,7 @@ import Box2D 1.0
 
 Die {
     id: d20
-    currentSource: "D20_animated_1.png"
+    currentSource: "d20_1.png"
     sides: 20
 
     fixtures: Polygon {
@@ -19,26 +19,27 @@ Die {
             Qt.point(45, 1)
         ]
     }
+    xPos:35; yPos:35; yAngle:0
     states: [
         State {
             name: "1"
-            PropertyChanges { target: d20; currentSource: "D20_animated_1.png"}
+            PropertyChanges { target: d20; currentSource: "d20_1.png"; xPos:35; yPos:35; yAngle:0}
         },
         State {
             name: "2"
-            PropertyChanges { target: d20; currentSource: "D20_animated_2.png"}
+            PropertyChanges { target: d20; currentSource: "d20_2.png"; xPos:28; yPos:31; yAngle:-10; textRot:25}
         },
         State {
             name: "3"
-            PropertyChanges { target: d20; currentSource: "D20_animated_3.png"}
+            PropertyChanges { target: d20; currentSource: "d20_3.png";}
         },
         State {
             name: "4"
-            PropertyChanges { target: d20; currentSource: "D20_animated_4.png"}
+            PropertyChanges { target: d20; currentSource: "d20_4.png"; xPos:30; yPos:35; yAngle:-25; textRot:30}
         },
         State {
             name: "5"
-            PropertyChanges { target: d20; currentSource: "D20_animated_5.png"}
+            PropertyChanges { target: d20; currentSource: "d20_5.png"; xPos:37; yPos:32; yAngle:10; textRot:10}
         }
     ]
 }
