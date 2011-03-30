@@ -16,6 +16,7 @@ Rectangle {
     property variant myDice: GlobalDice.numDice
     property variant rollResults: GlobalDice.rollResults
     property variant dieClicks: GlobalDice.dieClicks
+    property variant saved: GlobalDice.saved
 
     property bool currentlyRolling: false
 

@@ -31,7 +31,8 @@ OTHER_FILES += qml/*.qml \
     qml/*.png \
     qml/*.js \
     qml/*.wav \
-    qml/gameSelection.qml
+    qml/gameSelection.qml \
+    qml/ScoreCard.qml
 
 
 RESOURCES = resources.qrc

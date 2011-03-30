@@ -63,7 +63,16 @@ Rectangle {
                 anchors {
                     top: parent.top
                 }
-                text: "Die1"
+                text: {
+                         if(rollResults[1][0] < 1)
+                         {
+                             saved[4]
+                         }
+                         else
+                         {
+                             rollResults[1][0];
+                         }
+                }
                 anchors.topMargin: 17
                 onClicked: {
                     var temp = dieClicks;
@@ -82,7 +91,16 @@ Rectangle {
                 anchors {
                     left: selectDie1.right
                 }
-                text: "Die2"
+                text: {
+                    if(rollResults[1][1] < 1)
+                    {
+                        saved[3];
+                    }
+                    else
+                    {
+                        rollResults[1][1];
+                    }
+                }
                 anchors.leftMargin: 26
                 onClicked: {
                     var temp = dieClicks;
@@ -101,7 +119,16 @@ Rectangle {
                 anchors {
                     left: selectDie2.right
                 }
-                text: "Die3"
+                text: {
+                    if(rollResults[1][2] < 1)
+                    {
+                        saved[2];
+                    }
+                    else
+                    {
+                        rollResults[1][2];
+                    }
+                }
                 anchors.leftMargin: 26
                 onClicked: {
                     var temp = dieClicks;
@@ -121,7 +148,16 @@ Rectangle {
                     left: parent.left
                     top: selectDie1.bottom
                 }
-                text: "Die4"
+                text: {
+                    if(rollResults[1][3] < 1)
+                    {
+                        saved[1];
+                    }
+                    else
+                    {
+                        rollResults[1][3];
+                    }
+                }
                 anchors.leftMargin: 61
                 anchors.topMargin: 17
                 onClicked: {
@@ -142,7 +178,16 @@ Rectangle {
                     left: selectDie4.right
                     top: selectDie2.bottom
                 }
-                text: "Die5"
+                text: {
+                    if(rollResults[1][4] < 1)
+                    {
+                        saved[0];
+                    }
+                    else
+                    {
+                        rollResults[1][4];
+                    }
+                }
                 anchors.leftMargin: 34
                 anchors.topMargin: 17
                 onClicked: {
@@ -167,9 +212,13 @@ Rectangle {
                 onClicked: {
                     var temp = myDice;
                     var temp2 = dieClicks;
-                    VarHold.finalize(temp, temp2);
+                    var temp3 = rollResults;
+                    var temp4 = saved;
+                    VarHold.finalize(temp, temp2, temp3, temp4);
                     myDice = temp;
                     dieClicks = temp2;
+                    rollResults = temp3;
+                    saved = temp4;
                     returnFile="RerollSelection.qml"
                     screenBase.showScreen("engine.qml")
                 }
