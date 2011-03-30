@@ -113,8 +113,8 @@ signal showScreen(string msg)
                  lifeSpan: 700; lifeSpanDeviation: 600
                  angle: 0; angleDeviation: 360;
                  velocity: 100; velocityDeviation: 40
-                 source: "d20_side_blue.png"
+                 source: "diceheroheader.png"
            }
-           onClicked: screen.showScreen("gameSelection.qml")
+           onClicked: particles.burst(16, 0), screen.showScreen("gameSelection.qml")
         }
 }
