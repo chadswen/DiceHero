@@ -46,6 +46,7 @@
         <file>qml/diceheroheader.png</file>
         <file>qml/Die.qml</file>
         <file>qml/engine.qml</file>
+        <file>qml/gameSelection.qml</file>
         <file>qml/globalDice.js</file>
         <file>qml/HoldButton.qml</file>
         <file>qml/holdingDice.js</file>
