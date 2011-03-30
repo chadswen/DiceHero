@@ -19,6 +19,14 @@ Body {
     property double yAngle: 0
     property int textRot : 0
 
+    // in case of accidental spawning outside the screen.
+    Component.onCompleted: {
+        while(x<0 || x>engine.width)
+            x = Math.random() * (engine.width - 70)+35;
+        while(y<0 || y>engine.height)
+            y = Math.random() * (engine.height / 3);
+    }
+
 
     Image {
         id:die
