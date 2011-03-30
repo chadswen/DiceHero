@@ -98,13 +98,13 @@ signal showScreen(string msg)
     }
 }
         Button {
-            id: selectDiceButton
+            id: selectGameButton
             anchors {
                 bottom: screen.bottom;
                 bottomMargin: 75
                 horizontalCenter: textHolder.horizontalCenter
             }
-            text: "Select Dice"            
+            text: "Game Modes"
             Particles {
                  id: particles            
                  width: 1; height: 1

@@ -27,7 +27,7 @@ Die {
         },
         State {
             name: "2"
-            PropertyChanges { target: d20; currentSource: "d20_2.png"; xPos:28; yPos:31; yAngle:-10; textRot:25}
+            PropertyChanges { target: d20; currentSource: "d20_2.png"; xPos:30; yPos:35; yAngle:-10; textRot:25}
         },
         State {
             name: "3"

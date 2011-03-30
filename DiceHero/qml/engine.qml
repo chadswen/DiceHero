@@ -106,34 +106,7 @@ Image {
     }
 
 
-    //countdown
-    Text {
-        id: startText
-        text: "Ready"
-        font.pixelSize: 60
-        anchors.centerIn: parent
-        color:  "#CCCCCC"
-        styleColor: "black"
-        style: Text.Outline
-        font.bold: true
-        font.italic: true
-        font.family: "Impact"
 
-        Component.onCompleted:
-            SequentialAnimation {
-            NumberAnimation { target: startText; property: "opacity"; to: 0; duration: 700 }
-            PropertyAction{ target: startText; property: "font.pixelSize"; value: 70}
-            PropertyAction{ target: startText; property: "text"; value: "Set"}
-            NumberAnimation { target: startText; property: "opacity"; to: 1; }
-            NumberAnimation { target: startText; property: "opacity"; to: 0; duration: 700 }
-            PropertyAction{ target: startText; property: "font.pixelSize"; value: 110}
-            PropertyAction{ target: startText; property: "text"; value: "ROLL!"}
-            NumberAnimation { target: startText; property: "opacity"; to: 1; }
-            PropertyAction{ target: main; property: "currentlyRolling"; value: true}
-            NumberAnimation { target: startText; property: "opacity"; to: 0; duration: 1500 }
-        }
-
-    }
 
     // box2d elements start here
     World {
@@ -202,7 +175,34 @@ Image {
         }*/
     }
 
+    //countdown
+    Text {
+        id: startText
+        text: "Ready"
+        font.pixelSize: 60
+        anchors.centerIn: parent
+        color:  "#CCCCCC"
+        styleColor: "black"
+        style: Text.Outline
+        font.bold: true
+        font.italic: true
+        font.family: "Impact"
 
+        Component.onCompleted:
+            SequentialAnimation {
+            NumberAnimation { target: startText; property: "opacity"; to: 0; duration: 700 }
+            PropertyAction{ target: startText; property: "font.pixelSize"; value: 70}
+            PropertyAction{ target: startText; property: "text"; value: "Set"}
+            NumberAnimation { target: startText; property: "opacity"; to: 1; }
+            NumberAnimation { target: startText; property: "opacity"; to: 0; duration: 700 }
+            PropertyAction{ target: startText; property: "font.pixelSize"; value: 110}
+            PropertyAction{ target: startText; property: "text"; value: "ROLL!"}
+            NumberAnimation { target: startText; property: "opacity"; to: 1; }
+            PropertyAction{ target: main; property: "currentlyRolling"; value: true}
+            NumberAnimation { target: startText; property: "opacity"; to: 0; duration: 1500 }
+        }
+
+    }
 
     //random sound effect played every second when rolling
     /*Audio {

@@ -10,84 +10,28 @@ Rectangle {
     Connections {
         target: main
         onMyDiceChanged:{
-            statusDynamicText.text = Script.getNumberDice(myDice);
+            statusDynamicText.text = "Selected: "+Script.getNumberDice(myDice);
             if(Script.getNumberDice(myDice) >= 20){
                 statusDynamicText.color = "red";
-                statusDynamicText.text = "20 (MAX)";
+                statusDynamicText.text = "Selected: MAX";
 
-                selectD4.visible=false;
-                selectD6.visible=false;
-                selectD8.visible=false;
-                selectD10.visible=false;
-                selectD12.visible=false;
-                selectD20.visible=false;
+                d4M.enabled = false;
+                d6M.enabled = false;
+                d8M.enabled = false;
+                d10M.enabled = false;
+                d12M.enabled = false;
+                d20M.enabled = false;
+
+
+                selectD4.opacity =.2;
+                selectD6.opacity =.2;
+                selectD8.opacity =.2;
+                selectD10.opacity =.2;
+                selectD12.opacity =.2;
+                selectD20.opacity =.2;
             }
         }
     }
-
-
-
-    Item {
-        id: topToolbar
-        width: parent.width; height: parent.height
-        anchors{
-            top: parent.top
-            topMargin: 20
-            horizontalCenter: parent.horizontalCenter
-        }
-        Button2 {
-            id: quitButton
-            text: "X"
-            anchors.rightMargin:20
-            onClicked: Qt.quit()
-            anchors.right: topToolbar.right
-        }
-        Rectangle {
-            id: status
-            height: quitButton.height; width: 180
-            border.color:  "#CCCCCC"
-            color: "black"
-            border.width:  4
-            opacity: .7
-            radius: 10
-            anchors {
-                left: topToolbar.left
-                leftMargin:20
-            }
-        }
-        Text {
-            id: statusText
-            smooth: true
-            font.bold: false
-            font.pixelSize: 20
-            color: "#CCCCCC"
-            wrapMode: Text.WordWrap
-            text: "Dice on Table: "
-            anchors.left: status.left
-            anchors.leftMargin: 7
-            anchors.top: status.top
-            anchors.topMargin: 5
-            anchors.bottom:  status.bottom
-            anchors.bottomMargin: 5
-        }
-        Text {
-            id: statusDynamicText
-            font.bold: false
-            smooth: true
-            font.pixelSize: 20
-            color: "#CCCCCC"
-            wrapMode: Text.WordWrap
-            style: Text.Raised
-            anchors.top: status.top
-            anchors.topMargin: 5
-            anchors.right: status.right
-            anchors.rightMargin: 7
-            anchors.bottom:  status.bottom
-            anchors.bottomMargin: 5
-        }
-    }
-
-
 
     Component.onCompleted: {
         var temp = myDice;
@@ -114,6 +58,59 @@ Rectangle {
             source: "board.png"
         }
 
+
+
+
+        Rectangle {
+            id: buttonHolder
+
+            anchors {
+                top: screen.top;
+                topMargin: 150
+                bottomMargin: 150
+                horizontalCenter: parent.horizontalCenter
+            }
+            color: "black"
+            width: 250
+            height: 350
+            border.color: "#336633"
+            border.width: 4
+            smooth: true
+            radius: 50
+        }
+
+        Rectangle {
+            id: status
+            height: 35; width: 150
+            border.color:  "#CCCCCC"
+            color: "black"
+            border.width:  4
+            opacity: .7
+            radius: 10
+            anchors {
+                left: parent.left
+                leftMargin:20
+                top: parent.top
+                topMargin:20
+            }
+        }
+
+        Text {
+            id: statusDynamicText
+            font.bold: false
+            smooth: true
+            text:"Selected: "
+            font.pixelSize: 20
+            color: "#CCCCCC"
+            style: Text.Raised
+            anchors.top: status.top
+            anchors.topMargin: 5
+            anchors.left: status.left
+            anchors.leftMargin: 7
+            anchors.bottom:  status.bottom
+            anchors.bottomMargin: 5
+        }
+
         Image {
             id: selectD4
             source: "d6_1.png"
@@ -126,14 +123,22 @@ Rectangle {
             Text {
                 text: "D4"
                 anchors.centerIn: parent
+                color: "#CCCCCC"
+                styleColor: "black"
+                style: Text.Outline
+                font.bold: false
+                font.pixelSize: 20
             }
             MouseArea {
+                id: d4M
                 anchors.fill: parent
                 onClicked: {
                     var temp = myDice;
                     Script.incd4(temp);
                     myDice = temp;
                 }
+                onPressed: {selectD4.opacity= .2}
+                onReleased: {selectD4.opacity= 1}
             }
         }
 
@@ -147,14 +152,22 @@ Rectangle {
             Text {
                 text: "D6"
                 anchors.centerIn: parent
+                color: "#CCCCCC"
+                styleColor: "black"
+                style: Text.Outline
+                font.bold: false
+                font.pixelSize: 20
             }
             MouseArea {
+                id: d6M
                 anchors.fill: parent
                 onClicked: {
                     var temp = myDice;
                     Script.incd6(temp);
                     myDice = temp;
                 }
+                onPressed: {selectD6.opacity= .2}
+                onReleased: {selectD6.opacity= 1}
             }
         }
 
@@ -168,14 +181,22 @@ Rectangle {
             Text {
                 text: "D8"
                 anchors.centerIn: parent
+                color: "#CCCCCC"
+                styleColor: "black"
+                style: Text.Outline
+                font.bold: false
+                font.pixelSize: 20
             }
             MouseArea {
+                id: d8M
                 anchors.fill: parent
                 onClicked: {
                     var temp = myDice;
                     Script.incd8(temp);
                     myDice = temp;
                 }
+                onPressed: {selectD8.opacity= .2}
+                onReleased: {selectD8.opacity= 1}
             }
         }
 
@@ -189,14 +210,22 @@ Rectangle {
             Text {
                 text: "D10"
                 anchors.centerIn: parent
+                color: "#CCCCCC"
+                styleColor: "black"
+                style: Text.Outline
+                font.bold: false
+                font.pixelSize: 20
             }
             MouseArea {
+                id: d10M
                 anchors.fill: parent
                 onClicked: {
                     var temp = myDice;
                     Script.incd10(temp);
                     myDice = temp;
                 }
+                onPressed: {selectD10.opacity= .2}
+                onReleased: {selectD10.opacity= 1}
             }
         }
 
@@ -210,14 +239,22 @@ Rectangle {
             Text {
                 text: "D12"
                 anchors.centerIn: parent
+                color: "#CCCCCC"
+                styleColor: "black"
+                style: Text.Outline
+                font.bold: false
+                font.pixelSize: 20
             }
             MouseArea {
+                id: d12M
                 anchors.fill: parent
                 onClicked: {
                     var temp = myDice;
                     Script.incd12(temp);
                     myDice = temp;
                 }
+                onPressed: {selectD12.opacity= .2}
+                onReleased: {selectD12.opacity= 1}
             }
         }
 
@@ -231,25 +268,55 @@ Rectangle {
             Text {
                 text: "D20"
                 anchors.centerIn: parent
+                color: "#CCCCCC"
+                styleColor: "black"
+                style: Text.Outline
+                font.bold: false
+                font.pixelSize: 20
             }
             MouseArea {
+                id: d20M
                 anchors.fill: parent
                 onClicked: {
                     var temp = myDice;
                     Script.incd20(temp);
                     myDice = temp;
                 }
+                onPressed: {selectD20.opacity= .2}
+                onReleased: {selectD20.opacity= 1}
             }
         }
 
-        Button {
-            id: finalize
-            anchors {
-                bottom: screen.bottom
-                horizontalCenter: screen.horizontalCenter
+
+        Item {
+            id: bottomBar
+            width: parent.width; height: parent.height
+            anchors{
+                bottom: parent.bottom
+                bottomMargin: 20
+                horizontalCenter: parent.horizontalCenter
             }
-            text: "Roll Dice"
-            onClicked: returnFile="selectdice.qml", screenBase.showScreen("engine.qml")
+
+            Button {
+                id: finalize
+                anchors.bottom: parent.bottom
+                anchors.left: parent.left
+                anchors.right: parent.horizontalCenter
+                anchors.rightMargin:10
+                anchors.leftMargin:30
+                text: "Roll Dice"
+                onClicked: returnFile="selectdice.qml", screenBase.showScreen("engine.qml")
+            }
+            Button {
+                id: quitButton
+                text: "Exit"
+                anchors.bottom: parent.bottom
+                anchors.left: parent.horizontalCenter
+                anchors.right: parent.right
+                anchors.rightMargin:30
+                anchors.leftMargin:10
+                onClicked: Qt.quit()
+            }
         }
     }
 }

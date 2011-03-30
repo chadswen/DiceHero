@@ -60,22 +60,25 @@ Body {
 
     //Change frames and random number at a rate congruent to velocity
     Timer {
-        interval: Math.floor(20000/Math.sqrt(linearVelocity.x*linearVelocity.x+linearVelocity.y*linearVelocity.y+1+1000*!currentlyRolling));
-        running: (currentlyRolling || (!currentlyRolling & currentFrame>1));
+        interval: 150;
+        running: (currentlyRolling || (!currentlyRolling & currentFrame!=2));
         repeat: true;
         onTriggered:{
-            if(currentFrame == 3){
-                number.visible = false;
-                if(currentlyRolling)
-                    number.text= Math.floor(Math.random()*sides) +1;
+            if(Math.floor(20000/Math.sqrt(linearVelocity.x*linearVelocity.x+linearVelocity.y*linearVelocity.y))>50
+                    || (!currentlyRolling & currentFrame>1)){
+                if(currentFrame == 3){
+                    number.visible = false;
+                    if(currentlyRolling)
+                        number.text= Math.floor(Math.random()*sides) +1;
+                }
+                else{number.visible = true;}
+                state = currentFrame;
+
+                if(currentFrame == 5)
+                    currentFrame = 0;
+
+                currentFrame++;
             }
-            else{number.visible = true;}
-            state = currentFrame;
-
-            if(currentFrame == 5)
-                currentFrame = 0;
-
-            currentFrame++;
         }
     }
 

@@ -17,11 +17,11 @@ Die {
             Qt.point(76, 44)
         ]
     }
-    xPos:38; yPos:20; yAngle:0
+    xPos:35; yPos:20; yAngle:0
     states: [
         State {
             name: "1"
-            PropertyChanges { target: d10; currentSource: "d10_1.png"; xPos:38; yPos:20; yAngle:0}
+            PropertyChanges { target: d10; currentSource: "d10_1.png"; xPos:35; yPos:20; yAngle:0}
         },
         State {
             name: "2"
