@@ -13,15 +13,35 @@
         <file>qml/D4.qml</file>
         <file>qml/d6.png</file>
         <file>qml/D6.qml</file>
+        <file>qml/d6_1.png</file>
+        <file>qml/d6_2.png</file>
+        <file>qml/d6_3.png</file>
+        <file>qml/d6_4.png</file>
+        <file>qml/d6_5.png</file>
         <file>qml/D8.qml</file>
+        <file>qml/d8_1.png</file>
+        <file>qml/d8_2.png</file>
+        <file>qml/d8_3.png</file>
+        <file>qml/d8_4.png</file>
+        <file>qml/d8_5.png</file>
         <file>qml/D10.qml</file>
+        <file>qml/d10_1.png</file>
+        <file>qml/d10_2.png</file>
+        <file>qml/d10_3.png</file>
+        <file>qml/d10_4.png</file>
+        <file>qml/d10_5.png</file>
         <file>qml/D12.qml</file>
+        <file>qml/d12_1.png</file>
+        <file>qml/d12_2.png</file>
+        <file>qml/d12_3.png</file>
+        <file>qml/d12_4.png</file>
+        <file>qml/d12_5.png</file>
         <file>qml/D20.qml</file>
-        <file>qml/D20_animated_1.png</file>
-        <file>qml/D20_animated_2.png</file>
-        <file>qml/D20_animated_3.png</file>
-        <file>qml/D20_animated_4.png</file>
-        <file>qml/D20_animated_5.png</file>
+        <file>qml/d20_1.png</file>
+        <file>qml/d20_2.png</file>
+        <file>qml/d20_3.png</file>
+        <file>qml/d20_4.png</file>
+        <file>qml/d20_5.png</file>
         <file>qml/d20_side_blue.png</file>
         <file>qml/diceheroheader.png</file>
         <file>qml/Die.qml</file>
@@ -38,6 +58,5 @@
         <file>qml/TwoStateButton.qml</file>
         <file>qml/Wall.qml</file>
         <file>qml/welcometext.qml</file>
-        <file>qml/gameSelection.qml</file>
     </qresource>
 </RCC>
