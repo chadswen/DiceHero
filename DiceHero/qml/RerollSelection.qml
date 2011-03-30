@@ -33,8 +33,24 @@ Rectangle {
             }
 
             Image {
+                x: 0
+                y: 0
+                anchors.rightMargin: 0
+                anchors.bottomMargin: 0
+                anchors.leftMargin: 0
+                anchors.topMargin: 0
                     anchors.fill: parent
                     source: "board.png"
+
+                    Text {
+                        id: text1
+                        x: 59
+                        y: 255
+                        width: 80
+                        height: 20
+                        text: "Select Dice You Want to Reroll."
+                        font.pixelSize: 18
+                    }
             }
         }
 

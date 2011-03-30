@@ -33,3 +33,8 @@ function die4Click(dieClicks){
 function die5Click(dieClicks){
     dieClicks[4]++;
 }
+
+function motherloadDice(myDice)
+{
+        myDice[1] = 5;
+}

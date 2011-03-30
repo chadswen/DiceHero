@@ -30,7 +30,8 @@ HEADERS += \
 OTHER_FILES += qml/*.qml \
     qml/*.png \
     qml/*.js \
-    qml/*.wav
+    qml/*.wav \
+    qml/gameSelection.qml
 
 
 RESOURCES = resources.qrc

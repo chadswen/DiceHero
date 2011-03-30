@@ -115,6 +115,6 @@ signal showScreen(string msg)
                  velocity: 100; velocityDeviation: 40
                  source: "d20_side_blue.png"
            }
-           onClicked: screen.showScreen("selectdice.qml")
+           onClicked: screen.showScreen("gameSelection.qml")
         }
 }

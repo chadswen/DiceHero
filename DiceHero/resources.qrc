@@ -38,5 +38,6 @@
         <file>qml/TwoStateButton.qml</file>
         <file>qml/Wall.qml</file>
         <file>qml/welcometext.qml</file>
+        <file>qml/gameSelection.qml</file>
     </qresource>
 </RCC>
