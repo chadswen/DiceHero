@@ -74,12 +74,12 @@ signal showScreen(string msg)
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
         style: Text.Raised
-        text: "Pick the application you want to use."
+        text: "Choose your mode wisely, Hero!"
         anchors.horizontalCenterOffset: 1
     }
 }
         Button {
-            id: selectDiceButton
+            id: heroModeButton
             x: 96
             y: 193
             anchors {
@@ -87,23 +87,35 @@ signal showScreen(string msg)
                 bottomMargin: 414
                 horizontalCenter: textHolder.horizontalCenter
             }
-            text: "Hero Freeplay"
+            text: "Hero Mode"
             anchors.horizontalCenterOffset: 0
-            Particles {
-                 id: particles
-                 width: 1; height: 1
-                 anchors.centerIn: parent
-                 emissionRate: 0
-                 lifeSpan: 700; lifeSpanDeviation: 600
-                 angle: 0; angleDeviation: 360;
-                 velocity: 100; velocityDeviation: 40
-                 source: "d20_side_blue.png"
-           }
            onClicked: screen.showScreen("selectdice.qml")
         }
 
+
+        Text {
+            id: heroModeText
+            width:textHolder.width
+            height: 60
+            anchors {
+                top: heroModeButton.bottom;
+                topMargin: 5
+                horizontalCenter: parent.horizontalCenter
+            }
+            font.bold: false
+            smooth: true
+            font.family: "Helvetica [Cronyx]"
+            font.pixelSize: 20
+            color: "#AAAAAA"
+            wrapMode: Text.Wrap
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            style: Text.Raised
+            text: "Freestyle Rolling"
+        }
+
         Button {
-            id: selectDiceButton1
+            id: motherloadButton
             x: 96
             y: 304
             width: 170
@@ -117,6 +129,26 @@ signal showScreen(string msg)
                 myDice = temp;
                 returnFile="RerollSelection.qml", screen.showScreen("engine.qml");
             }
-
     }
+
+        Text {
+            id: motherloadText
+            width:textHolder.width
+            height: 60
+            anchors {
+                top: motherloadButton.bottom;
+                topMargin: 5
+                horizontalCenter: parent.horizontalCenter
+            }
+            font.bold: false
+            smooth: true
+            font.family: "Helvetica [Cronyx]"
+            font.pixelSize: 20
+            color: "#AAAAAA"
+            wrapMode: Text.Wrap
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            style: Text.Raised
+            text: "A \"Yahzt-ish\" family favorite!"
+        }
 }

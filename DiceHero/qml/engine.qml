@@ -32,7 +32,7 @@ Image {
             topMargin: 20
             horizontalCenter: engine.horizontalCenter
         }
-
+        
         Rectangle {
             id: status
             height: 40; width: 180
@@ -110,13 +110,9 @@ Image {
         Component.onCompleted: {
             Script.finalizeBoard(myDice);
             statusDynamicText.text = Script.getNumberDice(myDice);
+            startText.visible = true;
             calibrate();
             
-            
-            //Clear select dice
-            var temp = myDice;
-            Script.clearData(temp);
-            myDice = temp;
             
             //Clear roll results
             var temp = rollResults;
@@ -148,8 +144,10 @@ Image {
         Connections {
             target: main
             onAccXChanged: {
-                if(!currentlyRolling &countdownDone)
+                if(!currentlyRolling &countdownDone){
                     currentlyRolling = true;
+                    countdownDone= false;
+                }
                 calibrate();
             }
             onAccYChanged: {
@@ -157,6 +155,7 @@ Image {
             }
         }
         
+        // physics debug
         /*DebugDraw {
             id: debugDraw
             world: world
@@ -183,21 +182,22 @@ Image {
         font.bold: true
         font.italic: true
         font.family: "Impact"
+        visible: false
         
-        Component.onCompleted:
+        onVisibleChanged:
             SequentialAnimation {
-            NumberAnimation { target: startText; property: "opacity"; to: 0; duration: 700 }
+            NumberAnimation { target: startText; property: "opacity"; easing.type: Easing.InExpo; to: 0; duration: 700 }
             PropertyAction{ target: startText; property: "font.pixelSize"; value: 70}
             PropertyAction{ target: startText; property: "text"; value: "Set"}
             NumberAnimation { target: startText; property: "opacity"; to: 1; }
-            NumberAnimation { target: startText; property: "opacity"; to: 0; duration: 700 }
+            NumberAnimation { target: startText; property: "opacity"; easing.type: Easing.InExpo; to: 0; duration: 700 }
             PropertyAction{ target: startText; property: "font.pixelSize"; value: 110}
             PropertyAction{ target: startText; property: "text"; value: "ROLL!"}
             NumberAnimation { target: startText; property: "opacity"; to: 1; }
             PropertyAction{ target: engine; property: "countdownDone"; value: true}
-            NumberAnimation { target: startText; property: "opacity"; to: 0; duration: 1500 }
+            NumberAnimation { target: startText; property: "opacity"; easing.type: Easing.InCirc; to: 0; duration: 1500 }
+            PropertyAction{ target: startText; property: "visible"; value: false}
         }
-        
     }
     
     //random sound effect played every second when rolling
@@ -230,20 +230,21 @@ Image {
                 resultsHolder.visible= true;
                 resultsText.visible= true;
                 returnButton.visible= true;
+                rerollButton.visible= true;
                 
                 for(var i = 0; i<6; i++)
                     console.log("Rolls of diceNumType "+i+": "+rollResults[i]);
             }
         }
     }
-
+    
     // after, rolling display results and click to return
-
+    
     Rectangle {
         id: resultsHolder
-
+        
         anchors.centerIn: parent
-
+        
         color: "black"
         width: 320
         height: 550
@@ -253,10 +254,10 @@ Image {
         radius: 50
         visible: false
         opacity: .7
-
+        
         onVisibleChanged: {
             var output = "";
-
+            
             for(var i = 0; i<6; i++){
                 if(i == 0 & rollResults[i][0] != null)
                     output+= "D4 Rolls:\n";
@@ -270,18 +271,18 @@ Image {
                     output+= "D12 Rolls:\n";
                 if(i == 5 & rollResults[i][0] != null)
                     output+= "D20 Rolls:\n";
-
+                
                 for(var k in rollResults[i])
                     if(k == rollResults[i].length -1)
                         output+= rollResults[i][k];
                     else
                         output+= rollResults[i][k]+ ', ';
-
-
+                
+                
                 if(rollResults[i][0]!=null)
                     output+= '\n';
             }
-
+            
             resultsText.text= output;
         }
     }
@@ -298,19 +299,68 @@ Image {
         anchors.top: resultsHolder.top
         anchors.topMargin: 30
         visible: false
-
+        
     }
-
-
-
+    
+    
+    
     ReturnButton {
         id: returnButton
-        text: "Return"
-        onClicked: showScreen(returnFile)
+        text: {if (returnFile == "selectdice.qml")
+                return "Reselect"
+            else
+                return "Return"}
+        onClicked: {
+            //Clear select dice
+            var temp = myDice;
+            Script.clearData(temp);
+            myDice = temp;
+            showScreen(returnFile)
+        }
         anchors.bottom: resultsHolder.bottom
-        anchors.horizontalCenter: resultsHolder.horizontalCenter
+        anchors.left: {
+            if (returnFile == "selectdice.qml")
+                return resultsHolder.left
+            else
+                return false
+        }
         anchors.bottomMargin: 25
+        anchors.leftMargin: {
+            if (returnFile == "selectdice.qml")
+                return 15
+            else
+                return false
+        }
+        anchors.horizontalCenter:{
+            if (returnFile == "selectdice.qml")
+                return false
+            else
+                return resultsHolder.horizontalCenter
+        }
         visible: false
+    }
+
+    ReturnButton {
+        id: rerollButton
+        text: "Again?"
+        onClicked: {showScreen(""); showScreen("engine.qml");}
+        anchors.bottom: resultsHolder.bottom
+        anchors.right: resultsHolder.right
+        anchors.bottomMargin: 25
+        anchors.rightMargin: 15
+        visible: false
+        enabled: {
+            if (returnFile == "selectdice.qml")
+                return true
+            else
+                return false
+        }
+        opacity: {
+            if (returnFile == "selectdice.qml")
+                return 1
+            else
+                return 0
+        }
     }
 
 
@@ -364,7 +414,7 @@ Image {
         font.bold: true
         font.pixelSize: 18
     }*/
-    
+
     /*HoldButton {
                 id: rollBtn
                 anchors {

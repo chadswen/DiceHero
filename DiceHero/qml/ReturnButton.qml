@@ -37,7 +37,7 @@ import QtQuick 1.0
 
      Text {
          id: buttonLabel
-         font.pixelSize: 40
+         font.pixelSize: 30
          anchors.centerIn: container
          color: activePalette.buttonText
          text: container.text
