@@ -60,5 +60,6 @@
         <file>qml/Wall.qml</file>
         <file>qml/welcometext.qml</file>
         <file>qml/logo_small.png</file>
+        <file>qml/ButtonInfo.qml</file>
     </qresource>
 </RCC>

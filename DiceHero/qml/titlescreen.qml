@@ -175,7 +175,7 @@ signal showScreen(string msg)
 					horizontalAlignment: Text.AlignHCenter
 					verticalAlignment: Text.AlignVCenter
 					style: Text.Raised
-					text: "Instructions:\nFirst, choose your game mode. Some game modes will restrict the number and types of dice you can roll. The dice are identified by the number of sides (for instance, a d6 is a six-sided die). In Hero Mode, you can roll any type of die you want! At the die selection screen, just press the button corresponding to the type of die you want, and it will be added to the table. Hit the button multiple times for multiple dice! Hit the "Roll Dice" button to begin. Shake and tilt your phone and watch the dice roll - they will come to rest if you let them settle."
+                                        text: "Instructions:\nFirst, choose your game mode. Some game modes will restrict the number and types of dice you can roll. The dice are identified by the number of sides (for instance, a d6 is a six-sided die). In Hero Mode, you can roll any type of die you want! At the die selection screen, just press the button corresponding to the type of die you want, and it will be added to the table. Hit the button multiple times for multiple dice! Hit the \"Roll Dice\" button to begin. Shake and tilt your phone and watch the dice roll - they will come to rest if you let them settle."
 				}
 
 			Text {
