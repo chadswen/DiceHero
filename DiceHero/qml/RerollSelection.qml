@@ -16,6 +16,25 @@ Rectangle {
         VarHold.clearData(temp2);
         myDice = temp;
         dieClicks = temp2;
+
+        var tempSaved = saved;
+        var tempResults = rollResults;
+        var i;
+        var j=0;
+        for(i = 0; i<5; i++)
+        {
+            if(tempResults[1][i]!= null){
+                while(j<5){
+                    if(tempSaved[j] == null){
+                        tempSaved[j] = tempResults[1][i];
+                        console.log("tempSaved["+j+"] = " + tempSaved[j]);
+                        break;
+                    }
+                    j++;
+                }
+            }
+        }
+        saved = tempSaved;
     }
 
     SystemPalette {
@@ -64,16 +83,11 @@ Rectangle {
             top: parent.top
         }
         text: {
-            if(rollResults[1][0] == null)
-            {
-                var temp = saved[4];
-                return temp;
-            }
-            else
-            {
-                var temp = rollResults[1][0];
-                return temp;
-            }
+
+            var temp = saved[0];
+            console.log("printing saved[4]: "+saved[0]);
+            return temp;
+
         }
         anchors.topMargin: 17
         onClicked: {
@@ -93,16 +107,11 @@ Rectangle {
             left: selectDie1.right
         }
         text: {
-            if(rollResults[1][1] == null)
-            {
-                var temp = saved[3];
-                return temp;
-            }
-            else
-            {
-                var temp = rollResults[1][1];
-                return temp;
-            }
+
+            var temp = saved[1];
+            console.log("printing saved[3]: "+saved[1]);
+            return temp;
+
         }
         anchors.leftMargin: 26
         onClicked: {
@@ -122,16 +131,11 @@ Rectangle {
             left: selectDie2.right
         }
         text: {
-            if(rollResults[1][2] == null)
-            {
-                var temp = saved[2];
-                return temp;
-            }
-            else
-            {
-                var temp = rollResults[1][2];
-                return temp;
-            }
+
+            var temp = saved[2];
+            console.log("printing saved[2]: "+saved[2]);
+            return temp;
+
         }
         anchors.leftMargin: 26
         onClicked: {
@@ -152,16 +156,11 @@ Rectangle {
             top: selectDie1.bottom
         }
         text: {
-            if(rollResults[1][3] == null)
-            {
-                var temp = saved[1];
-                return temp;
-            }
-            else
-            {
-                var temp = rollResults[1][3];
-                return temp;
-            }
+
+            var temp = saved[3];
+            console.log("printing saved[3]: "+saved[3]);
+            return temp;
+
         }
         anchors.leftMargin: 61
         anchors.topMargin: 17
@@ -183,16 +182,12 @@ Rectangle {
             top: selectDie2.bottom
         }
         text: {
-            if(rollResults[1][4] == null)
-            {
-                var temp = saved[0];
-                return temp;
-            }
-            else
-            {
-                var temp = rollResults[1][4];
-                return temp;
-            }
+
+            var temp = saved[4];
+            console.log("printing saved[4]: "+saved[4]);
+            return temp;
+
+
         }
         anchors.leftMargin: 34
         anchors.topMargin: 17
@@ -233,13 +228,11 @@ Rectangle {
         onClicked: {
             var temp = myDice;
             var temp2 = dieClicks;
-            var temp3 = rollResults;
-            var temp4 = saved;
-            VarHold.finalize(temp, temp2, temp3, temp4);
+            var temp3 = saved;
+            VarHold.finalize(temp, temp2,temp3);
             myDice = temp;
             dieClicks = temp2;
-            rollResults = temp3;
-            saved = temp4;
+            saved = temp3;
             returnFile="RerollSelection.qml"
             screenBase.showScreen("engine.qml")
         }

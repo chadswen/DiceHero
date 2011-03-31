@@ -7,7 +7,7 @@ function clearData(dieClicks) {
         dieClicks[4] = false;
 }
 
-function finalize(myDice, dieClicks, rollResults, saved)
+function finalize(myDice, dieClicks, saved)
 {
     var tempcount = 0;
     var savecount = 0;
@@ -16,11 +16,7 @@ function finalize(myDice, dieClicks, rollResults, saved)
         if(dieClicks[tempcount])
         {
             myDice[1] = myDice[1]+1;
-        }
-        else
-        {
-            saved[savecount] = rollResults[1][tempcount];
-            savecount++;
+            saved[tempcount] = null;
         }
     }
 }
