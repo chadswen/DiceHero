@@ -321,20 +321,16 @@ Image {
         anchors.left: {
             if (returnFile == "selectdice.qml")
                 return resultsHolder.left
-            else
-                return false
         }
         anchors.bottomMargin: 25
         anchors.leftMargin: {
             if (returnFile == "selectdice.qml")
                 return 15
             else
-                return false
+                return 0
         }
         anchors.horizontalCenter:{
-            if (returnFile == "selectdice.qml")
-                return false
-            else
+            if (returnFile != "selectdice.qml")
                 return resultsHolder.horizontalCenter
         }
         visible: false

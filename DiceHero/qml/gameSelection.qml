@@ -151,4 +151,17 @@ signal showScreen(string msg)
             style: Text.Raised
             text: "A \"Yahzt-ish\" family favorite!"
         }
+
+
+
+        Button {
+            id: quitButton
+            text: "Quit"
+            opacity: .8
+            anchors.bottom: parent.bottom
+            anchors.horizontalCenter: parent.horizontalCenter
+            onClicked: Qt.quit()
+        }
+
+
 }

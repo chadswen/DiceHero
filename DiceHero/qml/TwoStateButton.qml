@@ -15,15 +15,7 @@ import QtQuick 1.0
      radius: 8
 
 
-     // color the button with a gradient
-     gradient: Gradient {
-         GradientStop {
-             id: gStop
-             position: 0.0
-             color: activePalette.light
-         }
-         GradientStop { position: 1.0; color: activePalette.button }
-     }
+    color: "white"
 
      MouseArea {
          id: mouseArea
@@ -31,10 +23,10 @@ import QtQuick 1.0
          onClicked: {
              container.clicked();
 
-             if (gStop.color == activePalette.dark)
-                 gStop.color = activePalette.light;
-             else if(gStop.color == activePalette.light)
-                 gStop.color = activePalette.dark;
+             if (container.opacity == 1)
+                 container.opacity = .5;
+             else if(container.opacity == .5)
+                 container.opacity = 1;
 
 
          }
@@ -44,7 +36,7 @@ import QtQuick 1.0
          id: buttonLabel
          font.pixelSize: 20
          anchors.centerIn: container
-         color: activePalette.buttonText
+         color: "black"
          text: container.text
      }
  }

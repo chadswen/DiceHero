@@ -185,7 +185,7 @@ signal showScreen(string msg)
                                 height: 100
 				anchors {
 					top: instructionsText.bottom;
-                                        topMargin: 75
+                                        topMargin: 100
 					horizontalCenter: parent.horizontalCenter
 				}
                                 font.bold: true
@@ -197,7 +197,7 @@ signal showScreen(string msg)
 				horizontalAlignment: Text.AlignHCenter
 				verticalAlignment: Text.AlignVCenter
 				style: Text.Raised
-                                text: "\nThe Dice Heroes:\nIvan Fan - Lead Systems Engineering Technician\nAaron Gann - Meritorious Game Mode Imperator\nDavid King - User Interface Specialist\nSkylar Seamans - Commander of Artistic Design\nBrian Shef - Executive Producer of Productions\nChad Swenson - Chief Primary Architect"
+                                text: "\nThe Dice Heroes:\nIvan Fan - Lead Testing Engineer Technician\nAaron Gann - Meritorious Game Mode Imperator\nDavid King - User Interface Specialist\nSkylar Seamans - Commander of Artistic Design\nBrian Shef - Executive Producer of Productions\nChad Swenson - Chief Primary Architect\n\nSpecial Thanks - David Levine\n\n\nPowered by Qt, QML, and Box2D"
 			}
 			
 			Button {

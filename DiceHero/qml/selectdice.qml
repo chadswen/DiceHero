@@ -309,14 +309,14 @@ Rectangle {
                 onClicked: returnFile="selectdice.qml", screenBase.showScreen("engine.qml")
             }
             Button {
-                id: quitButton
-                text: "Exit"
+                id: returnButton
+                text: "Back to Modes"
                 anchors.bottom: parent.bottom
                 anchors.left: parent.horizontalCenter
                 anchors.right: parent.right
                 anchors.rightMargin:30
                 anchors.leftMargin:10
-                onClicked: Qt.quit()
+                onClicked: screenBase.showScreen("gameSelection.qml")
             }
         }
     }
