@@ -176,7 +176,7 @@ Image {
         text: "Ready"
         font.pixelSize: 60
         anchors.centerIn: parent
-        color:  "#CCCCCC"
+        color:  "white"
         styleColor: "black"
         style: Text.Outline
         font.bold: true

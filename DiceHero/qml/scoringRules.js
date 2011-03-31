@@ -1,6 +1,8 @@
-    function count(value, dice)         //used for ones, twos, threes, fours, fives, sixes
+var i;
+function count(value, dice)         //used for ones, twos, threes, fours, fives, sixes
     {
         var counter = 0;
+
         for(i = 0; i<dice.length; i++)
         {
             if(value == dice[i])

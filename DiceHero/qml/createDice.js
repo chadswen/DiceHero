@@ -11,6 +11,16 @@ function clearData(numDice) {
 }
 
 
+function oneOfEach(numDice) {
+        numDice[0] = 1;
+        numDice[1] = 1;
+        numDice[2] = 1;
+        numDice[3] = 1;
+        numDice[4] = 1;
+        numDice[5] = 1;
+}
+
+
 function clearResults(rollResults) {
     rollResults[0] = [];
     rollResults[1] = [];

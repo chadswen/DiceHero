@@ -29,10 +29,8 @@ HEADERS += \
 
 OTHER_FILES += qml/*.qml \
     qml/*.png \
-    qml/*.js \
-    qml/*.wav \
-    qml/ScoreCard.qml \
-    qml/scoringRules.js
+    qml/*.js
+
 
 
 RESOURCES = resources.qrc

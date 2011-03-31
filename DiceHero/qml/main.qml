@@ -11,16 +11,23 @@ Rectangle {
     property real accY
     property real accZ
 
+
+
     property string returnFile
 
     property variant myDice: GlobalDice.numDice
     property variant rollResults: GlobalDice.rollResults
     property variant dieClicks: GlobalDice.dieClicks
     property variant saved: GlobalDice.saved
+    property variant p1Array: GlobalDice.p1Array
+    property variant p2Array: GlobalDice.p2Array
+
+
     property int reRolls: 0
     property int rolls: 0
 
     property bool currentlyRolling: false
+    property bool p1Turn: true
 
     // signaled just as the player initiates movement input (start rolling)
     signal calibrate()

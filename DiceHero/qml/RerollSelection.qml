@@ -17,6 +17,9 @@ Rectangle {
         myDice = temp;
         dieClicks = temp2;
 
+
+
+        // get results
         var tempSaved = saved;
         var tempResults = rollResults;
         var i;
@@ -35,6 +38,19 @@ Rectangle {
             }
         }
         saved = tempSaved;
+
+
+        // limit to 2 rerolls
+        if(reRolls < 2)
+        {
+            reRolls++;
+        }
+        else
+        {
+            reRolls = 0;
+            screenBase.showScreen("ScoreCard.qml");
+        }
+
     }
 
     SystemPalette {
@@ -71,6 +87,43 @@ Rectangle {
                 font.pixelSize: 18
             }
         }
+    }
+    Rectangle {
+        id: rerollBox
+        height: 30; width: 100
+        border.color:  "#CCCCCC"
+        color: "black"
+        border.width:  4
+        opacity: .7
+        radius: 10
+        anchors {
+            bottom: finalize.top
+            bottomMargin:40
+            horizontalCenter:finalize.horizontalCenter
+        }
+    }
+
+    Text {
+        id: reRollText
+        font.bold: false
+        smooth: true
+        text:{"Rerolls: " + (3-reRolls)}
+        font.pixelSize: 20
+        color: "#CCCCCC"
+        style: Text.Raised
+        anchors.centerIn: rerollBox
+    }
+
+    Button {
+        id: skipButton
+        text: "Skip to Scoring"
+        width: 150
+        anchors.bottom: returnButton.top
+        anchors.horizontalCenter:returnButton.horizontalCenter
+        anchors.rightMargin:30
+        anchors.leftMargin:10
+        anchors.bottomMargin: 40
+        onClicked: screenBase.showScreen("ScoreCard.qml")
     }
 
     TwoStateButton {
@@ -247,6 +300,14 @@ Rectangle {
         anchors.rightMargin:30
         anchors.leftMargin:10
         anchors.bottomMargin: 40
-        onClicked: screenBase.showScreen("gameSelection.qml")
+        onClicked: {screenBase.showScreen("gameSelection.qml")
+            var temp = rollResults;
+            Script.clearResults(temp);
+            rollResults = temp;
+            temp = new Array(5);
+            dieClicks = temp;
+            saved = temp;
+            rolls = 0;
+        }
     }
 }

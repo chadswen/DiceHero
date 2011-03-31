@@ -5,91 +5,83 @@ import "holdingDice.js" as VarHold
 
 Rectangle {
 
-signal showScreen(string msg)
+    signal showScreen(string msg)
 
-        id: screen
+    id: screen
 
-        width: 360; height: 640
+    width: 360; height: 640
 
-        SystemPalette {
-                id: activePalette
+    SystemPalette {
+        id: activePalette
+    }
+
+    Component.onCompleted: {            //this code bit is needed or else nulls will be added to nulls upon use of the engine.qml file creating a NAN.
+        var temp = myDice;
+        Script.clearData(temp);
+        myDice = temp;
+    }
+
+    Item {
+        id: titleBackground
+        width: parent.width; height: parent.height
+        anchors {
+            top: parent.top
+            bottom: parent.bottom
+            left: parent.left
+            right: parent.right
         }
-
-        Component.onCompleted: {            //this code bit is needed or else nulls will be added to nulls upon use of the engine.qml file creating a NAN.
-            var temp = myDice;
-            Script.clearData(temp);
-            myDice = temp;
-        }
-
-        Item {
-            id: titleBackground
-            width: parent.width; height: parent.height
-            anchors {
-                top: parent.top
-                bottom: parent.bottom
-                left: parent.left
-                right: parent.right
-            }
-
-            Rectangle {
-                    anchors.fill: parent
-                    color: "black"
-            }
-        }
-
 
         Rectangle {
-            id: textHolder
-
-            anchors {
-                top: screen.top;
-                topMargin: 50
-                horizontalCenter: parent.horizontalCenter
-            }
+            anchors.fill: parent
             color: "black"
-            width: 300
-            height: 400
-            border.color: "#336633"
-            border.width: 4
-            smooth: true
-            radius: 50
+        }
+    }
 
-    Text {
-        id: welcomeText
-        x: 11
-        y: 27
-        width:280
-        height: 60
+
+    Rectangle {
+        id: textHolder
+
         anchors {
-            top: parent.bottom;
-            topMargin: -373
+            top: screen.top;
+            topMargin: 50
             horizontalCenter: parent.horizontalCenter
         }
-        font.bold: false
+        color: "black"
+        width: 300
+        height: 500
+        border.color: "#336633"
+        border.width: 4
         smooth: true
-        font.family: "Helvetica [Cronyx]"
-        font.pixelSize: 20
-        color: "#AAAAAA"
-        wrapMode: Text.Wrap
-        horizontalAlignment: Text.AlignHCenter
-        verticalAlignment: Text.AlignVCenter
-        style: Text.Raised
-        text: "Choose your mode wisely, Hero!"
-        anchors.horizontalCenterOffset: 1
-    }
-}
+        radius: 50
+
+        Text {
+            id: welcomeText
+            width:280
+            height: 60
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.top: textHolder.top
+            anchors.topMargin: 5
+            font.bold: false
+            smooth: true
+            font.family: "Helvetica [Cronyx]"
+            font.pixelSize: 20
+            color: "#AAAAAA"
+            wrapMode: Text.Wrap
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            style: Text.Raised
+            text: "Choose your mode wisely, Hero!"
+        }
+
         Button {
             id: heroModeButton
-            x: 96
-            y: 193
             anchors {
-                bottom: screen.bottom;
-                bottomMargin: 414
+                top: welcomeText.bottom
+                topMargin: 5
                 horizontalCenter: textHolder.horizontalCenter
             }
             text: "Hero Mode"
-            anchors.horizontalCenterOffset: 0
-           onClicked: screen.showScreen("selectdice.qml")
+            onClicked: screen.showScreen("selectdice.qml")
         }
 
 
@@ -111,34 +103,29 @@ signal showScreen(string msg)
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             style: Text.Raised
-            text: "Freestyle Rolling"
+            text: "Freestyle Rolling. Play YOUR game, with our dice!"
         }
 
+
         Button {
-            id: motherloadButton
-            x: 96
-            y: 304
-            width: 170
-            height: 35
-            text: "Motherload"
-            anchors.horizontalCenterOffset: 0
-            anchors.bottomMargin: 433
+            id: highRollerButton
+
+            text: "High Roller"
+            anchors.horizontalCenter: textHolder.horizontalCenter
+            anchors.top: heroModeText.bottom
+            anchors.topMargin: 10
             onClicked: {
-                rolls = 13;
-                var temp = myDice;
-                VarHold.motherloadDice(temp);
-                myDice = temp;
-                returnFile="RerollSelection.qml", screen.showScreen("engine.qml");
+                screen.showScreen("highRoller.qml");
             }
-    }
+        }
 
         Text {
-            id: motherloadText
+            id: highRollerText
             width:textHolder.width
             height: 60
             anchors {
-                top: motherloadButton.bottom;
-                topMargin: 5
+                top: highRollerButton.bottom;
+                topMargin: 10
                 horizontalCenter: parent.horizontalCenter
             }
             font.bold: false
@@ -150,19 +137,56 @@ signal showScreen(string msg)
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             style: Text.Raised
-            text: "A \"Yahzt-ish\" family favorite!"
+            text: "6 dice, 3 rounds, 2 players, 1 Hero. A game pure of chance, and of heart."
         }
-
-
 
         Button {
-            id: quitButton
-            text: "Quit"
-            opacity: .8
-            anchors.bottom: parent.bottom
+            id: motherloadButton
+            width: 170
+            height: 35
+            text: "Motherload"
             anchors.horizontalCenter: parent.horizontalCenter
-            onClicked: Qt.quit()
+            anchors.bottom: motherloadText.top
+            opacity: .4
+            enabled:false
+            onClicked: {
+                rolls = 13;
+                var temp = myDice;
+                VarHold.motherloadDice(temp);
+                myDice = temp;
+                returnFile="RerollSelection.qml", screen.showScreen("engine.qml");
+            }
         }
 
+        Text {
+            id: motherloadText
+            width:textHolder.width
+            height: 60
+            anchors {
+                bottom: textHolder.bottom
+                bottomMargin: 5
+                horizontalCenter: parent.horizontalCenter
+            }
+            opacity: .4
+            font.bold: false
+            smooth: true
+            font.family: "Helvetica [Cronyx]"
+            font.pixelSize: 20
+            color: "#AAAAAA"
+            wrapMode: Text.Wrap
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            style: Text.Raised
+            text: "A \"Yahzt-ish\" family favorite! (Coming Soon)"
+        }
+    }
 
+    Button {
+        id: quitButton
+        text: "Quit"
+        opacity: .8
+        anchors.bottom: parent.bottom
+        anchors.horizontalCenter: parent.horizontalCenter
+        onClicked: Qt.quit()
+    }
 }

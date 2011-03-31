@@ -16,6 +16,7 @@ Rectangle {
             var tempResults = rollResults;
             var i;
             var j=0;
+            Scoring.BubbleSort(tempSaved);
             for(i = 0; i<5; i++)
             {
                 if(tempResults[1][i]!= null){
@@ -164,17 +165,17 @@ Rectangle {
                             font.pixelSize: 24
                         }
                         onClicked: {
-                            enabled(false);
-                            opacity(.6);
+                            enabled = false;
+                            opacity = .6;
                             var temp2 = saved;
                             var temp = Scoring.count(1, temp2);
-                            topscore.text = topscore.text.valueOf() + temp;
-                            totalscore.text = totalscore.text.valueOf() + temp;
+                            topscore.text = (Number(topscore.text) + temp);
+                            totalscore.text = (Number(totalscore.text) + temp);
                             if(bonusscore.text == "0")
                             {
                                 temp3 = Scoring.bonusCheck(temp2);
                                 bonusscore.text = temp3;
-                                totalscore.text = totalscore.text.valueOf() + temp3;
+                                totalscore.text = (Number(totalscore.text) + temp3);
                             }
                             saved = temp2;
                         }
@@ -199,17 +200,17 @@ Rectangle {
                             font.pixelSize: 24
                         }
                         onClicked: {
-                            enabled(false);
-                            opacity(.6);
+                            enabled = false;
+                            opacity = .6;
                             var temp2 = saved;
                             var temp = Scoring.count(2, temp2);
-                            topscore.text = topscore.text.valueOf() + temp;
-                            totalscore.text = totalscore.text.valueOf() + temp;
+                            topscore.text = (Number(topscore.text) + temp);
+                            totalscore.text = (Number(totalscore.text) + temp);
                             if(bonusscore.text == "0")
                             {
                                 temp3 = Scoring.bonusCheck(temp2);
                                 bonusscore.text = temp3;
-                                totalscore.text = totalscore.text.valueOf() + temp3;
+                                totalscore.text = (Number(totalscore.text) + temp3);
                             }
                             saved = temp2;
                         }
@@ -234,17 +235,17 @@ Rectangle {
                             font.pixelSize: 24
                         }
                         onClicked: {
-                            enabled(false);
-                            opacity(.6);
+                            enabled = false;
+                            opacity = .6;
                             var temp2 = saved;
                             var temp = Scoring.count(3, temp2);
-                            topscore.text = topscore.text.valueOf() + temp;
-                            totalscore.text = totalscore.text.valueOf() + temp;
+                            topscore.text = (Number(topscore.text) + temp);
+                            totalscore.text = (Number(totalscore.text) + temp);
                             if(bonusscore.text == "0")
                             {
                                 temp3 = Scoring.bonusCheck(temp2);
                                 bonusscore.text = temp3;
-                                totalscore.text = totalscore.text.valueOf() + temp3;
+                                totalscore.text = (Number(totalscore.text) + temp3);
                             }
                             saved = temp2;
                         }
@@ -269,17 +270,17 @@ Rectangle {
                             font.pixelSize: 24
                         }
                         onClicked: {
-                            enabled(false);
-                            opacity(.6);
+                            enabled = false;
+                            opacity = .6;
                             var temp2 = saved;
                             var temp = Scoring.count(4, temp2);
-                            topscore.text = topscore.text.valueOf() + temp;
-                            totalscore.text = totalscore.text.valueOf() + temp;
+                            topscore.text = (Number(topscore.text) + temp);
+                            totalscore.text = (Number(totalscore.text) + temp);
                             if(bonusscore.text == "0")
                             {
                                 temp3 = Scoring.bonusCheck(temp2);
                                 bonusscore.text = temp3;
-                                totalscore.text = totalscore.text.valueOf() + temp3;
+                                totalscore.text = (Number(totalscore.text) + temp3);
                             }
                             saved = temp2;
                         }
@@ -304,17 +305,17 @@ Rectangle {
                             font.pixelSize: 24
                         }
                         onClicked: {
-                            enabled(false);
-                            opacity(.6);
+                            enabled = false;
+                            opacity = .6;
                             var temp2 = saved;
                             var temp = Scoring.count(5, temp2);
-                            topscore.text = topscore.text.valueOf() + temp;
-                            totalscore.text = totalscore.text.valueOf() + temp;
+                            topscore.text = (Number(topscore.text) + temp);
+                            totalscore.text = (Number(totalscore.text) + temp);
                             if(bonusscore.text == "0")
                             {
                                 temp3 = Scoring.bonusCheck(temp2);
                                 bonusscore.text = temp3;
-                                totalscore.text = totalscore.text.valueOf() + temp3;
+                                totalscore.text = (Number(totalscore.text) + temp3);
                             }
                             saved = temp2;
                         }
@@ -339,17 +340,17 @@ Rectangle {
                             font.pixelSize: 24
                         }
                         onClicked: {
-                            enabled(false);
-                            opacity(.6);
+                            enabled = false;
+                            opacity = .6;
                             var temp2 = saved;
                             var temp = Scoring.count(6, temp2);
-                            topscore.text = topscore.text.valueOf() + temp;
-                            totalscore.text = totalscore.text.valueOf() + temp;
+                            topscore.text = (Number(topscore.text) + temp);
+                            totalscore.text = (Number(totalscore.text) + temp);
                             if(bonusscore.text == "0")
                             {
                                 temp3 = Scoring.bonusCheck(temp2);
                                 bonusscore.text = temp3;
-                                totalscore.text = totalscore.text.valueOf() + temp3;
+                                totalscore.text = (Number(totalscore.text) + temp3);
                             }
                             saved = temp2;
                         }
@@ -375,12 +376,12 @@ Rectangle {
                         color: "#ffffff"
                         text: ""
                         onClicked: {
-                            enabled(false);
-                            opacity(.6);
+                            enabled = false;
+                            opacity = .6;
                             var temp = saved;
                             var temp2 = Scoring.ThreeofKind(temp);
                             threeofkindscore.text = temp2;
-                            totalscore.text = totalscore.text.valueOf() + temp2;
+                            totalscore.text = (Number(totalscore.text) + temp2);
                             saved = temp;
                         }
                     }
@@ -397,7 +398,7 @@ Rectangle {
                             var temp = saved;
                             var temp2 = Scoring.FourofKind(temp);
                             fourofkindscore.text = temp2;
-                            totalscore.text = totalscore.text.valueOf() + temp2;
+                            totalscore.text = (Number(totalscore.text) + temp2);
                             saved = temp;
                         }
                     }
@@ -435,7 +436,7 @@ Rectangle {
                             var temp = saved;
                             var temp2 = Scoring.sum(temp)
                             chancescore.text = temp2;
-                            totalscore.text = totalscore.text.valueOf() + temp2;
+                            totalscore.text = (Number(totalscore.text) + temp2);
                             saved = temp;
                         }
                     }
@@ -451,7 +452,7 @@ Rectangle {
                             var temp = saved;
                             var temp2 = Scoring.FullHouse(temp)
                             fullhousescore.text = temp2;
-                            totalscore.text = totalscore.text.valueOf() + temp2;
+                            totalscore.text = (Number(totalscore.text) + temp2);
                             saved = temp;
                         }
                     }
@@ -464,12 +465,12 @@ Rectangle {
                         height: 55
                         text: ""
                         onClicked: {
-                            enabled(false);
-                            opacity(.6);
+                            enabled = false;
+                            opacity = .6;
                             var temp = saved;
                             var temp2 = Scoring.SmallStraight(temp);
                             smallstraightscore.text = temp2;
-                            totalscore.text = totalscore.text.valueOf() + temp2;
+                            totalscore.text = (Number(totalscore.text) + temp2);
                             saved = temp;
                         }
                     }
@@ -482,12 +483,12 @@ Rectangle {
                         height: 55
                         text: ""
                         onClicked: {
-                            enabled(false);
-                            opacity(.6);
+                            enabled = false;
+                            opacity = .6;
                             var temp = saved;
                             var temp2 = Scoring.LargeStraight(temp);
                             largestraightscore.text = temp2;
-                            totalscore.text = totalscore.text.valueOf() + temp2;
+                            totalscore.text = (Number(totalscore.text) + temp2);
                             saved = temp;
                         }
                     }
@@ -574,13 +575,13 @@ Rectangle {
                                 var temp = saved;
                                 var temp2 = Scoring.FiveofKind(temp);
                                 motherload1.text = temp2;
-                                totalscore.text = totalscore.text.valueOf() + temp2;
+                                totalscore.text = (Number(totalscore.text) + temp2);
                                 saved = temp;
                                 rolls++
                                 if(motherload1.text == "0")
                                 {
-                                    motherload.enabled(false);
-                                    motherload.opacity(.6);
+                                    motherload.enabled = false;
+                                    motherload.opacity = .6;
                                 }
                             }
                             else if(motherload2.text == "--" && motherload1.text != "0")
@@ -588,13 +589,13 @@ Rectangle {
                                 var temp = saved;
                                 var temp2 = Scoring.FiveofKind(temp);
                                 motherload1.text = temp2;
-                                totalscore.text = totalscore.text.valueOf() + temp2;
+                                totalscore.text = (Number(totalscore.text) + temp2);
                                 saved = temp;
                                 rolls++;
                                 if(motherload2.text == "0")
                                 {
-                                    motherload.enabled(false);
-                                    motherload.opacity(.6);
+                                    motherload.enabled = false;
+                                    motherload.opacity = .6;
                                 }
                             }
                             else if(motherload3.text == "--" && motherload1.text != "0" && motherload2.text != "0")
@@ -602,10 +603,10 @@ Rectangle {
                                 var temp = saved;
                                 var temp2 = Scoring.FiveofKind(temp);
                                 motherload1.text = temp2;
-                                totalscore.text = totalscore.text.valueOf() + temp2;
+                                totalscore.text = (Number(totalscore.text) + temp2);
                                 saved = temp;
-                                motherload.enabled(false);
-                                motherload.opacity(.6);
+                                motherload.enabled = false;
+                                motherload.opacity = .6;
                             }
                         }
                     }
@@ -904,7 +905,7 @@ Rectangle {
                     var temp = myDice;
                     VarHold.motherloadDice(temp);
                     myDice = temp;
-                    returnFile="RerollSelection.qml", screen.showScreen("engine.qml");
+                    returnFile="RerollSelection.qml", showScreen("engine.qml");
                 }
         }
 }

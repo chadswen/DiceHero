@@ -4,12 +4,6 @@
         <file>qml/Button.qml</file>
         <file>qml/Button2.qml</file>
         <file>qml/ButtonInfo.qml</file>
-        <file>qml/clack1.wav</file>
-        <file>qml/clack2.wav</file>
-        <file>qml/clack3.wav</file>
-        <file>qml/clack4.wav</file>
-        <file>qml/clack5.wav</file>
-        <file>qml/clack6.wav</file>
         <file>qml/createDice.js</file>
         <file>qml/D4.qml</file>
         <file>qml/d4_1.png</file>
@@ -17,7 +11,6 @@
         <file>qml/d4_3.png</file>
         <file>qml/d4_4.png</file>
         <file>qml/d4_5.png</file>
-        <file>qml/d6.png</file>
         <file>qml/D6.qml</file>
         <file>qml/d6_1.png</file>
         <file>qml/d6_2.png</file>
@@ -48,24 +41,24 @@
         <file>qml/d20_3.png</file>
         <file>qml/d20_4.png</file>
         <file>qml/d20_5.png</file>
-        <file>qml/d20_side_blue.png</file>
         <file>qml/diceheroheader.png</file>
         <file>qml/Die.qml</file>
         <file>qml/engine.qml</file>
         <file>qml/gameSelection.qml</file>
         <file>qml/globalDice.js</file>
+        <file>qml/GrayOutButton.qml</file>
         <file>qml/HoldButton.qml</file>
         <file>qml/holdingDice.js</file>
         <file>qml/logo_small.png</file>
         <file>qml/main.qml</file>
         <file>qml/RerollSelection.qml</file>
         <file>qml/ReturnButton.qml</file>
+        <file>qml/ScoreCard.qml</file>
+        <file>qml/scoringRules.js</file>
         <file>qml/selectdice.qml</file>
-        <file>qml/selectdicebutton.qml</file>
-        <file>qml/table.qml</file>
         <file>qml/titlescreen.qml</file>
         <file>qml/TwoStateButton.qml</file>
         <file>qml/Wall.qml</file>
-        <file>qml/welcometext.qml</file>
+        <file>qml/highRoller.qml</file>
     </qresource>
 </RCC>
