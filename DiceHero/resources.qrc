@@ -59,5 +59,6 @@
         <file>qml/TwoStateButton.qml</file>
         <file>qml/Wall.qml</file>
         <file>qml/welcometext.qml</file>
+        <file>qml/logo_small.png</file>
     </qresource>
 </RCC>

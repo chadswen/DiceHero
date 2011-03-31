@@ -2,6 +2,8 @@ import QtQuick 1.0
 import Qt.labs.particles 1.0
 
 
+
+
 Rectangle {
 
 signal showScreen(string msg)
@@ -107,14 +109,22 @@ signal showScreen(string msg)
             text: "Game Modes"
             Particles {
                  id: particles            
-                 width: 1; height: 1
-                 anchors.centerIn: parent            
+                 width: 100; height: 100
+                 anchors.bottom: parent.bottom
                  emissionRate: 0
                  lifeSpan: 700; lifeSpanDeviation: 600
                  angle: 0; angleDeviation: 360;
                  velocity: 100; velocityDeviation: 40
-                 source: "diceheroheader.png"
+                 source: "logo_small.png"
            }
-           onClicked: particles.burst(16, 0), screen.showScreen("gameSelection.qml")
+           onClicked: particles.burst(16, 0), timer.start();
+        }
+
+        Item {
+            Timer {
+                id: timer
+                interval: 800; running: false; repeat: false;
+                onTriggered: screen.showScreen("gameSelection.qml");
+            }
         }
 }
