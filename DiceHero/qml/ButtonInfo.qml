@@ -3,7 +3,7 @@ import QtQuick 1.0
  Rectangle {
      id: container
 
-     property string text: "Button"
+     property string text: "ButtonInfo"
 
      signal clicked
 
@@ -20,12 +20,12 @@ import QtQuick 1.0
              position: 0.0
              color: {
                  if (mouseArea.pressed)
-                     return "5EFF5E"
+                     return "#5EFF5E"
                  else
-                     return "2FE02F"
+                     return "#2FE02F"
              }
          }
-         GradientStop { position: 1.0; color: "217A21" }
+         GradientStop { position: 1.0; color: "#217A21" }
      }
 
      MouseArea {

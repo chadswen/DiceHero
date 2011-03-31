@@ -35,7 +35,7 @@ Image {
 
         Rectangle {
             id: status
-            height: returnButton.height; width: 180
+            height: 40; width: 180
             border.color:  "#CCCCCC"
             color: "black"
             border.width:  4
@@ -81,7 +81,7 @@ Image {
     // fill bar for no move timeout
     Rectangle {
         id: timeBar
-        height: 30
+        height: 20
         width: ((parent.width * (2000-timeout)) / (2000))
         Behavior on width { SmoothedAnimation { velocity: 1200 } }
         border.color:  "#CCCCCC"
@@ -228,6 +228,8 @@ Image {
             if(timeout>=2000){
                 currentlyRolling = false;
                 resultsHolder.visible= true;
+                resultsText.visible= true;
+                returnButton.visible= true;
                 
                 for(var i = 0; i<6; i++)
                     console.log("Rolls of diceNumType "+i+": "+rollResults[i]);
@@ -250,6 +252,7 @@ Image {
         smooth: true
         radius: 50
         visible: false
+        opacity: .7
 
         onVisibleChanged: {
             var output = "";
@@ -281,33 +284,35 @@ Image {
 
             resultsText.text= output;
         }
-
-        Text {
-            id: resultsText
-            font.bold: true
-            smooth: true
-            font.pixelSize: 25
-            width:  parent.width-60
-            wrapMode: Text.WordWrap
-            color: "#CCCCCC"
-            style: Text.Raised
-            anchors.horizontalCenter: resultsHolder.horizontalCenter
-            anchors.top: resultsHolder.top
-            anchors.topMargin: 30
-
-        }
-
-
-
-        ReturnButton {
-            id: returnButton
-            text: "Return"
-            onClicked: showScreen(returnFile)
-            anchors.bottom: parent.bottom
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.bottomMargin: 25
-        }
     }
+    Text {
+        id: resultsText
+        font.bold: true
+        smooth: true
+        font.pixelSize: 25
+        width:  parent.width-60
+        wrapMode: Text.WordWrap
+        color: "#CCCCCC"
+        style: Text.Raised
+        anchors.horizontalCenter: resultsHolder.horizontalCenter
+        anchors.top: resultsHolder.top
+        anchors.topMargin: 30
+        visible: false
+
+    }
+
+
+
+    ReturnButton {
+        id: returnButton
+        text: "Return"
+        onClicked: showScreen(returnFile)
+        anchors.bottom: resultsHolder.bottom
+        anchors.horizontalCenter: resultsHolder.horizontalCenter
+        anchors.bottomMargin: 25
+        visible: false
+    }
+
 
     //for debug purposes
     /*
