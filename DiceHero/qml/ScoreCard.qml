@@ -10,7 +10,27 @@ Rectangle {
         width: 360; height: 640
 
         Component.onCompleted: {
-
+            var temp = saved;
+            var temp2 = rollResults;
+            var tempSaved = saved;
+            var tempResults = rollResults;
+            var i;
+            var j=0;
+            for(i = 0; i<5; i++)
+            {
+                if(tempResults[1][i]!= null){
+                    while(j<5){
+                        if(tempSaved[j] == null){
+                            tempSaved[j] = tempResults[1][i];
+                            console.log("tempSaved["+j+"] = " + tempSaved[j]);
+                            break;
+                        }
+                        j++;
+                    }
+                }
+            }
+            saved = tempSaved;
+            rolls--;
         }
 
         SystemPalette {
@@ -125,7 +145,7 @@ Rectangle {
                         font.pixelSize: 20
                     }
 
-                    GrayOutButton {
+                    TwoStateButton {
                         id: ones
                         x: 18
                         y: 36
@@ -144,15 +164,23 @@ Rectangle {
                             font.pixelSize: 24
                         }
                         onClicked: {
-                            var temp2 = finalRoll;
+                            enabled(false);
+                            opacity(.6);
+                            var temp2 = saved;
                             var temp = Scoring.count(1, temp2);
                             topscore.text = topscore.text.valueOf() + temp;
                             totalscore.text = totalscore.text.valueOf() + temp;
-                            finalRoll = temp2;
+                            if(bonusscore.text == "0")
+                            {
+                                temp3 = Scoring.bonusCheck(temp2);
+                                bonusscore.text = temp3;
+                                totalscore.text = totalscore.text.valueOf() + temp3;
+                            }
+                            saved = temp2;
                         }
                     }
 
-                    GrayOutButton {
+                    TwoStateButton {
                         id: twos
                         x: 156
                         y: 35
@@ -171,15 +199,23 @@ Rectangle {
                             font.pixelSize: 24
                         }
                         onClicked: {
-                            var temp2 = finalRoll;
+                            enabled(false);
+                            opacity(.6);
+                            var temp2 = saved;
                             var temp = Scoring.count(2, temp2);
                             topscore.text = topscore.text.valueOf() + temp;
                             totalscore.text = totalscore.text.valueOf() + temp;
-                            finalRoll = temp2;
+                            if(bonusscore.text == "0")
+                            {
+                                temp3 = Scoring.bonusCheck(temp2);
+                                bonusscore.text = temp3;
+                                totalscore.text = totalscore.text.valueOf() + temp3;
+                            }
+                            saved = temp2;
                         }
                     }
 
-                    GrayOutButton {
+                    TwoStateButton {
                         id: threes
                         x: 282
                         y: 36
@@ -198,15 +234,23 @@ Rectangle {
                             font.pixelSize: 24
                         }
                         onClicked: {
-                            var temp2 = finalRoll;
+                            enabled(false);
+                            opacity(.6);
+                            var temp2 = saved;
                             var temp = Scoring.count(3, temp2);
                             topscore.text = topscore.text.valueOf() + temp;
                             totalscore.text = totalscore.text.valueOf() + temp;
-                            finalRoll = temp2;
+                            if(bonusscore.text == "0")
+                            {
+                                temp3 = Scoring.bonusCheck(temp2);
+                                bonusscore.text = temp3;
+                                totalscore.text = totalscore.text.valueOf() + temp3;
+                            }
+                            saved = temp2;
                         }
                     }
 
-                    GrayOutButton {
+                    TwoStateButton {
                         id: fours
                         x: 18
                         y: 120
@@ -225,15 +269,23 @@ Rectangle {
                             font.pixelSize: 24
                         }
                         onClicked: {
-                            var temp2 = finalRoll;
+                            enabled(false);
+                            opacity(.6);
+                            var temp2 = saved;
                             var temp = Scoring.count(4, temp2);
                             topscore.text = topscore.text.valueOf() + temp;
                             totalscore.text = totalscore.text.valueOf() + temp;
-                            finalRoll = temp2;
+                            if(bonusscore.text == "0")
+                            {
+                                temp3 = Scoring.bonusCheck(temp2);
+                                bonusscore.text = temp3;
+                                totalscore.text = totalscore.text.valueOf() + temp3;
+                            }
+                            saved = temp2;
                         }
                     }
 
-                    GrayOutButton {
+                    TwoStateButton {
                         id: fives
                         x: 156
                         y: 120
@@ -252,15 +304,23 @@ Rectangle {
                             font.pixelSize: 24
                         }
                         onClicked: {
-                            var temp2 = finalRoll;
+                            enabled(false);
+                            opacity(.6);
+                            var temp2 = saved;
                             var temp = Scoring.count(5, temp2);
                             topscore.text = topscore.text.valueOf() + temp;
                             totalscore.text = totalscore.text.valueOf() + temp;
-                            finalRoll = temp2;
+                            if(bonusscore.text == "0")
+                            {
+                                temp3 = Scoring.bonusCheck(temp2);
+                                bonusscore.text = temp3;
+                                totalscore.text = totalscore.text.valueOf() + temp3;
+                            }
+                            saved = temp2;
                         }
                     }
 
-                    GrayOutButton {
+                    TwoStateButton {
                         id: sixes
                         x: 282
                         y: 120
@@ -279,11 +339,19 @@ Rectangle {
                             font.pixelSize: 24
                         }
                         onClicked: {
-                            var temp2 = finalRoll;
+                            enabled(false);
+                            opacity(.6);
+                            var temp2 = saved;
                             var temp = Scoring.count(6, temp2);
                             topscore.text = topscore.text.valueOf() + temp;
                             totalscore.text = totalscore.text.valueOf() + temp;
-                            finalRoll = temp2;
+                            if(bonusscore.text == "0")
+                            {
+                                temp3 = Scoring.bonusCheck(temp2);
+                                bonusscore.text = temp3;
+                                totalscore.text = totalscore.text.valueOf() + temp3;
+                            }
+                            saved = temp2;
                         }
                     }
 
@@ -298,7 +366,7 @@ Rectangle {
                         font.pixelSize: 20
                     }
 
-                    GrayOutButton {
+                    TwoStateButton {
                         id: threeofkind
                         x: 80
                         y: 241
@@ -307,15 +375,17 @@ Rectangle {
                         color: "#ffffff"
                         text: ""
                         onClicked: {
-                            var temp = finalRoll;
+                            enabled(false);
+                            opacity(.6);
+                            var temp = saved;
                             var temp2 = Scoring.ThreeofKind(temp);
                             threeofkindscore.text = temp2;
                             totalscore.text = totalscore.text.valueOf() + temp2;
-                            finalRoll = temp;
+                            saved = temp;
                         }
                     }
 
-                    GrayOutButton {
+                    TwoStateButton {
                         id: fourofkind
                         x: 80
                         y: 310
@@ -324,11 +394,11 @@ Rectangle {
                         color: "#ffffff"
                         text: ""
                         onClicked: {
-                            var temp = finalRoll;
+                            var temp = saved;
                             var temp2 = Scoring.FourofKind(temp);
                             fourofkindscore.text = temp2;
                             totalscore.text = totalscore.text.valueOf() + temp2;
-                            finalRoll = temp;
+                            saved = temp;
                         }
                     }
 
@@ -354,7 +424,7 @@ Rectangle {
                         font.pixelSize: 20
                     }
 
-                    GrayOutButton {
+                    TwoStateButton {
                         id: chance
                         x: 80
                         y: 379
@@ -362,15 +432,15 @@ Rectangle {
                         height: 55
                         text: ""
                         onClicked: {
-                            var temp = finalRoll;
+                            var temp = saved;
                             var temp2 = Scoring.sum(temp)
                             chancescore.text = temp2;
                             totalscore.text = totalscore.text.valueOf() + temp2;
-                            finalRoll = temp;
+                            saved = temp;
                         }
                     }
 
-                    GrayOutButton {
+                    TwoStateButton {
                         id: fullhouse
                         x: 216
                         y: 241
@@ -378,15 +448,15 @@ Rectangle {
                         height: 55
                         text: ""
                         onClicked: {
-                            var temp = finalRoll;
+                            var temp = saved;
                             var temp2 = Scoring.FullHouse(temp)
                             fullhousescore.text = temp2;
                             totalscore.text = totalscore.text.valueOf() + temp2;
-                            finalRoll = temp;
+                            saved = temp;
                         }
                     }
 
-                    GrayOutButton {
+                    TwoStateButton {
                         id: smallstraight
                         x: 216
                         y: 310
@@ -394,15 +464,17 @@ Rectangle {
                         height: 55
                         text: ""
                         onClicked: {
-                            var temp = finalRoll;
+                            enabled(false);
+                            opacity(.6);
+                            var temp = saved;
                             var temp2 = Scoring.SmallStraight(temp);
                             smallstraightscore.text = temp2;
                             totalscore.text = totalscore.text.valueOf() + temp2;
-                            finalRoll = temp;
+                            saved = temp;
                         }
                     }
 
-                    GrayOutButton {
+                    TwoStateButton {
                         id: largestraight
                         x: 215
                         y: 378
@@ -410,11 +482,13 @@ Rectangle {
                         height: 55
                         text: ""
                         onClicked: {
-                            var temp = finalRoll;
+                            enabled(false);
+                            opacity(.6);
+                            var temp = saved;
                             var temp2 = Scoring.LargeStraight(temp);
                             largestraightscore.text = temp2;
                             totalscore.text = totalscore.text.valueOf() + temp2;
-                            finalRoll = temp;
+                            saved = temp;
                         }
                     }
 
@@ -486,7 +560,7 @@ Rectangle {
                         font.bold: false
                     }
 
-                    GrayOutButton {
+                    TwoStateButton {
                         id: motherload
                         x: 75
                         y: 443
@@ -494,30 +568,44 @@ Rectangle {
                         height: 65
                         text: ""
                         onClicked: {
-                            var temp = finalRoll;
+                            var temp = saved;
                             if(motherload1.text == "--")
                             {
-                                var temp = finalRoll;
+                                var temp = saved;
                                 var temp2 = Scoring.FiveofKind(temp);
                                 motherload1.text = temp2;
                                 totalscore.text = totalscore.text.valueOf() + temp2;
-                                finalRoll = temp;
+                                saved = temp;
+                                rolls++
+                                if(motherload1.text == "0")
+                                {
+                                    motherload.enabled(false);
+                                    motherload.opacity(.6);
+                                }
                             }
                             else if(motherload2.text == "--" && motherload1.text != "0")
                             {
-                                var temp = finalRoll;
+                                var temp = saved;
                                 var temp2 = Scoring.FiveofKind(temp);
                                 motherload1.text = temp2;
                                 totalscore.text = totalscore.text.valueOf() + temp2;
-                                finalRoll = temp;
+                                saved = temp;
+                                rolls++;
+                                if(motherload2.text == "0")
+                                {
+                                    motherload.enabled(false);
+                                    motherload.opacity(.6);
+                                }
                             }
                             else if(motherload3.text == "--" && motherload1.text != "0" && motherload2.text != "0")
                             {
-                                var temp = finalRoll;
+                                var temp = saved;
                                 var temp2 = Scoring.FiveofKind(temp);
                                 motherload1.text = temp2;
                                 totalscore.text = totalscore.text.valueOf() + temp2;
-                                finalRoll = temp;
+                                saved = temp;
+                                motherload.enabled(false);
+                                motherload.opacity(.6);
                             }
                         }
                     }
@@ -571,7 +659,7 @@ Rectangle {
                         y: 207
                         width: 80
                         height: 20
-                        text: "--"
+                        text: "0"
                         horizontalAlignment: Text.AlignHCenter
                         font.pixelSize: 20
                     }
@@ -654,7 +742,7 @@ Rectangle {
                             width: 80
                             height: 20
                             text: {
-                                finalRoll[0];
+                                saved[0];
                             }
                             font.pixelSize: 12
                         }
@@ -675,7 +763,7 @@ Rectangle {
                             width: 80
                             height: 20
                             text: {
-                                finalRoll[1];
+                                saved[1];
                             }
                             font.pixelSize: 12
                         }
@@ -696,7 +784,7 @@ Rectangle {
                             width: 80
                             height: 20
                             text: {
-                                finalRoll[2];
+                                saved[2];
                             }
                             font.pixelSize: 12
                         }
@@ -717,7 +805,7 @@ Rectangle {
                             width: 80
                             height: 20
                             text: {
-                                finalRoll[3];
+                                saved[3];
                             }
                             font.pixelSize: 12
                         }
@@ -738,7 +826,7 @@ Rectangle {
                             width: 80
                             height: 20
                             text: {
-                                finalRoll[4];
+                                saved[4];
                             }
                             font.pixelSize: 12
                         }

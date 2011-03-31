@@ -95,29 +95,3 @@
                 }
             }while(swapped);
      }
-
-    function main()
-    {
-        var rolls = 13;
-        var bonus = 0;
-        var numbSection = 0;
-        var total = 0;
-        var temp = 0;
-            System.out.println(dice);                           //this
-
-            input = new Scanner(System.in);
-            switch(input)
-            {
-                case 10:
-                    total += SmallStraight(dice);
-                    rolls--;
-                    break;
-                case 11:
-                    total += LargeStraight(dice);
-                    rolls--;
-                    break;
-                case 13:
-                    total += FiveofKind(dice);
-                    break;
-            }
-        }while(rolls);

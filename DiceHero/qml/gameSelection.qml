@@ -124,6 +124,7 @@ signal showScreen(string msg)
             anchors.horizontalCenterOffset: 0
             anchors.bottomMargin: 433
             onClicked: {
+                rolls = 13;
                 var temp = myDice;
                 VarHold.motherloadDice(temp);
                 myDice = temp;
