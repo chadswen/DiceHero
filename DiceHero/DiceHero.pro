@@ -3,7 +3,7 @@ QT += core gui declarative
 symbian:TARGET.UID3 = 0xE0947FC2
 
 # Allow network access on Symbian
-symbian:TARGET.CAPABILITY += NetworkServices
+#symbian:TARGET.CAPABILITY += NetworkServices
 
 
 CONFIG += mobility

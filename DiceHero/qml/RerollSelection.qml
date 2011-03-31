@@ -57,6 +57,16 @@ Rectangle {
         id: activePalette
     }
 
+
+    Connections{
+        target: main
+        onReRollChanged:{if (reRoll==2)screenBase.showScreen("ScoreCard.qml");}
+    }
+
+
+
+
+
     Item {
         id: screen
         width: parent.width; height: parent.height
@@ -308,6 +318,7 @@ Rectangle {
             dieClicks = temp;
             saved = temp;
             rolls = 0;
+            reRolls = 0;
         }
     }
 }

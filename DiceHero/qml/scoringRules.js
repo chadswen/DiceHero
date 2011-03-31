@@ -19,7 +19,7 @@ function count(value, dice)         //used for ones, twos, threes, fours, fives,
 
     function sum(dice)                  //used for chance
     {
-        return (dice[0]+dice[1]+dice[2]+dice[3]+dice[4]);
+        return Number(Number(dice[0])+Number(dice[1])+Number(dice[2])+Number(dice[3])+Number(dice[4]));
     }
 
     function FullHouse(dice)
@@ -84,7 +84,7 @@ function count(value, dice)         //used for ones, twos, threes, fours, fives,
     {
             do                                         //bubble sort
             {
-                swapped = false;
+               var swapped = false;
                 for(i=0; i<dice.legnth-1; i++)
                 {
                     if(dice[i]>dice[i+1])

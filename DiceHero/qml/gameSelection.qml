@@ -142,13 +142,11 @@ Rectangle {
 
         Button {
             id: motherloadButton
-            width: 170
-            height: 35
             text: "Motherload"
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.bottom: motherloadText.top
-            opacity: .4
-            enabled:false
+            opacity: .5
+            enabled: false
             onClicked: {
                 rolls = 13;
                 var temp = myDice;
@@ -162,12 +160,12 @@ Rectangle {
             id: motherloadText
             width:textHolder.width
             height: 60
+            opacity: .5
             anchors {
                 bottom: textHolder.bottom
                 bottomMargin: 5
                 horizontalCenter: parent.horizontalCenter
             }
-            opacity: .4
             font.bold: false
             smooth: true
             font.family: "Helvetica [Cronyx]"
@@ -184,7 +182,7 @@ Rectangle {
     Button {
         id: quitButton
         text: "Quit"
-        opacity: .8
+        opacity: .9
         anchors.bottom: parent.bottom
         anchors.horizontalCenter: parent.horizontalCenter
         onClicked: Qt.quit()
