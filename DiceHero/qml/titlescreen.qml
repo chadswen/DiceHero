@@ -121,21 +121,22 @@ signal showScreen(string msg)
             text: "Game Modes"
             Particles {
                  id: particles            
-                 width: 100; height: 100
-                 anchors.bottom: parent.bottom
+                 width: 1; height: 1
+                 anchors.horizontalCenter: parent.horizontalCenter
+                 anchors.verticalCenter: parent.verticalCenter
                  emissionRate: 0
-                 lifeSpan: 700; lifeSpanDeviation: 600
+                 lifeSpan: 900; lifeSpanDeviation: 600
                  angle: 0; angleDeviation: 360;
-                 velocity: 100; velocityDeviation: 40
+                 velocity: 350; velocityDeviation: 60
                  source: "logo_small.png"
            }
-           onClicked: particles.burst(16, 0), timer.start();
+           onClicked: particles.burst(14), timer.start();
         }
 
         Item {
             Timer {
                 id: timer
-                interval: 800; running: false; repeat: false;
+                interval: 900; running: false; repeat: false;
                 onTriggered: screen.showScreen("gameSelection.qml");
             }
         }
