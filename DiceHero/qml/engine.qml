@@ -10,18 +10,19 @@ Image {
     id: engine
     width: 360;
     height: 640;
-
+    
     property int timeout: 0
     property int timein: 0
-
-
+    property bool countdownDone: false
+    
+    
     SystemPalette {
         id: activePalette
     }
     anchors.fill: parent
     source: "board.png"
     smooth: true
-
+    
     //top bar
     Item {
         id: topToolbar
@@ -31,14 +32,7 @@ Image {
             topMargin: 20
             horizontalCenter: engine.horizontalCenter
         }
-        Button2 {
-            id: returnButton
-            text: "Return"
-            anchors.rightMargin:20
-            onClicked: showScreen(returnFile)
-            anchors.right: topToolbar.right
-            visible: false
-        }
+
         Rectangle {
             id: status
             height: returnButton.height; width: 180
@@ -83,7 +77,7 @@ Image {
             anchors.bottomMargin: 5
         }
     }
-
+    
     // fill bar for no move timeout
     Rectangle {
         id: timeBar
@@ -104,10 +98,10 @@ Image {
             GradientStop { id: gradient2; position: 1.0 }
         }
     }
-
-
-
-
+    
+    
+    
+    
     // box2d elements start here
     World {
         id: world;
@@ -117,19 +111,19 @@ Image {
             Script.finalizeBoard(myDice);
             statusDynamicText.text = Script.getNumberDice(myDice);
             calibrate();
-
-
+            
+            
             //Clear select dice
             var temp = myDice;
             Script.clearData(temp);
             myDice = temp;
-
+            
             //Clear roll results
             var temp = rollResults;
             Script.clearResults(temp);
             rollResults = temp;
         }
-
+        
         Wall {
             id: ground
             height: 40
@@ -150,17 +144,19 @@ Image {
             id: rightWall
             anchors { left: parent.right; bottom: ground.top; top: ceiling.bottom }
         }
-
+        
         Connections {
             target: main
             onAccXChanged: {
+                if(!currentlyRolling &countdownDone)
+                    currentlyRolling = true;
                 calibrate();
             }
             onAccYChanged: {
                 calibrate();
             }
         }
-
+        
         /*DebugDraw {
             id: debugDraw
             world: world
@@ -174,7 +170,7 @@ Image {
             onPressed: debugDraw.visible = !debugDraw.visible
         }*/
     }
-
+    
     //countdown
     Text {
         id: startText
@@ -187,7 +183,7 @@ Image {
         font.bold: true
         font.italic: true
         font.family: "Impact"
-
+        
         Component.onCompleted:
             SequentialAnimation {
             NumberAnimation { target: startText; property: "opacity"; to: 0; duration: 700 }
@@ -198,12 +194,12 @@ Image {
             PropertyAction{ target: startText; property: "font.pixelSize"; value: 110}
             PropertyAction{ target: startText; property: "text"; value: "ROLL!"}
             NumberAnimation { target: startText; property: "opacity"; to: 1; }
-            PropertyAction{ target: main; property: "currentlyRolling"; value: true}
+            PropertyAction{ target: engine; property: "countdownDone"; value: true}
             NumberAnimation { target: startText; property: "opacity"; to: 0; duration: 1500 }
         }
-
+        
     }
-
+    
     //random sound effect played every second when rolling
     /*Audio {
         id: playSound
@@ -219,7 +215,7 @@ Image {
             console.log("Played sound: "+sound);
         }
     }*/
-
+    
     //timer to stop rolling, currently 2 seconds of no movement.
     Timer{
         interval: 50; running: currentlyRolling; repeat: true;
@@ -228,16 +224,91 @@ Image {
                 timeout+=50;
             else
                 timeout=0;
-
+            
             if(timeout>=2000){
                 currentlyRolling = false;
-                returnButton.visible= true;
-
+                resultsHolder.visible= true;
+                
                 for(var i = 0; i<6; i++)
                     console.log("Rolls of diceNumType "+i+": "+rollResults[i]);
             }
         }
     }
+
+    // after, rolling display results and click to return
+
+    Rectangle {
+        id: resultsHolder
+
+        anchors.centerIn: parent
+
+        color: "black"
+        width: 320
+        height: 550
+        border.color: "#CCCCCC"
+        border.width: 4
+        smooth: true
+        radius: 50
+        visible: false
+
+        onVisibleChanged: {
+            var output = "";
+
+            for(var i = 0; i<6; i++){
+                if(i == 0 & rollResults[i][0] != null)
+                    output+= "D4 Rolls:\n";
+                if(i == 1 & rollResults[i][0] != null)
+                    output+= "D6 Rolls:\n";
+                if(i == 2 & rollResults[i][0] != null)
+                    output+= "D8 Rolls:\n";
+                if(i == 3 & rollResults[i][0] != null)
+                    output+= "D10 Rolls:\n";
+                if(i == 4 & rollResults[i][0] != null)
+                    output+= "D12 Rolls:\n";
+                if(i == 5 & rollResults[i][0] != null)
+                    output+= "D20 Rolls:\n";
+
+                for(var k in rollResults[i])
+                    if(k == rollResults[i].length -1)
+                        output+= rollResults[i][k];
+                    else
+                        output+= rollResults[i][k]+ ', ';
+
+
+                if(rollResults[i][0]!=null)
+                    output+= '\n';
+            }
+
+            resultsText.text= output;
+        }
+
+        Text {
+            id: resultsText
+            font.bold: true
+            smooth: true
+            font.pixelSize: 25
+            width:  parent.width-60
+            wrapMode: Text.WordWrap
+            color: "#CCCCCC"
+            style: Text.Raised
+            anchors.horizontalCenter: resultsHolder.horizontalCenter
+            anchors.top: resultsHolder.top
+            anchors.topMargin: 30
+
+        }
+
+
+
+        ReturnButton {
+            id: returnButton
+            text: "Return"
+            onClicked: showScreen(returnFile)
+            anchors.bottom: parent.bottom
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.bottomMargin: 25
+        }
+    }
+
     //for debug purposes
     /*
     Text {
@@ -255,8 +326,8 @@ Image {
         font.bold: true
         font.pixelSize: 18
     }
-
-
+    
+    
     Text {
         id:yLabel
         x: 395
@@ -272,7 +343,7 @@ Image {
         font.bold: true
         font.pixelSize: 18
     }
-
+    
     Text {
         id:timeoutLabel
         x: 395
@@ -288,7 +359,7 @@ Image {
         font.bold: true
         font.pixelSize: 18
     }*/
-
+    
     /*HoldButton {
                 id: rollBtn
                 anchors {

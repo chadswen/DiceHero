@@ -3,6 +3,7 @@
         <file>qml/board.png</file>
         <file>qml/Button.qml</file>
         <file>qml/Button2.qml</file>
+        <file>qml/ButtonInfo.qml</file>
         <file>qml/clack1.wav</file>
         <file>qml/clack2.wav</file>
         <file>qml/clack3.wav</file>
@@ -11,6 +12,11 @@
         <file>qml/clack6.wav</file>
         <file>qml/createDice.js</file>
         <file>qml/D4.qml</file>
+        <file>qml/d4_1.png</file>
+        <file>qml/d4_2.png</file>
+        <file>qml/d4_3.png</file>
+        <file>qml/d4_4.png</file>
+        <file>qml/d4_5.png</file>
         <file>qml/d6.png</file>
         <file>qml/D6.qml</file>
         <file>qml/d6_1.png</file>
@@ -50,8 +56,10 @@
         <file>qml/globalDice.js</file>
         <file>qml/HoldButton.qml</file>
         <file>qml/holdingDice.js</file>
+        <file>qml/logo_small.png</file>
         <file>qml/main.qml</file>
         <file>qml/RerollSelection.qml</file>
+        <file>qml/ReturnButton.qml</file>
         <file>qml/selectdice.qml</file>
         <file>qml/selectdicebutton.qml</file>
         <file>qml/table.qml</file>
@@ -59,7 +67,5 @@
         <file>qml/TwoStateButton.qml</file>
         <file>qml/Wall.qml</file>
         <file>qml/welcometext.qml</file>
-        <file>qml/logo_small.png</file>
-        <file>qml/ButtonInfo.qml</file>
     </qresource>
 </RCC>

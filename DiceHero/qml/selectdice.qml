@@ -11,6 +11,9 @@ Rectangle {
         target: main
         onMyDiceChanged:{
             statusDynamicText.text = "Selected: "+Script.getNumberDice(myDice);
+            finalize.enabled = true;
+            finalize.opacity = 1;
+
             if(Script.getNumberDice(myDice) >= 20){
                 statusDynamicText.color = "red";
                 statusDynamicText.text = "Selected: MAX";
@@ -23,12 +26,12 @@ Rectangle {
                 d20M.enabled = false;
 
 
-                selectD4.opacity =.2;
-                selectD6.opacity =.2;
-                selectD8.opacity =.2;
-                selectD10.opacity =.2;
-                selectD12.opacity =.2;
-                selectD20.opacity =.2;
+                selectD4.opacity =.5;
+                selectD6.opacity =.5;
+                selectD8.opacity =.5;
+                selectD10.opacity =.5;
+                selectD12.opacity =.5;
+                selectD20.opacity =.5;
             }
         }
     }
@@ -73,7 +76,7 @@ Rectangle {
             color: "black"
             width: 250
             height: 350
-            border.color: "#336633"
+            border.color: "#CCCCCC"
             border.width: 4
             smooth: true
             radius: 50
@@ -81,17 +84,16 @@ Rectangle {
 
         Rectangle {
             id: status
-            height: 35; width: 150
+            height: 70; width: 320
             border.color:  "#CCCCCC"
             color: "black"
             border.width:  4
             opacity: .7
             radius: 10
             anchors {
-                left: parent.left
-                leftMargin:20
                 top: parent.top
                 topMargin:20
+                horizontalCenter:parent.horizontalCenter
             }
         }
 
@@ -99,21 +101,18 @@ Rectangle {
             id: statusDynamicText
             font.bold: false
             smooth: true
-            text:"Selected: "
-            font.pixelSize: 20
+            text:"Selected: 0"
+            font.pixelSize: 50
             color: "#CCCCCC"
             style: Text.Raised
-            anchors.top: status.top
-            anchors.topMargin: 5
-            anchors.left: status.left
-            anchors.leftMargin: 7
-            anchors.bottom:  status.bottom
-            anchors.bottomMargin: 5
+            anchors.centerIn: status
+
+
         }
 
         Image {
             id: selectD4
-            source: "d6_1.png"
+            source: "d4_1.png"
             anchors {
                 top: parent.top
                 left: parent.left
@@ -305,6 +304,8 @@ Rectangle {
                 anchors.rightMargin:10
                 anchors.leftMargin:30
                 text: "Roll Dice"
+                opacity: .5
+                enabled: false
                 onClicked: returnFile="selectdice.qml", screenBase.showScreen("engine.qml")
             }
             Button {
