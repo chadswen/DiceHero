@@ -59,7 +59,7 @@ Rectangle {
                     else if(sum(p2Array)>sum(p1Array))
                         winner.text = "P2 WINS!!";
                     else
-                        winner.text = "IT'S A TIE!'";
+                        winner.text = "IT'S A TIE!";
                     winner.color="orange";
                     particles.burst(20);
 

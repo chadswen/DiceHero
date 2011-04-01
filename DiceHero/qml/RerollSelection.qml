@@ -40,16 +40,7 @@ Rectangle {
         saved = tempSaved;
 
 
-        // limit to 2 rerolls
-        if(reRolls < 2)
-        {
-            reRolls++;
-        }
-        else
-        {
-            reRolls = 0;
-            screenBase.showScreen("ScoreCard.qml");
-        }
+        reRolls++;
 
     }
 
@@ -58,9 +49,18 @@ Rectangle {
     }
 
 
-    Connections{
-        target: main
-        onReRollChanged:{if (reRoll==2)screenBase.showScreen("ScoreCard.qml");}
+    Timer{
+        interval: 16
+        repeat: true
+        running: true
+
+        onTriggered: {
+            if (reRolls==3)
+            {
+                reRolls =0;
+                screenBase.showScreen("ScoreCard.qml");
+            }
+        }
     }
 
 

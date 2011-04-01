@@ -97,6 +97,18 @@ Image {
             GradientStop { id: gradient1; position: 0.0 }
             GradientStop { id: gradient2; position: 1.0 }
         }
+
+        // hidden debugging click zone to end rolling without accelerometer
+        MouseArea{
+            width: 10
+            height: parent.height
+            anchors.left:parent.left
+            onClicked: {
+                if(!currentlyRolling){
+                    currentlyRolling = true; timeout = 2000;
+                }
+            }
+        }
     }
     
     

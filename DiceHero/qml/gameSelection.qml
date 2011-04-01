@@ -146,7 +146,6 @@ Rectangle {
             text: "Motherload"
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.bottom: motherloadText.top
-            opacity: .5
             enabled: true
             onClicked: {
                 rolls = 13;
@@ -164,7 +163,6 @@ Rectangle {
             id: motherloadText
             width:textHolder.width
             height: 60
-            opacity: .5
             anchors {
                 bottom: textHolder.bottom
                 bottomMargin: 5
@@ -179,7 +177,7 @@ Rectangle {
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             style: Text.Raised
-            text: "A \"Yahzt-ish\" family favorite! (Coming Soon)"
+            text: "A \"Yahzt-ish\" family favorite!"
         }
     }
 
