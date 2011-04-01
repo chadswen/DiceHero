@@ -4,6 +4,7 @@ var rollResults = new Array(6);
 var p1Array = new Array(6);
 var p2Array = new Array(6);
 var saved = new Array(5);
+var scoreFields = new Array(18);
 rollResults[0] = []
 rollResults[1] = []
 rollResults[2] = []

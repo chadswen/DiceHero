@@ -2,6 +2,7 @@ import QtQuick 1.0
 import Qt.labs.particles 1.0
 import "createDice.js" as Script
 import "holdingDice.js" as VarHold
+import "scoringRules.js" as Scoring
 
 Rectangle {
 
@@ -146,12 +147,15 @@ Rectangle {
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.bottom: motherloadText.top
             opacity: .5
-            enabled: false
+            enabled: true
             onClicked: {
                 rolls = 13;
                 var temp = myDice;
                 VarHold.motherloadDice(temp);
                 myDice = temp;
+                var tempScores = scoreFields;
+                Scoring.initializeScores(tempScores);
+                scoreFields = tempScores;
                 returnFile="RerollSelection.qml", screen.showScreen("engine.qml");
             }
         }

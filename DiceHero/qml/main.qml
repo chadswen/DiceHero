@@ -21,6 +21,7 @@ Rectangle {
     property variant saved: GlobalDice.saved
     property variant p1Array: GlobalDice.p1Array
     property variant p2Array: GlobalDice.p2Array
+    property variant scoreFields: GlobalDice.scoreFields
 
 
     property int reRolls: 0

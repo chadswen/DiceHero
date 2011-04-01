@@ -10,13 +10,10 @@ Rectangle {
         width: 360; height: 640
 
         Component.onCompleted: {
-            var temp = saved;
-            var temp2 = rollResults;
             var tempSaved = saved;
             var tempResults = rollResults;
             var i;
             var j=0;
-            Scoring.BubbleSort(tempSaved);
             for(i = 0; i<5; i++)
             {
                 if(tempResults[1][i]!= null){
@@ -30,7 +27,12 @@ Rectangle {
                     }
                 }
             }
+            Scoring.BubbleSort(tempSaved);
             saved = tempSaved;
+            var tempScores = scoreFields;
+            Scoring.initializeText(tempScores);
+            Scoring.enableButtons(tempScores);
+            scoreFields = tempScores;
             rolls--;
         }
 
@@ -59,93 +61,6 @@ Rectangle {
                     anchors.fill: parent
                     source: "board.png"
 
-                    Text {
-                        id: text1
-                        x: 143
-                        y: 7
-                        width: 80
-                        height: 20
-                        text: "Scores"
-                        font.bold: true
-                        font.pixelSize: 22
-                    }
-
-                    Text {
-                        id: threescore
-                        x: 268
-                        y: 86
-                        width: 80
-                        height: 20
-                        text: "--"
-                        horizontalAlignment: Text.AlignHCenter
-                        font.pixelSize: 20
-                    }
-
-                    Text {
-                        id: fivescore
-                        x: 142
-                        y: 173
-                        width: 80
-                        height: 20
-                        text: "--"
-                        horizontalAlignment: Text.AlignHCenter
-                        font.pixelSize: 20
-                    }
-
-                    Text {
-                        id: twoscore
-                        x: 142
-                        y: 86
-                        width: 80
-                        height: 20
-                        text: "--"
-                        horizontalAlignment: Text.AlignHCenter
-                        font.pixelSize: 20
-                    }
-
-                    Text {
-                        id: onescore
-                        x: 4
-                        y: 86
-                        width: 80
-                        height: 20
-                        text: "--"
-                        horizontalAlignment: Text.AlignHCenter
-                        font.pixelSize: 20
-                    }
-
-                    Text {
-                        id: sixscore
-                        x: 268
-                        y: 173
-                        width: 80
-                        height: 20
-                        text: "--"
-                        horizontalAlignment: Text.AlignHCenter
-                        font.pixelSize: 20
-                    }
-
-                    Text {
-                        id: fourscore
-                        x: 4
-                        y: 173
-                        width: 80
-                        height: 20
-                        text: "--"
-                        horizontalAlignment: Text.AlignHCenter
-                        font.pixelSize: 20
-                    }
-
-                    Text {
-                        id: text8
-                        x: 215
-                        y: 207
-                        width: 80
-                        height: 20
-                        text: "Bonus:"
-                        font.pixelSize: 20
-                    }
-
                     TwoStateButton {
                         id: ones
                         x: 18
@@ -165,17 +80,16 @@ Rectangle {
                             font.pixelSize: 24
                         }
                         onClicked: {
-                            enabled = false;
+                            Scoring.disableButtons();
                             opacity = .6;
                             var temp2 = saved;
                             var temp = Scoring.count(1, temp2);
+                            onescore.text = temp;
                             topscore.text = (Number(topscore.text) + temp);
                             totalscore.text = (Number(totalscore.text) + temp);
                             if(bonusscore.text == "0")
                             {
-                                temp3 = Scoring.bonusCheck(temp2);
-                                bonusscore.text = temp3;
-                                totalscore.text = (Number(totalscore.text) + temp3);
+                                Scoring.bonusCheck(temp2);
                             }
                             saved = temp2;
                         }
@@ -200,17 +114,16 @@ Rectangle {
                             font.pixelSize: 24
                         }
                         onClicked: {
-                            enabled = false;
+                            Scoring.disableButtons();
                             opacity = .6;
                             var temp2 = saved;
                             var temp = Scoring.count(2, temp2);
+                            twoscore.text = temp;
                             topscore.text = (Number(topscore.text) + temp);
                             totalscore.text = (Number(totalscore.text) + temp);
                             if(bonusscore.text == "0")
                             {
-                                temp3 = Scoring.bonusCheck(temp2);
-                                bonusscore.text = temp3;
-                                totalscore.text = (Number(totalscore.text) + temp3);
+                                Scoring.bonusCheck();
                             }
                             saved = temp2;
                         }
@@ -235,17 +148,16 @@ Rectangle {
                             font.pixelSize: 24
                         }
                         onClicked: {
-                            enabled = false;
+                            Scoring.disableButtons();
                             opacity = .6;
                             var temp2 = saved;
                             var temp = Scoring.count(3, temp2);
+                            threescore.text = temp;
                             topscore.text = (Number(topscore.text) + temp);
                             totalscore.text = (Number(totalscore.text) + temp);
                             if(bonusscore.text == "0")
                             {
-                                temp3 = Scoring.bonusCheck(temp2);
-                                bonusscore.text = temp3;
-                                totalscore.text = (Number(totalscore.text) + temp3);
+                                Scoring.bonusCheck(temp2);
                             }
                             saved = temp2;
                         }
@@ -270,17 +182,16 @@ Rectangle {
                             font.pixelSize: 24
                         }
                         onClicked: {
-                            enabled = false;
+                            Scoring.disableButtons();
                             opacity = .6;
                             var temp2 = saved;
                             var temp = Scoring.count(4, temp2);
+                            fourscore.text = temp;
                             topscore.text = (Number(topscore.text) + temp);
                             totalscore.text = (Number(totalscore.text) + temp);
                             if(bonusscore.text == "0")
                             {
-                                temp3 = Scoring.bonusCheck(temp2);
-                                bonusscore.text = temp3;
-                                totalscore.text = (Number(totalscore.text) + temp3);
+                                Scoring.bonusCheck(temp2);
                             }
                             saved = temp2;
                         }
@@ -305,17 +216,16 @@ Rectangle {
                             font.pixelSize: 24
                         }
                         onClicked: {
-                            enabled = false;
+                            Scoring.disableButtons();
                             opacity = .6;
                             var temp2 = saved;
                             var temp = Scoring.count(5, temp2);
+                            fivescore.text = temp;
                             topscore.text = (Number(topscore.text) + temp);
                             totalscore.text = (Number(totalscore.text) + temp);
                             if(bonusscore.text == "0")
                             {
-                                temp3 = Scoring.bonusCheck(temp2);
-                                bonusscore.text = temp3;
-                                totalscore.text = (Number(totalscore.text) + temp3);
+                                Scoring.bonusCheck(temp2);
                             }
                             saved = temp2;
                         }
@@ -340,17 +250,16 @@ Rectangle {
                             font.pixelSize: 24
                         }
                         onClicked: {
-                            enabled = false;
+                            Scoring.disableButtons();
                             opacity = .6;
                             var temp2 = saved;
                             var temp = Scoring.count(6, temp2);
+                            sixscore.text = temp;
                             topscore.text = (Number(topscore.text) + temp);
                             totalscore.text = (Number(totalscore.text) + temp);
                             if(bonusscore.text == "0")
                             {
-                                temp3 = Scoring.bonusCheck(temp2);
-                                bonusscore.text = temp3;
-                                totalscore.text = (Number(totalscore.text) + temp3);
+                                Scoring.bonusCheck(temp2);
                             }
                             saved = temp2;
                         }
@@ -376,7 +285,7 @@ Rectangle {
                         color: "#ffffff"
                         text: ""
                         onClicked: {
-                            enabled = false;
+                            Scoring.disableButtons();
                             opacity = .6;
                             var temp = saved;
                             var temp2 = Scoring.ThreeofKind(temp);
@@ -395,6 +304,8 @@ Rectangle {
                         color: "#ffffff"
                         text: ""
                         onClicked: {
+                            Scoring.disableButtons();
+                            opacity = .6;
                             var temp = saved;
                             var temp2 = Scoring.FourofKind(temp);
                             fourofkindscore.text = temp2;
@@ -433,6 +344,8 @@ Rectangle {
                         height: 55
                         text: ""
                         onClicked: {
+                            Scoring.disableButtons();
+                            opacity = .6;
                             var temp = saved;
                             var temp2 = Scoring.sum(temp)
                             chancescore.text = temp2;
@@ -449,6 +362,8 @@ Rectangle {
                         height: 55
                         text: ""
                         onClicked: {
+                            Scoring.disableButtons();
+                            opacity = .6;
                             var temp = saved;
                             var temp2 = Scoring.FullHouse(temp)
                             fullhousescore.text = temp2;
@@ -465,7 +380,7 @@ Rectangle {
                         height: 55
                         text: ""
                         onClicked: {
-                            enabled = false;
+                            Scoring.disableButtons();
                             opacity = .6;
                             var temp = saved;
                             var temp2 = Scoring.SmallStraight(temp);
@@ -483,7 +398,7 @@ Rectangle {
                         height: 55
                         text: ""
                         onClicked: {
-                            enabled = false;
+                            Scoring.disableButtons();
                             opacity = .6;
                             var temp = saved;
                             var temp2 = Scoring.LargeStraight(temp);
@@ -506,7 +421,7 @@ Rectangle {
 
                     Text {
                         id: text20
-                        x: 203
+                        x: 204
                         y: 390
                         width: 80
                         height: 20
@@ -580,7 +495,7 @@ Rectangle {
                                 rolls++
                                 if(motherload1.text == "0")
                                 {
-                                    motherload.enabled = false;
+                                    motherload.Scoring.disableButtons();
                                     motherload.opacity = .6;
                                 }
                             }
@@ -594,7 +509,7 @@ Rectangle {
                                 rolls++;
                                 if(motherload2.text == "0")
                                 {
-                                    motherload.enabled = false;
+                                    motherload.Scoring.disableButtons();
                                     motherload.opacity = .6;
                                 }
                             }
@@ -605,7 +520,7 @@ Rectangle {
                                 motherload1.text = temp2;
                                 totalscore.text = (Number(totalscore.text) + temp2);
                                 saved = temp;
-                                motherload.enabled = false;
+                                motherload.Scoring.disableButtons();
                                 motherload.opacity = .6;
                             }
                         }
@@ -709,7 +624,7 @@ Rectangle {
 
                     Text {
                         id: text33
-                        x: 77
+                        x: 80
                         y: 463
                         width: 80
                         height: 20
@@ -726,6 +641,92 @@ Rectangle {
                         text: "Dice:"
                         font.bold: true
                         font.pixelSize: 16
+                    }
+                    Text {
+                        id: text1
+                        x: 143
+                        y: 7
+                        width: 80
+                        height: 20
+                        text: "Scores"
+                        font.bold: true
+                        font.pixelSize: 22
+                    }
+
+                    Text {
+                        id: threescore
+                        x: 268
+                        y: 86
+                        width: 80
+                        height: 20
+                        text: "--"
+                        horizontalAlignment: Text.AlignHCenter
+                        font.pixelSize: 20
+                    }
+
+                    Text {
+                        id: fivescore
+                        x: 142
+                        y: 173
+                        width: 80
+                        height: 20
+                        text: "--"
+                        horizontalAlignment: Text.AlignHCenter
+                        font.pixelSize: 20
+                    }
+
+                    Text {
+                        id: twoscore
+                        x: 142
+                        y: 86
+                        width: 80
+                        height: 20
+                        text: "--"
+                        horizontalAlignment: Text.AlignHCenter
+                        font.pixelSize: 20
+                    }
+
+                    Text {
+                        id: onescore
+                        x: 4
+                        y: 86
+                        width: 80
+                        height: 20
+                        text: "--"
+                        horizontalAlignment: Text.AlignHCenter
+                        font.pixelSize: 20
+                    }
+
+                    Text {
+                        id: sixscore
+                        x: 268
+                        y: 173
+                        width: 80
+                        height: 20
+                        text: "--"
+                        horizontalAlignment: Text.AlignHCenter
+                        font.pixelSize: 20
+                    }
+
+                    Text {
+                        id: fourscore
+                        x: 4
+                        y: 173
+                        width: 80
+                        height: 20
+                        text: "--"
+                        horizontalAlignment: Text.AlignHCenter
+                        font.pixelSize: 20
+                    }
+
+                    Text {
+                        id: text8
+                        x: 215
+                        y: 207
+                        width: 80
+                        height: 20
+                        text: "Bonus:"
+                        font.pixelSize: 20
                     }
 
                     Rectangle {
@@ -903,8 +904,11 @@ Rectangle {
                 anchors.bottomMargin: 90
                 onClicked: {
                     var temp = myDice;
+                    var tempScores = scoreFields;
                     VarHold.motherloadDice(temp);
+                    Scoring.saveText(tempScores);
                     myDice = temp;
+                    scoreFields = tempScores;
                     returnFile="RerollSelection.qml", showScreen("engine.qml");
                 }
         }
