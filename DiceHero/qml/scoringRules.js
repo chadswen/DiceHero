@@ -78,7 +78,6 @@ function count(value, dice)         //used for ones, twos, threes, fours, fives,
 
     function BubbleSort(tempSaved)
     {
-            console.log("bubblesorting starts" + tempSaved);
             do                                         //bubble sort
             {
                 var swapped = false;
@@ -92,9 +91,7 @@ function count(value, dice)         //used for ones, twos, threes, fours, fives,
                         tempSaved[i+1] = temp;
                     }
                 }
-                console.log("bubblesorting " + tempSaved);
             }while(swapped);
-            console.log("bubblesort done");
      }
 
     function bonusCheck()
@@ -186,6 +183,8 @@ function count(value, dice)         //used for ones, twos, threes, fours, fives,
         largestraight.enabled = false;
         chance.enabled = false;
         fullhouse.enabled = false;
+        finishGame.enabled = false;
+        finishGame.visible = false;
     }
 
     function enableButtons(tempScores)

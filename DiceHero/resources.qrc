@@ -60,5 +60,6 @@
         <file>qml/TwoStateButton.qml</file>
         <file>qml/Wall.qml</file>
         <file>qml/highRoller.qml</file>
+        <file>qml/TotalScreen.qml</file>
     </qresource>
 </RCC>

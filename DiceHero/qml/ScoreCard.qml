@@ -37,7 +37,10 @@ Rectangle {
             rolls--;
             if(rolls == 0)
             {
-                finalize.text = "Finish"
+                finalize.enabled = false;
+                finalize.visible = false;
+                finishGame.enabled = true;
+                finishGame.visible = true;
             }
         }
 
@@ -497,11 +500,15 @@ Rectangle {
                                 motherload1.text = temp2;
                                 totalscore.text = (Number(totalscore.text) + temp2);
                                 saved = temp;
-                                rolls++
+
                                 if(motherload1.text == "0")
                                 {
                                     motherload.Scoring.disableButtons();
                                     motherload.opacity = .6;
+                                }
+                                else
+                                {
+                                    rolls++    //user gets extra roll to make another motherload.
                                 }
                             }
                             else if(motherload2.text == "--" && motherload1.text != "0")
@@ -511,11 +518,14 @@ Rectangle {
                                 motherload1.text = temp2;
                                 totalscore.text = (Number(totalscore.text) + temp2);
                                 saved = temp;
-                                rolls++;
                                 if(motherload2.text == "0")
                                 {
                                     motherload.Scoring.disableButtons();
                                     motherload.opacity = .6;
+                                }
+                                else
+                                {
+                                    rolls++ //user gets extra roll to make another motherload.
                                 }
                             }
                             else if(motherload3.text == "--" && motherload1.text != "0" && motherload2.text != "0")
@@ -741,19 +751,17 @@ Rectangle {
                         width: 50
                         height: 50
                         color: "#ffffff"
-
+                    }
                         Text {
                             id: text35
-                            x: 14
-                            y: 18
+                            x: 76
+                            y: 587
                             width: 80
                             height: 20
-                            text: {
-                                saved[0];
-                            }
-                            font.pixelSize: 12
+                            text: saved[0]
+                            font.pixelSize: 20
                         }
-                    }
+
 
                     Rectangle {
                         id: die2
@@ -762,19 +770,17 @@ Rectangle {
                         width: 50
                         height: 50
                         color: "#ffffff"
-
+                    }
                         Text {
                             id: text36
-                            x: 14
-                            y: 18
+                            x: 137
+                            y: 587
                             width: 80
                             height: 20
-                            text: {
-                                saved[1];
-                            }
-                            font.pixelSize: 12
+                            text: saved[1]
+                            font.pixelSize: 20
                         }
-                    }
+
 
                     Rectangle {
                         id: die3
@@ -783,19 +789,17 @@ Rectangle {
                         width: 50
                         height: 50
                         color: "#ffffff"
-
+                    }
                         Text {
                             id: text37
-                            x: 14
-                            y: 18
+                            x: 196
+                            y: 587
                             width: 80
                             height: 20
-                            text: {
-                                saved[2];
-                            }
-                            font.pixelSize: 12
+                            text: saved[2]
+                            font.pixelSize: 20
                         }
-                    }
+
 
                     Rectangle {
                         id: die4
@@ -804,19 +808,17 @@ Rectangle {
                         width: 50
                         height: 50
                         color: "#ffffff"
-
+                    }
                         Text {
                             id: text38
-                            x: 14
-                            y: 18
+                            x: 257
+                            y: 587
                             width: 80
                             height: 20
-                            text: {
-                                saved[3];
-                            }
-                            font.pixelSize: 12
+                            text: saved[3]
+                            font.pixelSize: 20
                         }
-                    }
+
 
                     Rectangle {
                         id: die5
@@ -825,19 +827,17 @@ Rectangle {
                         width: 50
                         height: 50
                         color: "#ffffff"
-
+                    }
                         Text {
                             id: text39
-                            x: 14
-                            y: 18
+                            x: 322
+                            y: 587
                             width: 80
                             height: 20
-                            text: {
-                                saved[4];
-                            }
-                            font.pixelSize: 12
+                            text: saved[4]
+                            font.pixelSize: 20
                         }
-                    }
+
 
                     Text {
                         id: text15
@@ -917,11 +917,34 @@ Rectangle {
                     myDice = temp;
                     scoreFields = tempScores;
                     saved = tempSaved;
-                    if(rolls == 0)
-                    {
-                     showScreen("TotalScreen.qml");
-                    }
                     returnFile="RerollSelection.qml", showScreen("engine.qml");
+                }
+        }
+        Button {
+                id: finishGame
+                x: 214
+                y: 515
+                width: 103
+                height: 35
+                anchors {
+                    bottom: screen.bottom
+                    horizontalCenter: screen.horizontalCenter
+                }
+                text: "Finish"
+                visible: true
+                anchors.horizontalCenterOffset: 86
+                anchors.bottomMargin: 90
+                onClicked: {
+                    var tempSaved = saved;
+                    var temp = myDice;
+                    var tempScores = scoreFields;
+                    VarHold.motherloadDice(temp);
+                    Scoring.saveText(tempScores);
+                    Scoring.clearSaved(tempSaved);
+                    myDice = temp;
+                    scoreFields = tempScores;
+                    saved = tempSaved;
+                    showScreen("TotalScreen.qml");
                 }
         }
 }
