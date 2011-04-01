@@ -31,9 +31,14 @@ Rectangle {
             saved = tempSaved;
             var tempScores = scoreFields;
             Scoring.initializeText(tempScores);
+            Scoring.disableButtons();
             Scoring.enableButtons(tempScores);
             scoreFields = tempScores;
             rolls--;
+            if(rolls == 0)
+            {
+                finalize.text = "Finish"
+            }
         }
 
         SystemPalette {
@@ -903,12 +908,19 @@ Rectangle {
                 anchors.horizontalCenterOffset: 86
                 anchors.bottomMargin: 90
                 onClicked: {
+                    var tempSaved = saved;
                     var temp = myDice;
                     var tempScores = scoreFields;
                     VarHold.motherloadDice(temp);
                     Scoring.saveText(tempScores);
+                    Scoring.clearSaved(tempSaved);
                     myDice = temp;
                     scoreFields = tempScores;
+                    saved = tempSaved;
+                    if(rolls == 0)
+                    {
+                     showScreen("TotalScreen.qml");
+                    }
                     returnFile="RerollSelection.qml", showScreen("engine.qml");
                 }
         }

@@ -243,3 +243,11 @@ function count(value, dice)         //used for ones, twos, threes, fours, fives,
             motherload.enabled = true;
         }
     }
+    function clearSaved(tempSaved)
+    {
+        tempSaved[0] = null
+        tempSaved[1] = null
+        tempSaved[2] = null
+        tempSaved[3] = null
+        tempSaved[4] = null
+    }
