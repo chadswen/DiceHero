@@ -523,16 +523,9 @@ Rectangle {
                     anchors.rightMargin:30
                     anchors.leftMargin:10
                     onClicked: {
-                        var temp = new Array(6);
-                        Script.clearData(temp);
-                        p1Array = temp;
-                        p2Array = temp;
-                        p1Turn = true;
-                        temp = rollResults;
-                        Script.clearResults(temp);
-                        rollResults = temp;
-                        rolls = 0;
-                        screenBase.showScreen("gameSelection.qml");}
+                        main.clearAll();
+                        screenBase.showScreen("gameSelection.qml");
+                    }
                 }
             }
         }

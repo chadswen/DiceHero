@@ -310,15 +310,10 @@ Rectangle {
         anchors.rightMargin:30
         anchors.leftMargin:10
         anchors.bottomMargin: 40
-        onClicked: {screenBase.showScreen("gameSelection.qml")
-            var temp = rollResults;
-            Script.clearResults(temp);
-            rollResults = temp;
-            temp = new Array(5);
-            dieClicks = temp;
-            saved = temp;
-            rolls = 0;
-            reRolls = 0;
+        onClicked: {
+            main.clearAll();
+            screenBase.showScreen("gameSelection.qml");
+
         }
     }
 }

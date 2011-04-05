@@ -316,10 +316,10 @@ Rectangle {
                 anchors.right: parent.right
                 anchors.rightMargin:30
                 anchors.leftMargin:10
-                onClicked: {screenBase.showScreen("gameSelection.qml")
-                    var temp = rollResults;
-                    Script.clearResults(temp);
-                    rollResults = temp;}
+                onClicked: {
+                    main.clearAll();
+                    screenBase.showScreen("gameSelection.qml");
+                }
             }
         }
     }

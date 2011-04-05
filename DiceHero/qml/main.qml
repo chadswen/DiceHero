@@ -30,10 +30,10 @@ Rectangle {
     property bool currentlyRolling: false
     property bool p1Turn: true
 
-    // signaled just as the player initiates movement input (start rolling)
+    // signaled just as the player initiates movement to establish a zero point for rolling
     signal calibrate()
 
-    // functions are used as Qt slots when acceleromter changes
+    // functions are used as Qt slots when accelerometer changes
     function updateX(outVX) {
         accX = outVX
     }
@@ -42,6 +42,32 @@ Rectangle {
     }
     function updateZ(outVZ) {
         accZ = outVZ
+    }
+
+
+    // used to reset persistent vars upon exiting an app
+    function clearAll() {
+        var temp = new Array(6);
+        Script.clearData(temp);
+        p1Array = temp;
+        p2Array = temp;
+
+        temp = rollResults;
+        Script.clearResults(temp);
+        rollResults = temp;
+
+        temp = new Array(5);
+        dieClicks = temp;
+        saved = temp;
+
+        temp = new Array(18);
+        scoreFields = temp;
+
+        p1Turn = true;
+        reRolls = 0;
+        rolls = 0;
+
+        temp = 0;
     }
 
     Loader {
