@@ -67,9 +67,11 @@ Body {
         repeat: true;
         onTriggered:{
             if(linearVelocity.x != 0 || linearVelocity.y != 0
-                    || (!currentlyRolling & currentFrame>1)){
+                    || (!currentlyRolling & currentFrame!=2)){
 
-                if( Math.abs(linearVelocity.x)  <50 || Math.abs(linearVelocity.y)<50)
+                if( Math.abs(linearVelocity.x)  <10 || Math.abs(linearVelocity.y)<10)
+                    dieSpeed = 300
+                else if( Math.abs(linearVelocity.x)  >10 || Math.abs(linearVelocity.y)>10)
                     dieSpeed = 200
                 else if( Math.abs(linearVelocity.x)  >50 || Math.abs(linearVelocity.y)>50)
                     dieSpeed = 100;
