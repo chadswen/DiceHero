@@ -29,8 +29,7 @@ HEADERS += \
 
 OTHER_FILES += qml/*.qml \
     qml/*.png \
-    qml/*.js \
-    qml/TotalScreen.qml
+    qml/*.js
 
 
 

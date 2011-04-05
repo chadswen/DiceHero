@@ -19,6 +19,8 @@ Body {
     property double yAngle: 0
     property int textRot : 0
 
+    property int dieSpeed : 70
+
     // in case of accidental spawning outside the screen.
     Component.onCompleted: {
         while(x<0 || x>engine.width)
@@ -60,12 +62,18 @@ Body {
 
     //Change frames and random number at a rate congruent to velocity
     Timer {
-        interval: 150;
+        interval: dieSpeed;
         running: (currentlyRolling || (!currentlyRolling & currentFrame!=2));
         repeat: true;
         onTriggered:{
-            if(Math.floor(20000/Math.sqrt(linearVelocity.x*linearVelocity.x+linearVelocity.y*linearVelocity.y))>50
+            if(linearVelocity.x != 0 || linearVelocity.y != 0
                     || (!currentlyRolling & currentFrame>1)){
+
+                if( Math.abs(linearVelocity.x)  <50 || Math.abs(linearVelocity.y)<50)
+                    dieSpeed = 200
+                else if( Math.abs(linearVelocity.x)  >50 || Math.abs(linearVelocity.y)>50)
+                    dieSpeed = 100;
+
                 if(currentFrame == 3){
                     number.visible = false;
                     if(currentlyRolling)
