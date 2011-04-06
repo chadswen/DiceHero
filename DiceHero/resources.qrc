@@ -61,5 +61,6 @@
         <file>qml/Wall.qml</file>
         <file>qml/highRoller.qml</file>
         <file>qml/TotalScreen.qml</file>
+        <file>qml/ScrollBar.qml</file>
     </qresource>
 </RCC>

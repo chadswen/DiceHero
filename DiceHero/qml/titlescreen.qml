@@ -158,47 +158,77 @@ signal showScreen(string msg)
 			radius: 50
 			visible: false
 
-			Text {
-					id: instructionsText
-					width: 280
-					height: 90
-					anchors {
-						top: parent.top;
-                                                topMargin: 150
-						horizontalCenter: parent.horizontalCenter
-					}
-					font.bold: false
-					smooth: true
-					font.family: "Helvetica [Cronyx]"
-                                        font.pixelSize: 14
-					color: "#AAAAAA"
-					wrapMode: Text.Wrap
-					horizontalAlignment: Text.AlignHCenter
-					verticalAlignment: Text.AlignVCenter
-					style: Text.Raised
-                                        text: "Instructions:\nFirst, choose your game mode. Some game modes will restrict the number and types of dice you can roll. The dice are identified by the number of sides (for instance, a d6 is a six-sided die). In Hero Mode, you can roll any type of die you want! At the die selection screen, just press the button corresponding to the type of die you want, and it will be added to the table. Hit the button multiple times for multiple dice! Hit the \"Roll Dice\" button to begin. Shake and tilt your phone and watch the dice roll - they will come to rest if you let them settle.\n\n\n\n"
-				}
+                        Flickable {
+                                 id: view
+                                 anchors.fill: parent
+                                 contentWidth: parent.width
+                                 contentHeight: parent.height * 2
+                                 flickableDirection: Flickable.VerticalFlick
 
-			Text {
-				id: creditsText
-				width: 280
-                                height: 100
-				anchors {
-					top: instructionsText.bottom;
-                                        topMargin: 100
-					horizontalCenter: parent.horizontalCenter
-				}
-                                font.bold: true
-				smooth: true
-				font.family: "Helvetica [Cronyx]"
-                                font.pixelSize: 12
-				color: "#AAAAAA"
-				wrapMode: Text.Wrap
-				horizontalAlignment: Text.AlignHCenter
-				verticalAlignment: Text.AlignVCenter
-				style: Text.Raised
-                                text: "\nThe Dice Heroes:\nIvan Fan - Lead Testing Engineer Technician\nAaron Gann - Meritorious Game Mode Imperator\nDavid King - User Interface Specialist\nSkylar Seamans - Commander of Artistic Design\nBrian Shef - Executive Producer of Productions\nChad Swenson - Chief Primary Architect\n\nSpecial Thanks - David Levine\n\n\nPowered by Qt, QML, and Box2D"
-			}
+                            Text {
+                                            id: instructionsText
+                                            width: 280
+                                            height: 90
+                                            anchors {
+                                                    top: parent.top;
+                                                    topMargin: 150
+                                                    horizontalCenter: parent.horizontalCenter
+                                            }
+                                            font.bold: false
+                                            smooth: true
+                                            font.family: "Helvetica [Cronyx]"
+                                            font.pixelSize: 18
+                                            color: "#AAAAAA"
+                                            wrapMode: Text.Wrap
+                                            horizontalAlignment: Text.AlignHCenter
+                                            verticalAlignment: Text.AlignVCenter
+                                            style: Text.Raised
+                                            text: "Instructions:\nFirst, choose your game mode. Some game modes will restrict the number and types of dice you can roll. The dice are identified by the number of sides (for instance, a d6 is a six-sided die). In Hero Mode, you can roll any type of die you want! At the die selection screen, just press the button corresponding to the type of die you want, and it will be added to the table. Hit the button multiple times for multiple dice! Hit the \"Roll Dice\" button to begin. Shake and tilt your phone and watch the dice roll - they will come to rest if you let them settle.\n\n\n\n"
+                                    }
+
+                            Text {
+                                    id: creditsText
+                                    width: 280
+                                    height: 100
+                                    anchors {
+                                            top: instructionsText.bottom;
+                                            topMargin: 100
+                                            horizontalCenter: parent.horizontalCenter
+                                    }
+                                    font.bold: true
+                                    smooth: true
+                                    font.family: "Helvetica [Cronyx]"
+                                    font.pixelSize: 16
+                                    color: "#AAAAAA"
+                                    wrapMode: Text.Wrap
+                                    horizontalAlignment: Text.AlignHCenter
+                                    verticalAlignment: Text.AlignVCenter
+                                    style: Text.Raised
+                                    text: "\nThe Dice Heroes:\nIvan Fan - Lead Testing Engineer Technician\nAaron Gann - Meritorious Game Mode Imperator\nDavid King - User Interface Specialist\nSkylar Seamans - Commander of Artistic Design\nBrian Shef - Executive Producer of Productions\nChad Swenson - Chief Primary Architect\n\nSpecial Thanks - David Levine\n\n\nPowered by Qt, QML, and Box2D"
+                            }
+
+                             // Only show the scrollbar when the view is moving.
+                             states: State {
+                                 name: "ShowBars"
+                                 when: view.movingVertically
+                                 PropertyChanges { target: verticalScrollBar; opacity: 1 }
+                             }
+
+                             transitions: Transition {
+                                 NumberAnimation { properties: "opacity"; duration: 400 }
+                             }
+
+                             ScrollBar {
+                                      id: verticalScrollBar
+                                      width: 10; height: view.height-12
+                                      anchors.right: view.right
+                                      opacity: 0
+                                      orientation: Qt.Vertical
+                                      position: view.visibleArea.yPosition
+                                      pageSize: view.visibleArea.heightRatio
+                                  }
+
+                        }
 			
 			Button {
 				id: closeButton
