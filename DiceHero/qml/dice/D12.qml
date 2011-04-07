@@ -3,7 +3,7 @@ import Box2D 1.0
 
 Die {
     id: d12
-    currentSource: "d12_1.png"
+    currentSource: "../images/d12_1.png"
     sides: 12
 
     fixtures: Polygon {
@@ -22,23 +22,23 @@ Die {
     states: [
         State {
             name: "1"
-            PropertyChanges { target: d12; currentSource: "d12_1.png"; xPos:40; yPos:31; yAngle:0}
+            PropertyChanges { target: d12; currentSource: "../images/d12_1.png"; xPos:40; yPos:31; yAngle:0}
         },
         State {
             name: "2"
-            PropertyChanges { target: d12; currentSource: "d12_2.png"; xPos:18; yPos:24; yAngle:-10; textRot:25}
+            PropertyChanges { target: d12; currentSource: "../images/d12_2.png"; xPos:18; yPos:24; yAngle:-10; textRot:25}
         },
         State {
             name: "3"
-            PropertyChanges { target: d12; currentSource: "d12_3.png";}
+            PropertyChanges { target: d12; currentSource: "../images/d12_3.png";}
         },
         State {
             name: "4"
-            PropertyChanges { target: d12; currentSource: "d12_4.png"; xPos:42; yPos:32; yAngle:-25; textRot:30}
+            PropertyChanges { target: d12; currentSource: "../images/d12_4.png"; xPos:42; yPos:32; yAngle:-25; textRot:30}
         },
         State {
             name: "5"
-            PropertyChanges { target: d12; currentSource: "d12_5.png"; xPos:34; yPos:46; yAngle:10; textRot:10}
+            PropertyChanges { target: d12; currentSource: "../images/d12_5.png"; xPos:34; yPos:46; yAngle:10; textRot:10}
         }
     ]
 }

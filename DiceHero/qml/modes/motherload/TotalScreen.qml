@@ -1,8 +1,6 @@
 import QtQuick 1.0
 import Qt.labs.particles 1.0
-
-
-
+import "../../common"
 
 Rectangle {
 
@@ -141,7 +139,7 @@ signal showScreen(string msg)
             Timer {
                 id: timer
                 interval: 900; running: false; repeat: false;
-                onTriggered: screen.showScreen("gameSelection.qml");
+                onTriggered: screen.showScreen("modes/gameSelection.qml");
             }
         }
 }

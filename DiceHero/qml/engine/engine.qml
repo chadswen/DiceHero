@@ -2,7 +2,8 @@ import Qt 4.7
 import QtQuick 1.0
 import Box2D 1.0
 import QtMultimediaKit 1.1
-import "createDice.js" as Script
+import "../common"
+import "../common/createDice.js" as Script
 
 
 Image {
@@ -20,7 +21,7 @@ Image {
         id: activePalette
     }
     anchors.fill: parent
-    source: "board.png"
+    source: "../images/board.png"
     smooth: true
     
     //top bar

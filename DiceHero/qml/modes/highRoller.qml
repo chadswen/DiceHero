@@ -1,5 +1,6 @@
 import QtQuick 1.0
-import "createDice.js" as Script
+import "../common"
+import "../common/createDice.js" as Script
 import Qt.labs.particles 1.0
 Rectangle {
     signal showScreen(string msg)
@@ -93,7 +94,7 @@ Rectangle {
 
         Image {
             anchors.fill: parent
-            source: "board.png"
+            source: "../images/board.png"
         }
 
 
@@ -151,7 +152,7 @@ Rectangle {
             height: 70
             width: 70
             id: p1selectD4
-            source: "d4_1.png"
+            source: "../images/d4_1.png"
             smooth: true
             anchors {
                 top: buttonHolder1.top
@@ -175,7 +176,7 @@ Rectangle {
             height: 70
             width: 70
             id: p1selectD6
-            source: "d6_1.png"
+            source: "../images/d6_1.png"
             smooth: true
             anchors {
                 left: p1selectD4.right
@@ -197,7 +198,7 @@ Rectangle {
             height: 70
             width: 70
             id: p1selectD8
-            source: "d8_1.png"
+            source: "../images/d8_1.png"
             smooth: true
             anchors {
                 left: p1selectD4.left
@@ -219,7 +220,7 @@ Rectangle {
             height: 70
             width: 70
             id: p1selectD10
-            source: "d10_1.png"
+            source: "../images/d10_1.png"
             smooth: true
             anchors {
                 left: p1selectD6.left
@@ -241,7 +242,7 @@ Rectangle {
             height: 70
             width: 70
             id: p1selectD12
-            source: "d12_1.png"
+            source: "../images/d12_1.png"
             smooth: true
             anchors {
                 left: p1selectD8.left
@@ -263,7 +264,7 @@ Rectangle {
             height: 70
             width: 70
             id: p1selectD20
-            source: "d20_1.png"
+            source: "../images/d20_1.png"
             smooth: true
             anchors {
                 left: p1selectD10.left
@@ -333,7 +334,7 @@ Rectangle {
             height: 70
             width: 70
             id: p2selectD4
-            source: "d4_1.png"
+            source: "../images/d4_1.png"
             smooth: true
             anchors {
                 top: buttonHolder2.top
@@ -357,7 +358,7 @@ Rectangle {
             height: 70
             width: 70
             id: p2selectD6
-            source: "d6_1.png"
+            source: "../images/d6_1.png"
             smooth: true
             anchors {
                 left: p2selectD4.right
@@ -379,7 +380,7 @@ Rectangle {
             height: 70
             width: 70
             id: p2selectD8
-            source: "d8_1.png"
+            source: "../images/d8_1.png"
             smooth: true
             anchors {
                 left: p2selectD4.left
@@ -401,7 +402,7 @@ Rectangle {
             height: 70
             width: 70
             id: p2selectD10
-            source: "d10_1.png"
+            source: "../images/d10_1.png"
             smooth: true
             anchors {
                 left: p2selectD6.left
@@ -423,7 +424,7 @@ Rectangle {
             height: 70
             width: 70
             id: p2selectD12
-            source: "d12_1.png"
+            source: "../images/d12_1.png"
             smooth: true
             anchors {
                 left: p2selectD8.left
@@ -445,7 +446,7 @@ Rectangle {
             height: 70
             width: 70
             id: p2selectD20
-            source: "d20_1.png"
+            source: "../images/d20_1.png"
             smooth: true
             anchors {
                 left: p2selectD10.left
@@ -487,7 +488,7 @@ Rectangle {
                 lifeSpan: 900; lifeSpanDeviation: 600
                 angle: 0; angleDeviation: 360;
                 velocity: 350; velocityDeviation: 60
-                source: "logo_small.png"
+                source: "../images/logo_small.png"
             }
         }
 
@@ -512,7 +513,7 @@ Rectangle {
                         "P1's' Roll"
                         else
                         "P2's' Roll"}
-                        onClicked: returnFile="highRoller.qml", screenBase.showScreen("engine.qml")
+                        onClicked: returnFile="modes/highRoller.qml", screenBase.showScreen("engine/engine.qml")
                 }
                 Button {
                     id: returnButton
@@ -524,7 +525,7 @@ Rectangle {
                     anchors.leftMargin:10
                     onClicked: {
                         main.clearAll();
-                        screenBase.showScreen("gameSelection.qml");
+                        screenBase.showScreen("modes/gameSelection.qml");
                     }
                 }
             }

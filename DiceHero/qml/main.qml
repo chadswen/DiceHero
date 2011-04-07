@@ -1,6 +1,13 @@
 import QtQuick 1.0
-import "globalDice.js" as GlobalDice
-import "createDice.js" as Script
+import "common"
+import "dice"
+import "engine"
+import "images"
+import "modes"
+import "sound"
+
+import "common/globalDice.js" as GlobalDice
+import "common/createDice.js" as Script
 
 Rectangle {
 
@@ -72,7 +79,7 @@ Rectangle {
 
     Loader {
         id: loader
-        source: "titlescreen.qml"
+        source: "common/titlescreen.qml"
     }
 
     Connections {

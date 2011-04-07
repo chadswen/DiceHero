@@ -1,8 +1,9 @@
 import QtQuick 1.0
 import Qt.labs.particles 1.0
-import "createDice.js" as Script
-import "holdingDice.js" as VarHold
-import "scoringRules.js" as Scoring
+import "../common"
+import "../common/createDice.js" as Script
+import "motherload/holdingDice.js" as VarHold
+import "motherload/scoringRules.js" as Scoring
 
 Rectangle {
 
@@ -82,7 +83,7 @@ Rectangle {
                 horizontalCenter: textHolder.horizontalCenter
             }
             text: "Hero Mode"
-            onClicked: screen.showScreen("selectdice.qml")
+            onClicked: screen.showScreen("modes/selectdice.qml")
         }
 
 
@@ -116,7 +117,7 @@ Rectangle {
             anchors.top: heroModeText.bottom
             anchors.topMargin: 10
             onClicked: {
-                screen.showScreen("highRoller.qml");
+                screen.showScreen("modes/highRoller.qml");
             }
         }
 
@@ -155,7 +156,7 @@ Rectangle {
                 var tempScores = scoreFields;
                 Scoring.initializeScores(tempScores);
                 scoreFields = tempScores;
-                returnFile="RerollSelection.qml", screen.showScreen("engine.qml");
+                returnFile="modes/motherload/RerollSelection.qml", screen.showScreen("engine/engine.qml");
             }
         }
 

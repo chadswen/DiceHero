@@ -1,5 +1,6 @@
 import QtQuick 1.0
-import "createDice.js" as Script
+import "../../common"
+import "../../common/createDice.js" as Script
 import "holdingDice.js" as VarHold
 
 Rectangle {
@@ -49,24 +50,6 @@ Rectangle {
     }
 
 
-    Timer{
-        interval: 16
-        repeat: true
-        running: true
-
-        onTriggered: {
-            if (reRolls==3)
-            {
-                reRolls =0;
-                screenBase.showScreen("ScoreCard.qml");
-            }
-        }
-    }
-
-
-
-
-
     Item {
         id: screen
         width: parent.width; height: parent.height
@@ -85,7 +68,7 @@ Rectangle {
             anchors.leftMargin: 0
             anchors.topMargin: 0
             anchors.fill: parent
-            source: "board.png"
+            source: "../../images/board.png"
 
             Text {
                 id: text1
@@ -133,7 +116,7 @@ Rectangle {
         anchors.rightMargin:30
         anchors.leftMargin:10
         anchors.bottomMargin: 40
-        onClicked: screenBase.showScreen("ScoreCard.qml")
+        onClicked: screenBase.showScreen("modes/motherload/ScoreCard.qml")
     }
 
     TwoStateButton {
@@ -296,8 +279,16 @@ Rectangle {
             myDice = temp;
             dieClicks = temp2;
             saved = temp3;
-            returnFile="RerollSelection.qml"
-            screenBase.showScreen("engine.qml")
+            if (reRolls==2)
+            {
+                reRolls =0;
+                returnFile="modes/motherload/ScoreCard.qml";
+            }
+            else
+            {
+                returnFile="modes/motherload/RerollSelection.qml"
+            }
+            screenBase.showScreen("engine/engine.qml")
         }
     }
 
@@ -312,7 +303,7 @@ Rectangle {
         anchors.bottomMargin: 40
         onClicked: {
             main.clearAll();
-            screenBase.showScreen("gameSelection.qml");
+            screenBase.showScreen("modes/gameSelection.qml");
 
         }
     }

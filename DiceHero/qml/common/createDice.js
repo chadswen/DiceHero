@@ -67,7 +67,7 @@ function incd20(numDice) {
 
 function finalizeBoard(numDice) {
     for (var dieIndex = 0; dieIndex < 6; dieIndex++) {
-        component = Qt.createComponent(diceLabels[dieIndex]+".qml");
+        component = Qt.createComponent("../dice/"+diceLabels[dieIndex]+".qml");
         for (var specIndex = 0; specIndex < numDice[dieIndex]; specIndex++) {
             var dieObject = component.createObject(world);
             if (dieObject == null) {

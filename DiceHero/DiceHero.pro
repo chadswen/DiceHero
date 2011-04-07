@@ -3,7 +3,7 @@ QT += core gui declarative
 symbian:TARGET.UID3 = 0xE0947FC2
 
 # Allow network access on Symbian
-#symbian:TARGET.CAPABILITY += NetworkServices
+symbian:TARGET.CAPABILITY += NetworkServices
 
 
 CONFIG += mobility
@@ -27,10 +27,14 @@ HEADERS += \
 
 
 
-OTHER_FILES += qml/*.qml \
-    qml/*.png \
-    qml/*.js \
-    qml/ScrollBar.qml
+OTHER_FILES += qml/*.* \
+    qml/common/*.* \
+    qml/engine/*.* \
+    qml/dice/*.* \
+    qml/images/*.* \
+    qml/modes/*.* \
+    qml/modes/motherload/*.* \
+    qml/sound/*.*
 
 
 

@@ -1,4 +1,5 @@
 import QtQuick 1.0
+import "../../common"
 import "holdingDice.js" as VarHold
 import "scoringRules.js" as Scoring
 
@@ -67,7 +68,7 @@ Rectangle {
                 anchors.leftMargin: 0
                 anchors.topMargin: 0
                     anchors.fill: parent
-                    source: "board.png"
+                    source: "../../images/board.png"
 
                     TwoStateButton {
                         id: ones
@@ -917,7 +918,7 @@ Rectangle {
                     myDice = temp;
                     scoreFields = tempScores;
                     saved = tempSaved;
-                    returnFile="RerollSelection.qml", showScreen("engine.qml");
+                    returnFile="modes/motherload/RerollSelection.qml", showScreen("engine/engine.qml");
                 }
         }
         Button {
@@ -944,7 +945,7 @@ Rectangle {
                     myDice = temp;
                     scoreFields = tempScores;
                     saved = tempSaved;
-                    showScreen("TotalScreen.qml");
+                    showScreen("modes/motherload/TotalScreen.qml");
                 }
         }
 }
