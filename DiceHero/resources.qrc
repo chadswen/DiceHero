@@ -67,6 +67,6 @@
         <file>qml/sound/clack5.wav</file>
         <file>qml/sound/clack6.wav</file>
         <file>qml/main.qml</file>
-        <file>qml/ScrollBar.qml</file>
+        <file>qml/common/ScrollBar.qml</file>
     </qresource>
 </RCC>
