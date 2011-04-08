@@ -19,24 +19,24 @@ Rectangle {
     property real accZ
 
     // Global colors, in pairs for gradients
-    property string COLOR_OFFBLACK = "#0D0D0D"
-    property string COLOR_BLACK = "#000000"    
-    property string COLOR_GRAY = "#BFBFBF"
-    property string COLOR_DARKGRAY = "#7F7F7F"    
-    property string COLOR_LIGHTGRAY = "#D9D9D9"
-    property string COLOR_WHITE = "#FFFFFF"    
-    property string COLOR_ORANGE = "#E36C0A"
-    property string COLOR_DARKORANGE = "#984806"    
-    property string COLOR_JADE = "#9BBB59"
-    property string COLOR_DARKJADE = "#4F6228"
-    property string COLOR_LIGHTGREEN = "#00B050"
-    property string COLOR_GREEN = "#008000"
-    property string COLOR_BLUE = "#0070C0"
-    property string COLOR_DARKBLUE = "#1F497D"
-    property string COLOR_RED = "#C00000"
-    property string COLOR_DARKRED = "#632423"
-    property string COLOR_DARKTEXT = COLOR_OFFBLACK
-    property string COLOR_LIGHTTEXT = COLOR_WHITE
+    property string COLOR_OFFBLACK: "#0D0D0D"
+    property string COLOR_BLACK: "#000000"
+    property string COLOR_GRAY: "#BFBFBF"
+    property string COLOR_DARKGRAY: "#7F7F7F"
+    property string COLOR_LIGHTGRAY: "#D9D9D9"
+    property string COLOR_WHITE: "#FFFFFF"
+    property string COLOR_ORANGE: "#E36C0A"
+    property string COLOR_DARKORANGE: "#984806"
+    property string COLOR_JADE: "#9BBB59"
+    property string COLOR_DARKJADE: "#4F6228"
+    property string COLOR_LIGHTGREEN: "#00B050"
+    property string COLOR_GREEN: "#008000"
+    property string COLOR_BLUE: "#0070C0"
+    property string COLOR_DARKBLUE: "#1F497D"
+    property string COLOR_RED: "#C00000"
+    property string COLOR_DARKRED: "#632423"
+    property string COLOR_DARKTEXT: COLOR_OFFBLACK
+    property string COLOR_LIGHTTEXT: COLOR_WHITE
     
 
 
