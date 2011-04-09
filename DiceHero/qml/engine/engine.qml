@@ -212,17 +212,17 @@ Image {
             PropertyAction{ target: startText; property: "visible"; value: false}
         }
     }
-    
+
     //random sound effect played every second when rolling
     /*Audio {
         id: playSound
-        source: "clack1.wav"
+        source: "../sound/clack1.wav"
     }
     Timer{
-        interval: 1000 ; running: currentlyRolling; repeat: true;
+        interval: 2000 ; running: currentlyRolling; repeat: true;
         onTriggered:{
         var soundNum = Math.floor(Math.random()*6) +1;
-        var sound = "clack"+ soundNum +".wav";
+        var sound = "../sound/clack"+ soundNum +".wav";
         playSound.source= sound;
         playSound.play();
             console.log("Played sound: "+sound);

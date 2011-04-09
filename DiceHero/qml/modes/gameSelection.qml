@@ -21,6 +21,7 @@ Rectangle {
         var temp = myDice;
         Script.clearData(temp);
         myDice = temp;
+        main.clearAll();
     }
 
     Item {

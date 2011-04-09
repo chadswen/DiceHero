@@ -7,6 +7,7 @@ Body {
     sleepingAllowed: false
     width: 90
     height: 90
+    angularDamping: .2
 
     property string currentSource
     property int sides: 0
