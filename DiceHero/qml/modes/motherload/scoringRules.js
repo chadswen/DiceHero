@@ -34,7 +34,13 @@ function count(value, dice)         //used for ones, twos, threes, fours, fives,
         for(i = 0; i < dice.length-1; i++)
         {
             if(dice[i]==dice[i+1])
+            {
                 matches += 1;
+            }
+            if(Number(dice[i])+1 < dice[i+1])
+            {
+                matches += 1;
+            }
         }
         if(matches < 2)
             return 30;
@@ -183,6 +189,7 @@ function count(value, dice)         //used for ones, twos, threes, fours, fives,
         largestraight.enabled = false;
         chance.enabled = false;
         fullhouse.enabled = false;
+        finalize.enabled = false;
         finishGame.enabled = false;
         finishGame.visible = false;
     }
@@ -193,54 +200,80 @@ function count(value, dice)         //used for ones, twos, threes, fours, fives,
         {
             ones.enabled = true;
         }
+        else
+            ones.opacity = .6;
         if(tempScores[1] == "--")
         {
             twos.enabled = true;
         }
+        else
+            twos.opacity = .6;
         if(tempScores[2] == "--")
         {
             threes.enabled = true;
         }
+        else
+            threes.opacity = .6;
         if(tempScores[3] == "--")
         {
             fours.enabled = true;
         }
+        else
+            fours.opacity = .6;
         if(tempScores[4] == "--")
         {
             fives.enabled = true;
         }
+        else
+            fives.opacity = .6;
         if(tempScores[5] == "--")
         {
             sixes.enabled = true;
         }
+        else
+            sixes.opacity = .6;
         if(tempScores[6] == "--")
         {
             threeofkind.enabled = true;
         }
+        else
+            threeofkind.opacity = .6;
         if(tempScores[7] == "--")
         {
             fourofkind.enabled = true;
         }
+        else
+            fourofkind.opacity = .6;
         if(tempScores[8] == "--")
         {
             fullhouse.enabled = true;
         }
+        else
+            fullhouse.opacity = .6;
         if(tempScores[9] == "--")
         {
             smallstraight.enabled = true;
         }
+        else
+            smallstraight.opacity = .6;
         if(tempScores[10] == "--")
         {
             largestraight.enabled = true;
         }
+        else
+            largestraight.opacity = .6;
         if(tempScores[11] == "--")
         {
             chance.enabled = true;
         }
+        else
+            chance.opacity = .6;
         if(tempScores[12] == "--" || (tempScores[13] == "--" && tempScores[12] != "0")|| (tempScores[14] == "--" && tempScores[13] != "0"))
         {
             motherload.enabled = true;
         }
+        else
+            motherload.opacity = .6;
     }
     function clearSaved(tempSaved)
     {

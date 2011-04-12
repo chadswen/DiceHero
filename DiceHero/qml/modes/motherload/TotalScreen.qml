@@ -56,7 +56,7 @@ signal showScreen(string msg)
                     topMargin: 50
                     horizontalCenter: parent.horizontalCenter
                 }
-                source: "diceheroheader.png"
+                source: "../../images/diceheroheader.png"
             }
 
             Text {
@@ -130,7 +130,7 @@ signal showScreen(string msg)
                  lifeSpan: 900; lifeSpanDeviation: 600
                  angle: 0; angleDeviation: 360;
                  velocity: 350; velocityDeviation: 60
-                 source: "logo_small.png"
+                 source: "../../images/logo_small.png"
            }
            onClicked: particles.burst(14), timer.start();
         }

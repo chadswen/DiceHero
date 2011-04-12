@@ -90,6 +90,7 @@ Rectangle {
                         }
                         onClicked: {
                             Scoring.disableButtons();
+                            finalize.enabled = true;
                             opacity = .6;
                             var temp2 = saved;
                             var temp = Scoring.count(1, temp2);
@@ -125,6 +126,7 @@ Rectangle {
                         onClicked: {
                             Scoring.disableButtons();
                             opacity = .6;
+                            finalize.enabled = true;
                             var temp2 = saved;
                             var temp = Scoring.count(2, temp2);
                             twoscore.text = temp;
@@ -159,6 +161,7 @@ Rectangle {
                         onClicked: {
                             Scoring.disableButtons();
                             opacity = .6;
+                            finalize.enabled = true;
                             var temp2 = saved;
                             var temp = Scoring.count(3, temp2);
                             threescore.text = temp;
@@ -193,6 +196,7 @@ Rectangle {
                         onClicked: {
                             Scoring.disableButtons();
                             opacity = .6;
+                            finalize.enabled = true;
                             var temp2 = saved;
                             var temp = Scoring.count(4, temp2);
                             fourscore.text = temp;
@@ -227,6 +231,7 @@ Rectangle {
                         onClicked: {
                             Scoring.disableButtons();
                             opacity = .6;
+                            finalize.enabled = true;
                             var temp2 = saved;
                             var temp = Scoring.count(5, temp2);
                             fivescore.text = temp;
@@ -261,6 +266,7 @@ Rectangle {
                         onClicked: {
                             Scoring.disableButtons();
                             opacity = .6;
+                            finalize.enabled = true;
                             var temp2 = saved;
                             var temp = Scoring.count(6, temp2);
                             sixscore.text = temp;
@@ -296,6 +302,7 @@ Rectangle {
                         onClicked: {
                             Scoring.disableButtons();
                             opacity = .6;
+                            finalize.enabled = true;
                             var temp = saved;
                             var temp2 = Scoring.ThreeofKind(temp);
                             threeofkindscore.text = temp2;
@@ -315,6 +322,7 @@ Rectangle {
                         onClicked: {
                             Scoring.disableButtons();
                             opacity = .6;
+                            finalize.enabled = true;
                             var temp = saved;
                             var temp2 = Scoring.FourofKind(temp);
                             fourofkindscore.text = temp2;
@@ -355,6 +363,7 @@ Rectangle {
                         onClicked: {
                             Scoring.disableButtons();
                             opacity = .6;
+                            finalize.enabled = true;
                             var temp = saved;
                             var temp2 = Scoring.sum(temp)
                             chancescore.text = temp2;
@@ -373,6 +382,7 @@ Rectangle {
                         onClicked: {
                             Scoring.disableButtons();
                             opacity = .6;
+                            finalize.enabled = true;
                             var temp = saved;
                             var temp2 = Scoring.FullHouse(temp)
                             fullhousescore.text = temp2;
@@ -391,6 +401,7 @@ Rectangle {
                         onClicked: {
                             Scoring.disableButtons();
                             opacity = .6;
+                            finalize.enabled = true;
                             var temp = saved;
                             var temp2 = Scoring.SmallStraight(temp);
                             smallstraightscore.text = temp2;
@@ -409,6 +420,7 @@ Rectangle {
                         onClicked: {
                             Scoring.disableButtons();
                             opacity = .6;
+                            finalize.enabled = true;
                             var temp = saved;
                             var temp2 = Scoring.LargeStraight(temp);
                             largestraightscore.text = temp2;
@@ -504,40 +516,49 @@ Rectangle {
 
                                 if(motherload1.text == "0")
                                 {
-                                    motherload.Scoring.disableButtons();
+                                    Scoring.disableButtons();
                                     motherload.opacity = .6;
+                                    finalize.enabled = true;
                                 }
                                 else
                                 {
                                     rolls++    //user gets extra roll to make another motherload.
+                                    Scoring.disableButtons();
+                                    motherload.opacity = .6;
+                                    finalize.enabled = true;
                                 }
                             }
                             else if(motherload2.text == "--" && motherload1.text != "0")
                             {
                                 var temp = saved;
                                 var temp2 = Scoring.FiveofKind(temp);
-                                motherload1.text = temp2;
+                                motherload2.text = temp2;
                                 totalscore.text = (Number(totalscore.text) + temp2);
                                 saved = temp;
                                 if(motherload2.text == "0")
                                 {
-                                    motherload.Scoring.disableButtons();
+                                    Scoring.disableButtons();
                                     motherload.opacity = .6;
+                                    finalize.enabled = true;
                                 }
                                 else
                                 {
                                     rolls++ //user gets extra roll to make another motherload.
+                                    Scoring.disableButtons();
+                                    motherload.opacity = .6;
+                                    finalize.enabled = true;
                                 }
                             }
                             else if(motherload3.text == "--" && motherload1.text != "0" && motherload2.text != "0")
                             {
                                 var temp = saved;
                                 var temp2 = Scoring.FiveofKind(temp);
-                                motherload1.text = temp2;
+                                motherload3.text = temp2;
                                 totalscore.text = (Number(totalscore.text) + temp2);
                                 saved = temp;
-                                motherload.Scoring.disableButtons();
+                                Scoring.disableButtons();
                                 motherload.opacity = .6;
+                                finalize.enabled = true;
                             }
                         }
                     }
