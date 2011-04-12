@@ -190,8 +190,6 @@ function count(value, dice)         //used for ones, twos, threes, fours, fives,
         chance.enabled = false;
         fullhouse.enabled = false;
         finalize.enabled = false;
-        finishGame.enabled = false;
-        finishGame.visible = false;
     }
 
     function enableButtons(tempScores)

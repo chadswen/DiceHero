@@ -116,7 +116,9 @@ Rectangle {
         anchors.rightMargin:30
         anchors.leftMargin:10
         anchors.bottomMargin: 40
-        onClicked: screenBase.showScreen("modes/motherload/ScoreCard.qml")
+        onClicked: {
+            reRolls =0;
+            screenBase.showScreen("modes/motherload/ScoreCard.qml");}
     }
 
     TwoStateButton {

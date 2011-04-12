@@ -953,7 +953,8 @@ Rectangle {
                     horizontalCenter: screen.horizontalCenter
                 }
                 text: "Finish"
-                visible: true
+                enabled: false
+                visible: false
                 anchors.horizontalCenterOffset: 86
                 anchors.bottomMargin: 90
                 onClicked: {
