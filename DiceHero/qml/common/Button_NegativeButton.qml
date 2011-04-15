@@ -1,15 +1,9 @@
 import QtQuick 1.0
-import "main.qml" as Main
 
  Rectangle {
      id: container
 
-     property string text: "Button_NegativeButton"
-	 
-	 property string RED = Main.color_RED
-	 property string DARKRED = Main.color_DARKRED
-	 property string DARKORANGE = Main.color_DARKORANGE
-	 property string WHITE = Main.color_WHITE
+     property string text: "NegativeButton"
 
      signal clicked
 
@@ -26,12 +20,12 @@ import "main.qml" as Main
              position: 0.0
              color: {
                  if (mouseArea.pressed)
-                     return DARKORANGE
+                     return main.color_DARKORANGE
                  else
-                     return RED
+                     return main.color_RED
              }
          }
-         GradientStop { position: 1.0; color: DARKRED }
+         GradientStop { position: 1.0; color: main.color_DARKRED }
      }
 
      MouseArea {
@@ -45,7 +39,7 @@ import "main.qml" as Main
          font.pixelSize: 18
          font.bold: false
          anchors.centerIn: container
-         color: activePalette.buttonText
-         text: WHITE
+         color: main.color_WHITE
+         text: container.text
      }
  }

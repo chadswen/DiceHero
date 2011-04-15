@@ -317,7 +317,7 @@ Image {
     
     
     
-    ReturnButton {
+    Button_AffirmativeButton {
         id: returnButton
         text: {if (returnFile == "selectdice.qml")
                 return "Reselect"
@@ -349,7 +349,7 @@ Image {
         visible: false
     }
 
-    ReturnButton {
+    Button_AffirmativeButton {
         id: rerollButton
         text: "Again?"
         onClicked: {showScreen(""); showScreen("engine.qml");}

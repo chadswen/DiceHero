@@ -1,15 +1,9 @@
 import QtQuick 1.0
-import "main.qml" as Main
 
  Rectangle {
      id: container
 
-     property string text: "Button_InfoButton"
-	 
-	 property string BLUE = Main.color_BLUE
-	 property string DARKBLUE = Main.color_DARKBLUE
-	 property string LIGHTGRAY = Main.color_LIGHTGRAY
-	 property string WHITE = Main.color_WHITE
+     property string text: "InfoButton"
 
      signal clicked
 
@@ -26,12 +20,12 @@ import "main.qml" as Main
              position: 0.0
              color: {
                  if (mouseArea.pressed)
-                     return LIGHTGRAY
+                     return main.color_LIGHTGRAY
                  else
-                     return BLUE
+                     return main.color_BLUE
              }
          }
-         GradientStop { position: 1.0; color: DARKBLUE }
+         GradientStop { position: 1.0; color: main.color_DARKBLUE }
      }
 
      MouseArea {
@@ -45,7 +39,7 @@ import "main.qml" as Main
          font.pixelSize: 24
          font.bold: true
          anchors.centerIn: container
-         color: WHITE
+         color: main.color_WHITE
          text: container.text
      }
  }

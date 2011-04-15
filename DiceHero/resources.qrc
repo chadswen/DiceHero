@@ -68,5 +68,9 @@
         <file>qml/sound/clack6.wav</file>
         <file>qml/main.qml</file>
         <file>qml/common/ScrollBar.qml</file>
+        <file>qml/common/Button_AffirmativeButton.qml</file>
+        <file>qml/common/Button_InfoButton.qml</file>
+        <file>qml/common/Button_StandardButton.qml</file>
+        <file>qml/common/Button_NegativeButton.qml</file>
     </qresource>
 </RCC>

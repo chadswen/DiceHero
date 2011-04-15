@@ -98,7 +98,7 @@ signal showScreen(string msg)
     }
 }
 
-	ButtonInfo {
+        Button_InfoButton {
 		id: infoButton
 		anchors {
 			bottom: screen.bottom;
@@ -109,7 +109,7 @@ signal showScreen(string msg)
 		onClicked: infoPopup.visible = true;
 	}
 
-        Button {
+        Button_StandardButton {
             id: selectGameButton
             anchors {
                 bottom: screen.bottom;
@@ -198,7 +198,7 @@ signal showScreen(string msg)
                                 text: "\nThe Dice Heroes:\nIvan Fan - Lead Testing Engineer Technician\nAaron Gann - Meritorious Game Mode Imperator\nDavid King - User Interface Specialist\nSkylar Seamans - Commander of Artistic Design\nBrian Shef - Executive Producer of Productions\nChad Swenson - Chief Primary Architect\n\nSpecial Thanks - David Levine\n\n\nPowered by Qt, QML, and Box2D"
 			}
 			
-			Button {
+                        Button_NegativeButton {
 				id: closeButton
 				anchors {
 					bottom: infoPopup.bottom;

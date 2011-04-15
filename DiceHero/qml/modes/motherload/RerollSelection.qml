@@ -107,7 +107,7 @@ Rectangle {
         anchors.centerIn: rerollBox
     }
 
-    Button {
+    Button_NegativeButton {
         id: skipButton
         text: "Skip to Scoring"
         width: 150
@@ -246,7 +246,7 @@ Rectangle {
         }
     }
 
-    Button {
+    Button_AffirmativeButton {
         id: finalize
         enabled:{
             if(dieClicks[0] || dieClicks[1] ||
@@ -294,7 +294,7 @@ Rectangle {
         }
     }
 
-    Button {
+    Button_NegativeButton {
         id: returnButton
         text: "Back to Modes"
         anchors.bottom: parent.bottom

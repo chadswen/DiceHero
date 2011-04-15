@@ -915,7 +915,7 @@ Rectangle {
             }
         }
 
-            Button {
+            Button_AffirmativeButton {
                 id: finalize
                 x: 214
                 y: 515

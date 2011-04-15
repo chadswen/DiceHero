@@ -502,7 +502,7 @@ Rectangle {
                 horizontalCenter: parent.horizontalCenter
             }
 
-            Button {
+            Button_AffirmativeButton {
                 id: finalize
                 anchors.bottom: parent.bottom
                 anchors.left: parent.left
@@ -515,7 +515,7 @@ Rectangle {
                         "P2's' Roll"}
                         onClicked: returnFile="modes/highRoller.qml", screenBase.showScreen("engine/engine.qml")
                 }
-                Button {
+                Button_NegativeButton {
                     id: returnButton
                     text: "Back to Modes"
                     anchors.bottom: parent.bottom

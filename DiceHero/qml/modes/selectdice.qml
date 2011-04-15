@@ -297,7 +297,7 @@ Rectangle {
                 horizontalCenter: parent.horizontalCenter
             }
 
-            Button {
+            Button_AffirmativeButton {
                 id: finalize
                 anchors.bottom: parent.bottom
                 anchors.left: parent.left
@@ -309,7 +309,7 @@ Rectangle {
                 enabled: false
                 onClicked: returnFile="modes/selectdice.qml", screenBase.showScreen("engine/engine.qml")
             }
-            Button {
+            Button_NegativeButton {
                 id: returnButton
                 text: "Back to Modes"
                 anchors.bottom: parent.bottom

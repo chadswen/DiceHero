@@ -76,7 +76,7 @@ Rectangle {
             text: "Choose your mode wisely, Hero!"
         }
 
-        Button {
+        Button_StandardButton {
             id: heroModeButton
             anchors {
                 top: welcomeText.bottom
@@ -110,7 +110,7 @@ Rectangle {
         }
 
 
-        Button {
+        Button_StandardButton {
             id: highRollerButton
 
             text: "High Roller"
@@ -143,7 +143,7 @@ Rectangle {
             text: "6 dice, 3 rounds, 2 players, 1 Hero. A game pure of chance, and of heart."
         }
 
-        Button {
+        Button_StandardButton {
             id: motherloadButton
             text: "Motherload"
             anchors.horizontalCenter: parent.horizontalCenter
@@ -183,7 +183,7 @@ Rectangle {
         }
     }
 
-    Button {
+    Button_NegativeButton {
         id: quitButton
         text: "Quit"
         opacity: .9

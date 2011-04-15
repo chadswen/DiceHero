@@ -1,15 +1,9 @@
 import QtQuick 1.0
-import "main.qml" as Main
 
  Rectangle {
      id: container
 
-     property string text: "Button_AffirmativeButton"
-	 
-	 property string JADE = Main.color_JADE
-	 property string DARKJADE = Main.color_DARKJADE
-	 property string LIGHTGREEN = Main.color_LIGHTGREEN
-	 property string WHITE = Main.color_WHITE
+     property string text: "AffirmativeButton"
 
      signal clicked
 
@@ -26,12 +20,12 @@ import "main.qml" as Main
              position: 0.0
              color: {
                  if (mouseArea.pressed)
-                     return LIGHTGREEN
+                     return main.color_LIGHTGREEN
                  else
-                     return JADE
+                     return main.color_JADE
              }
          }
-         GradientStop { position: 1.0; color: DARKJADE }
+         GradientStop { position: 1.0; color: main.color_DARKJADE }
      }
 
      MouseArea {
@@ -45,7 +39,7 @@ import "main.qml" as Main
          font.pixelSize: 20
          font.bold: true
          anchors.centerIn: container
-         color: WHITE
+         color: main.color_WHITE
          text: container.text
      }
  }
