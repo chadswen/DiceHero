@@ -8,7 +8,7 @@ Rectangle {
 
     id: screenBase
 
-    width: 360; height: 640
+    width: screenWidth; height: screenHeight
 
 
     Component.onCompleted: {
@@ -140,7 +140,7 @@ Rectangle {
             font.bold: false
             smooth: true
             text:{"P1 Total: " + sum(p1Array)}
-            font.pixelSize: 30
+            font.pixelSize: 25
             color: "#CCCCCC"
             style: Text.Raised
             anchors.centerIn: status1
@@ -322,7 +322,7 @@ Rectangle {
             font.bold: false
             smooth: true
             text:{"P2 Total: " + sum(p2Array)}
-            font.pixelSize: 30
+            font.pixelSize: 25
             color: "#CCCCCC"
             style: Text.Raised
             anchors.centerIn: status2

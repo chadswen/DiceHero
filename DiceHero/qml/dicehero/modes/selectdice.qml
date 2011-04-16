@@ -7,7 +7,7 @@ Rectangle {
 
     id: screenBase
 
-    width: 360; height: 640
+    width: screenWidth; height: screenHeight
     Connections {
         target: main
         onMyDiceChanged:{

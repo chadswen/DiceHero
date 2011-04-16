@@ -1,13 +1,14 @@
 import QtQuick 1.0
+//import "../main.qml" as Main
 
  Rectangle {
      id: container
 
-     property string text: "NegativeButton"
+     property string text: "StandardButton"
 
      signal clicked
 
-     width: buttonLabel.width + 20; height: buttonLabel.height + 10
+     width: buttonLabel.width + 10; height: buttonLabel.height + 5
      border {
          width: 1;
          color: Qt.darker(activePalette.button)
@@ -20,12 +21,15 @@ import QtQuick 1.0
              position: 0.0
              color: {
                  if (mouseArea.pressed)
-                     return main.color_DARKORANGE
+                     return main.color_LIGHTGRAY
                  else
-                     return main.color_RED
+                     return main.color_GRAY
              }
          }
-         GradientStop { position: 1.0; color: main.color_DARKRED }
+         GradientStop {
+             position: 1.0;
+             color: main.color_DARKGRAY
+         }
      }
 
      MouseArea {
@@ -36,10 +40,10 @@ import QtQuick 1.0
 
      Text {
          id: buttonLabel
-         font.pixelSize: 22
+         font.pixelSize: 18
          font.bold: false
          anchors.centerIn: container
-         color: main.color_WHITE
+         color: main.color_OFFBLACK
          text: container.text
      }
  }

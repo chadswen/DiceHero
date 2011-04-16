@@ -8,43 +8,64 @@
 QAccelerometer *acc;
 accelerometerFilter *accF;
 
-// Lock orientation in Symbian
-#ifdef Q_OS_SYMBIAN
-    #include <eikenv.h>
-    #include <eikappui.h>
-    #include <aknenv.h>
-    #include <aknappui.h>
-#endif
-
 QTM_USE_NAMESPACE
 
 int main(int argc, char *argv[])
 {
+    // create the application
     QApplication app(argc, argv);
 
-    //associate and install box2d
+    // create the QML view helper
+    QDeclarativeView view;
+
+    //associate and register box2d
 
     Box2DPlugin plugin;
     plugin.registerTypes("Box2D");
 
-    //setup QML viewer
-    #ifdef Q_OS_SYMBIAN
-        // Lock orientation to portrait in Symbian
-        CAknAppUi* appUi = dynamic_cast<CAknAppUi*> (CEikonEnv::Static()->AppUi());
-        TRAP_IGNORE(
-            if (appUi)
-                appUi->SetOrientationL(CAknAppUi::EAppUiOrientationPortrait);
-        )
-    #endif
-
-    QDeclarativeView view;
-    view.setSource(QUrl("qrc:/qml/main.qml"));
-    view.setResizeMode(QDeclarativeView::SizeRootObjectToView);
 
     //setup accelerometer
     acc= new QAccelerometer(0);
     accelerometerFilter accF;
     acc->addFilter(&accF);
+
+
+    //setup QML viewer
+
+        // For Symbian use screen resolution but for desktop use different size
+    #if defined(Q_OS_SYMBIAN)
+        // Get screen dimensions
+        QDesktopWidget *desktop = QApplication::desktop();
+        QRect screenRect = desktop->screenGeometry();
+    #else
+        // On desktop we use nHD
+        QPoint topLeft(100,100);
+        QSize size(360, 640);
+        QRect screenRect(topLeft, size);
+    #endif
+
+
+    // Set the screen size to QML context
+    QDeclarativeContext* context = view.rootContext();
+
+    //correct for portrait
+    if(screenRect.width()>screenRect.height())
+    {
+        //swap dimensions if landscape dimensions are detected
+        context->setContextProperty("screenWidth", screenRect.height());
+        context->setContextProperty("screenHeight", screenRect.width());
+    }
+    else
+    {
+        context->setContextProperty("screenWidth", screenRect.width());
+        context->setContextProperty("screenHeight", screenRect.height());
+    }
+
+
+    view.setSource(QUrl("qrc:/qml/dicehero/main.qml"));
+    view.setResizeMode(QDeclarativeView::SizeRootObjectToView);
+
+
 
     QObject *rootObject = dynamic_cast<QObject*>(view.rootObject());
 
@@ -63,7 +84,6 @@ int main(int argc, char *argv[])
                      &app, SLOT(quit()));
 
 
-
     //start the acceleromter
     acc->start();
 
@@ -73,13 +93,13 @@ int main(int argc, char *argv[])
     //show the view
 
     #if defined(Q_WS_MAEMO_5) || defined(Q_OS_SYMBIAN) || defined(Q_WS_SIMULATOR)
-        view.setGeometry(QApplication::desktop()->screenGeometry());
+        // Lock orientation to portrait
+        view.setAttribute(Qt::WA_LockPortraitOrientation, true);
         view.showFullScreen();
     #else
-        view.setGeometry((QRect(100, 100, 800, 480)));
         view.show();
     #endif
 
-
+    // Start application loop
     return app.exec();
 }

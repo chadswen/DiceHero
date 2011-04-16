@@ -9,10 +9,10 @@ import "../common/createDice.js" as Script
 Image {
     signal showScreen(string msg)
     id: engine
-    width: 360;
-    height: 640;
+    width: screenWidth;
+    height: screenHeight;
     
-    property int timeout: 0
+    property int timeout: 1500 //in ms
     property int timein: 0
     property bool countdownDone: false
     
@@ -79,12 +79,12 @@ Image {
         }
     }
     
-    // fill bar for no move timeout
+    // fill bar for timed no move
     Rectangle {
         id: timeBar
         height: 20
-        width: ((parent.width * (2000-timeout)) / (2000))
-        Behavior on width { SmoothedAnimation { velocity: 1200 } }
+        width: ((parent.width * (timeout-timein)) / (timeout))
+        Behavior on width { SmoothedAnimation { velocity: 1000 } }
         border.color:  "#CCCCCC"
         color: "black"
         border.width:  4
@@ -106,7 +106,7 @@ Image {
             anchors.left:parent.left
             onClicked: {
                 if(!currentlyRolling){
-                    currentlyRolling = true; timeout = 2000;
+                    currentlyRolling = true; timein = timeout;
                 }
             }
         }
@@ -219,7 +219,7 @@ Image {
         source: "../sound/clack1.wav"
     }
     Timer{
-        interval: 2000 ; running: currentlyRolling; repeat: true;
+        interval: timeout ; running: currentlyRolling; repeat: true;
         onTriggered:{
         var soundNum = Math.floor(Math.random()*6) +1;
         var sound = "../sound/clack"+ soundNum +".wav";
@@ -229,16 +229,16 @@ Image {
         }
     }*/
     
-    //timer to stop rolling, currently 2 seconds of no movement.
+    //timer to stop rolling, timeout = milliseconds of no movement.
     Timer{
         interval: 50; running: currentlyRolling; repeat: true;
         onTriggered:{
             if(accX==0 && accY ==0)
-                timeout+=50;
+                timein+=50;
             else
-                timeout=0;
+                timein=0;
             
-            if(timeout>=2000){
+            if(timein>=timeout){
                 currentlyRolling = false;
                 resultsHolder.visible= true;
                 resultsText.visible= true;
@@ -319,7 +319,7 @@ Image {
     
     Button_AffirmativeButton {
         id: returnButton
-        text: {if (returnFile == "selectdice.qml")
+        text: {if (returnFile == "modes/selectdice.qml")
                 return "Reselect"
             else
                 return "Return"}
@@ -332,18 +332,18 @@ Image {
         }
         anchors.bottom: resultsHolder.bottom
         anchors.left: {
-            if (returnFile == "selectdice.qml")
+            if (returnFile == "modes/selectdice.qml")
                 return resultsHolder.left
         }
         anchors.bottomMargin: 25
         anchors.leftMargin: {
-            if (returnFile == "selectdice.qml")
+            if (returnFile == "modes/selectdice.qml")
                 return 15
             else
                 return 0
         }
         anchors.horizontalCenter:{
-            if (returnFile != "selectdice.qml")
+            if (returnFile != "modes/selectdice.qml")
                 return resultsHolder.horizontalCenter
         }
         visible: false
@@ -352,20 +352,20 @@ Image {
     Button_AffirmativeButton {
         id: rerollButton
         text: "Again?"
-        onClicked: {showScreen(""); showScreen("engine.qml");}
+        onClicked: {showScreen(""); showScreen("engine/engine.qml");}
         anchors.bottom: resultsHolder.bottom
         anchors.right: resultsHolder.right
         anchors.bottomMargin: 25
         anchors.rightMargin: 15
         visible: false
         enabled: {
-            if (returnFile == "selectdice.qml")
+            if (returnFile == "modes/selectdice.qml")
                 return true
             else
                 return false
         }
         opacity: {
-            if (returnFile == "selectdice.qml")
+            if (returnFile == "modes/selectdice.qml")
                 return 1
             else
                 return 0
@@ -409,11 +409,11 @@ Image {
     }
     
     Text {
-        id:timeoutLabel
+        id:timeinLabel
         x: 395
         y: 282
         color: "#CCCCCC"
-        text: "Timeout clock: " + timeout
+        text: "timein clock: " + timein
         anchors.verticalCenterOffset: 53
         anchors.horizontalCenterOffset: 1
         anchors.centerIn: parent

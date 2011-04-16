@@ -4,7 +4,7 @@ import "dice"
 import "engine"
 import "images"
 import "modes"
-import "sound"
+//import "sound"
 
 import "common/globalDice.js" as GlobalDice
 import "common/createDice.js" as Script
@@ -12,7 +12,7 @@ import "common/createDice.js" as Script
 Rectangle {
 
     id: main
-    width: 360; height: 640
+    width: screenWidth; height: screenHeight
 
     property real accX
     property real accY
