@@ -84,7 +84,26 @@ Rectangle {
                 horizontalCenter: textHolder.horizontalCenter
             }
             text: "Hero Mode"
-            onClicked: screen.showScreen("modes/selectdice.qml")
+            Particles {
+                 id: particles
+                 width: 1; height: 1
+                 anchors.horizontalCenter: parent.horizontalCenter
+                 anchors.verticalCenter: parent.verticalCenter
+                 emissionRate: 0
+                 lifeSpan: 500; lifeSpanDeviation: 600
+                 angle: 0; angleDeviation: 360
+                 velocity: 550; velocityDeviation: 60
+                 source: "../images/particle.png"
+           }
+           onClicked: particles.burst(32), timer_heroMode.start();
+        }
+
+        Item {
+            Timer {
+                id: timer_heroMode
+                interval: 500; running: false; repeat: false;
+                onTriggered: screen.showScreen("modes/selectdice.qml");
+            }
         }
 
 
