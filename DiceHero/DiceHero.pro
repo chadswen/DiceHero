@@ -49,7 +49,7 @@ RCC_DIR = tmp
 UI_DIR = tmp
 
 
-RESOURCES = resources.qrc
+RESOURCES =
 
 symbian {
     TARGET = DiceHero

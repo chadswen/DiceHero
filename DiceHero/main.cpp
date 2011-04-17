@@ -61,15 +61,15 @@ int main(int argc, char *argv[])
         context->setContextProperty("screenHeight", screenRect.height());
     }
 
+    //correct main QML path for different platforms
+    const QString &path = QLatin1String("qml/dicehero/main.qml");
 
-    view.setSource(QUrl("qrc:/qml/dicehero/main.qml"));
+    view.setSource(QUrl::fromLocalFile(path));
     view.setResizeMode(QDeclarativeView::SizeRootObjectToView);
 
 
-
-    QObject *rootObject = dynamic_cast<QObject*>(view.rootObject());
-
     //associate Qt / QML signals and slots
+    QObject *rootObject = dynamic_cast<QObject*>(view.rootObject());
     QObject::connect(&accF, SIGNAL(xChanged(const QVariant&)),
                      rootObject, SLOT(updateX(const QVariant&)));
     QObject::connect(&accF, SIGNAL(yChanged(const QVariant&)),
