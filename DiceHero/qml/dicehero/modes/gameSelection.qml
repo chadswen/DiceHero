@@ -108,10 +108,10 @@ Rectangle {
                         scoreFields = tempScores;
                         returnFile="modes/motherload/RerollSelection.qml"
                     }
-                    particles.burst(32), timer_heroMode.start();
+                    myParticles.burst(32), timer_heroMode.start();
                 }
                 Particles {
-                    id: particles
+                    id: myParticles
                     width: 1; height: 1
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.verticalCenter: parent.verticalCenter
