@@ -116,9 +116,9 @@ Rectangle {
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.verticalCenter: parent.verticalCenter
                     emissionRate: 0
-                    lifeSpan: 500; lifeSpanDeviation: 600
+                    lifeSpan: 250; lifeSpanDeviation: 25
                     angle: 0; angleDeviation: 360
-                    velocity: 550; velocityDeviation: 60
+                    velocity: 600; velocityDeviation: 250
                     source: "../images/particle.png"
                 }
 
@@ -141,7 +141,7 @@ Rectangle {
             Item {
                 Timer {
                     id: timer_heroMode
-                    interval: 500; running: false; repeat: false;
+                    interval: 275; running: false; repeat: false;
                     onTriggered: screen.showScreen(file);
                 }
             }
