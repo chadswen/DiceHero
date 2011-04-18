@@ -50,55 +50,8 @@ Rectangle {
         }
     }
 
-    // delegate for the List
-    Component {
-        id: modeDelegate
-        Column {
-            id: column
 
-            width: textHolder.width-40
-            height: cB.height + cT.height
-            spacing: 20
-            anchors.horizontalCenter: parent.horizontalCenter
-
-            Button_StandardButton {
-                id: cB
-                anchors.horizontalCenter: parent.horizontalCenter
-                text: bText
-                onClicked: {
-                    if( bText == "Motherload"){
-                        rolls = 13;
-                        var temp = myDice;
-                        VarHold.motherloadDice(temp);
-                        myDice = temp;
-                        var tempScores = scoreFields;
-                        Scoring.initializeScores(tempScores);
-                        scoreFields = tempScores;
-                        returnFile="modes/motherload/RerollSelection.qml"
-                    }
-                    screen.showScreen(file)
-                }
-            }
-
-            Text {
-                id: cT
-                width: parent.width
-                font.bold: false
-                smooth: true
-                font.family: "Helvetica [Cronyx]"
-                font.pixelSize: 20
-                color: "#CCCCCC"
-                wrapMode: Text.Wrap
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                style: Text.Raised
-                text: modeText
-            }
-        }
-    }
-
-
-    // list data, add as many as you like
+    // game mode list data, add as many as you like
     ListModel {
         id: modeListModel
 
@@ -129,6 +82,71 @@ Rectangle {
         }
     }
 
+    // delegate for the List
+    Component {
+        id: modeDelegate
+        Column {
+            id: column
+
+            width: textHolder.width-40
+            height: cB.height + cT.height
+            spacing: 20
+            anchors.horizontalCenter: parent.horizontalCenter
+
+            Button_StandardButton {
+                id: cB
+                anchors.horizontalCenter: parent.horizontalCenter
+                text: bText
+                onClicked: {
+                    if( bText == "Motherload"){
+                        rolls = 13;
+                        var temp = myDice;
+                        VarHold.motherloadDice(temp);
+                        myDice = temp;
+                        var tempScores = scoreFields;
+                        Scoring.initializeScores(tempScores);
+                        scoreFields = tempScores;
+                        returnFile="modes/motherload/RerollSelection.qml"
+                    }
+                    particles.burst(32), timer_heroMode.start();
+                }
+                Particles {
+                    id: particles
+                    width: 1; height: 1
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.verticalCenter: parent.verticalCenter
+                    emissionRate: 0
+                    lifeSpan: 500; lifeSpanDeviation: 600
+                    angle: 0; angleDeviation: 360
+                    velocity: 550; velocityDeviation: 60
+                    source: "../images/particle.png"
+                }
+
+            }
+
+            Text {
+                id: cT
+                width: parent.width
+                font.bold: false
+                smooth: true
+                font.family: "Helvetica [Cronyx]"
+                font.pixelSize: 20
+                color: "#CCCCCC"
+                wrapMode: Text.Wrap
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+                style: Text.Raised
+                text: modeText
+            }
+            Item {
+                Timer {
+                    id: timer_heroMode
+                    interval: 500; running: false; repeat: false;
+                    onTriggered: screen.showScreen(file);
+                }
+            }
+        }
+    }
 
     Rectangle {
         id: textHolder
