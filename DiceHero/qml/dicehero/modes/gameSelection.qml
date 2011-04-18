@@ -12,6 +12,16 @@ Rectangle {
     id: screen
 
     width: screenWidth; height: screenHeight
+    gradient: Gradient {
+        GradientStop {
+            position: 0.00;
+            color: "#ffffff";
+        }
+        GradientStop {
+            position: 1.00;
+            color: "#ffffff";
+        }
+    }
 
     SystemPalette {
         id: activePalette
@@ -40,6 +50,85 @@ Rectangle {
         }
     }
 
+    // delegate for the List
+    Component {
+        id: modeDelegate
+        Column {
+            id: column
+
+            width: textHolder.width-40
+            height: cB.height + cT.height
+            spacing: 20
+            anchors.horizontalCenter: parent.horizontalCenter
+
+            Button_StandardButton {
+                id: cB
+                anchors.horizontalCenter: parent.horizontalCenter
+                text: bText
+                onClicked: {
+                    if( bText == "Motherload"){
+                        rolls = 13;
+                        var temp = myDice;
+                        VarHold.motherloadDice(temp);
+                        myDice = temp;
+                        var tempScores = scoreFields;
+                        Scoring.initializeScores(tempScores);
+                        scoreFields = tempScores;
+                        returnFile="modes/motherload/RerollSelection.qml"
+                    }
+                    screen.showScreen(file)
+                }
+            }
+
+            Text {
+                id: cT
+                width: parent.width
+                font.bold: false
+                smooth: true
+                font.family: "Helvetica [Cronyx]"
+                font.pixelSize: 20
+                color: "#CCCCCC"
+                wrapMode: Text.Wrap
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+                style: Text.Raised
+                text: modeText
+            }
+        }
+    }
+
+
+    // list data, add as many as you like
+    ListModel {
+        id: modeListModel
+
+        ListElement{
+            bText: "Hero Mode"
+            file: "modes/selectdice.qml"
+            modeText: "Freestyle Rolling. Play YOUR game, with our dice!"
+        }
+
+
+        ListElement{
+            bText: "High Roller"
+            file: "modes/highRoller.qml"
+            modeText: "6 dice, 3 rounds, 2 players, 1 Hero. A game pure of chance, and of heart."
+        }
+
+
+        ListElement{
+            bText: "Motherload"
+            file: "engine/engine.qml"
+            modeText: "A \"Yahzt-ish\" family favorite!"
+        }
+
+        ListElement{
+            bText: "Fake Button!!!"
+            file: "nope"
+            modeText: "I DON'T WORK! Replace me with the next new one please!!'"
+        }
+    }
+
 
     Rectangle {
         id: textHolder
@@ -57,150 +146,30 @@ Rectangle {
         smooth: true
         radius: 50
 
-        Text {
-            id: welcomeText
-            width:280
-            height: 60
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.top: textHolder.top
-            anchors.topMargin: 5
-            font.bold: false
-            smooth: true
-            font.family: "Helvetica [Cronyx]"
-            font.pixelSize: 20
-            color: "#AAAAAA"
-            wrapMode: Text.Wrap
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
-            style: Text.Raised
-            text: "Choose your mode wisely, Hero!"
-        }
+        // list markup
+        ListView {
+            anchors.verticalCenter: parent.verticalCenter
+            id: modeList
+            width: parent.width
+            height: parent.height - 50
+            model: modeListModel
+            delegate: modeDelegate
+            clip: true
+            spacing: 40
+            keyNavigationWraps: true
 
-        Button_StandardButton {
-            id: heroModeButton
-            anchors {
-                top: welcomeText.bottom
-                topMargin: 5
-                horizontalCenter: textHolder.horizontalCenter
+            //mode Scroll Bar
+            ScrollBar {
+                id: listScrollBar
+                scrollArea: modeList
+                height: modeList.height
+                width: 10
+                anchors.right: modeList.right
+                anchors.rightMargin: 10
             }
-            text: "Hero Mode"
-            Particles {
-                 id: particles
-                 width: 1; height: 1
-                 anchors.horizontalCenter: parent.horizontalCenter
-                 anchors.verticalCenter: parent.verticalCenter
-                 emissionRate: 0
-                 lifeSpan: 500; lifeSpanDeviation: 600
-                 angle: 0; angleDeviation: 360
-                 velocity: 550; velocityDeviation: 60
-                 source: "../images/particle.png"
-           }
-           onClicked: particles.burst(32), timer_heroMode.start();
-        }
-
-        Item {
-            Timer {
-                id: timer_heroMode
-                interval: 500; running: false; repeat: false;
-                onTriggered: screen.showScreen("modes/selectdice.qml");
-            }
-        }
-
-
-        Text {
-            id: heroModeText
-            width:textHolder.width
-            height: 60
-            anchors {
-                top: heroModeButton.bottom;
-                topMargin: 5
-                horizontalCenter: parent.horizontalCenter
-            }
-            font.bold: false
-            smooth: true
-            font.family: "Helvetica [Cronyx]"
-            font.pixelSize: 20
-            color: "#AAAAAA"
-            wrapMode: Text.Wrap
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
-            style: Text.Raised
-            text: "Freestyle Rolling. Play YOUR game, with our dice!"
-        }
-
-
-        Button_StandardButton {
-            id: highRollerButton
-
-            text: "High Roller"
-            anchors.horizontalCenter: textHolder.horizontalCenter
-            anchors.top: heroModeText.bottom
-            anchors.topMargin: 10
-            onClicked: {
-                screen.showScreen("modes/highRoller.qml");
-            }
-        }
-
-        Text {
-            id: highRollerText
-            width:textHolder.width
-            height: 60
-            anchors {
-                top: highRollerButton.bottom;
-                topMargin: 10
-                horizontalCenter: parent.horizontalCenter
-            }
-            font.bold: false
-            smooth: true
-            font.family: "Helvetica [Cronyx]"
-            font.pixelSize: 20
-            color: "#AAAAAA"
-            wrapMode: Text.Wrap
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
-            style: Text.Raised
-            text: "6 dice, 3 rounds, 2 players, 1 Hero. A game pure of chance, and of heart."
-        }
-
-        Button_StandardButton {
-            id: motherloadButton
-            text: "Motherload"
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.bottom: motherloadText.top
-            enabled: true
-            onClicked: {
-                rolls = 13;
-                var temp = myDice;
-                VarHold.motherloadDice(temp);
-                myDice = temp;
-                var tempScores = scoreFields;
-                Scoring.initializeScores(tempScores);
-                scoreFields = tempScores;
-                returnFile="modes/motherload/RerollSelection.qml", screen.showScreen("engine/engine.qml");
-            }
-        }
-
-        Text {
-            id: motherloadText
-            width:textHolder.width
-            height: 60
-            anchors {
-                bottom: textHolder.bottom
-                bottomMargin: 5
-                horizontalCenter: parent.horizontalCenter
-            }
-            font.bold: false
-            smooth: true
-            font.family: "Helvetica [Cronyx]"
-            font.pixelSize: 20
-            color: "#AAAAAA"
-            wrapMode: Text.Wrap
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
-            style: Text.Raised
-            text: "A \"Yahzt-ish\" family favorite!"
         }
     }
+
 
     Button_NegativeButton {
         id: quitButton

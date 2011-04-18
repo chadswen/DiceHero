@@ -1,39 +1,40 @@
 /****************************************************************************
 **
-** Copyright (C) 2011 Nokia Corporation and/or its subsidiary(-ies).
+** Copyright (C) 2010 Nokia Corporation and/or its subsidiary(-ies).
 ** All rights reserved.
 ** Contact: Nokia Corporation (qt-info@nokia.com)
 **
-** This file is part of the examples of the Qt Toolkit.
+** This file is part of the QtDeclarative module of the Qt Toolkit.
 **
-** $QT_BEGIN_LICENSE:BSD$
-** You may use this file under the terms of the BSD license as follows:
+** $QT_BEGIN_LICENSE:LGPL$
+** No Commercial Usage
+** This file contains pre-release code and may not be distributed.
+** You may use this file in accordance with the terms and conditions
+** contained in the Technology Preview License Agreement accompanying
+** this package.
 **
-** "Redistribution and use in source and binary forms, with or without
-** modification, are permitted provided that the following conditions are
-** met:
-**   * Redistributions of source code must retain the above copyright
-**     notice, this list of conditions and the following disclaimer.
-**   * Redistributions in binary form must reproduce the above copyright
-**     notice, this list of conditions and the following disclaimer in
-**     the documentation and/or other materials provided with the
-**     distribution.
-**   * Neither the name of Nokia Corporation and its Subsidiary(-ies) nor
-**     the names of its contributors may be used to endorse or promote
-**     products derived from this software without specific prior written
-**     permission.
+** GNU Lesser General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU Lesser
+** General Public License version 2.1 as published by the Free Software
+** Foundation and appearing in the file LICENSE.LGPL included in the
+** packaging of this file.  Please review the following information to
+** ensure the GNU Lesser General Public License version 2.1 requirements
+** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
 **
-** THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-** "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-** LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-** A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-** OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-** SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-** LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-** DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-** THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-** (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-** OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
+** In addition, as a special exception, Nokia gives you certain additional
+** rights.  These rights are described in the Nokia Qt LGPL Exception
+** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+**
+** If you have questions regarding the use of this file, please contact
+** Nokia at qt-info@nokia.com.
+**
+**
+**
+**
+**
+**
+**
+**
 ** $QT_END_LICENSE$
 **
 ****************************************************************************/
@@ -41,34 +42,67 @@
 import QtQuick 1.0
 
 Item {
-    id: scrollBar
+    id: container
 
-    // The properties that define the scrollbar's state.
-    // position and pageSize are in the range 0.0 - 1.0.  They are relative to the
-    // height of the page, i.e. a pageSize of 0.5 means that you can see 50%
-    // of the height of the view.
-    // orientation can be either Qt.Vertical or Qt.Horizontal
-    property real position
-    property real pageSize
-    property variant orientation : Qt.Vertical
+    property variant scrollArea
+    property variant orientation: Qt.Vertical
 
-    // A light, semi-transparent background
-    Rectangle {
-        id: background
-        anchors.fill: parent
-        radius: orientation == Qt.Vertical ? (width/2 - 1) : (height/2 - 1)
-        color: "white"
-        opacity: 0.3
+    function position()
+    {
+        var ny = 0;
+        if (container.orientation == Qt.Vertical)
+            ny = scrollArea.visibleArea.yPosition * container.height;
+        else
+            ny = scrollArea.visibleArea.xPosition * container.width;
+        if (ny > 2) return ny; else return 2;
     }
 
-    // Size the bar to the required size, depending upon the orientation.
-    Rectangle {
-        x: orientation == Qt.Vertical ? 1 : (scrollBar.position * (scrollBar.width-2) + 1)
-        y: orientation == Qt.Vertical ? (scrollBar.position * (scrollBar.height-2) + 1) : 1
-        width: orientation == Qt.Vertical ? (parent.width-2) : (scrollBar.pageSize * (scrollBar.width-2))
-        height: orientation == Qt.Vertical ? (scrollBar.pageSize * (scrollBar.height-2)) : (parent.height-2)
-        radius: orientation == Qt.Vertical ? (width/2 - 1) : (height/2 - 1)
-        color: "black"
-        opacity: 0.7
+    function size()
+    {
+        var nh, ny;
+
+        if (container.orientation == Qt.Vertical)
+            nh = scrollArea.visibleArea.heightRatio * container.height;
+        else
+            nh = scrollArea.visibleArea.widthRatio * container.width;
+
+        if (container.orientation == Qt.Vertical)
+            ny = scrollArea.visibleArea.yPosition * container.height;
+        else
+            ny = scrollArea.visibleArea.xPosition * container.width;
+
+        if (ny > 3) {
+            var t;
+            if (container.orientation == Qt.Vertical)
+                t = Math.ceil(container.height - 3 - ny);
+            else
+                t = Math.ceil(container.width - 3 - ny);
+            if (nh > t) return t; else return nh;
+        } else return nh + ny;
+    }
+
+    opacity: 0
+
+    Rectangle { anchors.fill: parent; color: "Black"; opacity: 0.3 }
+
+    BorderImage {
+        source: "../images/scrollbar.png"
+        border { left: 1; right: 1; top: 1; bottom: 1 }
+        x: container.orientation == Qt.Vertical ? 2 : position()
+        width: container.orientation == Qt.Vertical ? container.width - 4 : size()
+        y: container.orientation == Qt.Vertical ? position() : 2
+        height: container.orientation == Qt.Vertical ? size() : container.height - 4
+    }
+
+    states: State {
+        name: "visible"
+        when: {(container.orientation == Qt.Vertical ? scrollArea.movingVertically : scrollArea.movingHorizontally)
+              || (container.height < scrollArea.contentHeight)}
+        PropertyChanges { target: container; opacity: 1.0 }
+    }
+
+    transitions: Transition {
+        from: "visible"; to: ""
+        NumberAnimation { properties: "opacity"; duration: 600 }
     }
 }
