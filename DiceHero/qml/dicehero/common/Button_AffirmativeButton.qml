@@ -7,7 +7,7 @@ import QtQuick 1.0
 
      signal clicked
 
-     width: buttonLabel.width + 20; height: buttonLabel.height + 10
+     width: buttonLabel.width + 30; height: buttonLabel.height + 20
      border {
          width: 1;
          color: Qt.darker(activePalette.button)
