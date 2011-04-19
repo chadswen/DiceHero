@@ -281,3 +281,76 @@ function count(value, dice)         //used for ones, twos, threes, fours, fives,
         tempSaved[3] = null
         tempSaved[4] = null
     }
+
+    function loadedDice(dice)                  //used for loadeddice
+    {
+        var Result = Number(Number(dice[0])+Number(dice[1]))
+
+        switch (Result)
+        {
+                case 1:
+                        break;
+                case 2:
+                        var Result_String = "snakeeyes";
+                        return Result_String;
+                        break;
+                case 3:
+                        var Result_String = "threeisforme";
+                        return Result_String;
+                        break;
+                case 4:
+                        var Result_String = "firedrill";
+                        return Result_String;
+                        break;
+                case 5:
+                        var Result_String = "fiveforthefellas";
+                        return Result_String;
+                        break;
+                case 6:
+                        var Result_String = "sixforthechicks";
+                        return Result_String;
+                        break;
+                case 7:
+                        var Result_String = "heaven";
+                        return Result_String;
+                        break;
+                case 8:
+                        var Result_String = "drinkingmate";
+                        return Result_String;
+                        break;
+                case 9:
+                        var Result_String = "rhymetime";
+                        return Result_String;
+                        break;
+                case 10:
+                        var Result_String = "again";
+                        return Result_String;
+                        break;
+                case 11:
+                        var Result_String = "neverhaveiever";
+                        return Result_String;
+                        break;
+                case 12:
+                        var Result_String = "thequeen";
+                        return Result_String;
+                        break;
+                case 13:
+                        var Result_String = "theking";
+                        return Result_String;
+                        break;
+                case 14:
+                        var Result_String = "hitthefloor";
+                        return Result_String;
+                        break;
+                case 15:
+                        var Result_String = "jackpot";
+                        return Result_String;
+                        break;
+                case 16:
+                        var Result_String = "crazyeights";
+                        return Result_String;
+                        break;
+                case 0:
+                        break;
+        }
+    }

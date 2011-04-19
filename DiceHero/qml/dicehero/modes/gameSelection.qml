@@ -4,6 +4,7 @@ import "../common"
 import "../common/createDice.js" as Script
 import "motherload/holdingDice.js" as VarHold
 import "motherload/scoringRules.js" as Scoring
+import "motherload/RpgFunctions.js" as RPG
 
 Rectangle {
 
@@ -76,9 +77,15 @@ Rectangle {
         }
 
         ListElement{
-            bText: "Fake Button!!!"
-            file: "nope"
-            modeText: "I DON'T WORK! Replace me with the next new one please!!'"
+            bText: "Loaded Dice"
+            file: "engine/engine.qml"
+            modeText: "Coming Soon: A drinking game. Don't drink and drive!'"
+        }
+
+        ListElement{
+            bText: "RPG Attack!"
+            file: "RPGStartScreen.qml"
+            modeText: "Coming Soon: RPG combat just got simpler."
         }
     }
 
@@ -108,6 +115,18 @@ Rectangle {
                         scoreFields = tempScores;
                         returnFile="modes/motherload/RerollSelection.qml"
                     }
+                    if( bText == "Loaded Dice"){
+                        var temp = myDice;
+                        VarHold.loadedDice(temp);
+                        myDice = temp;
+                        returnFile="modes/loadeddice.qml";
+                    }
+                    if( bText == "RPG Attack!"){
+                        var tempScores = scoreFields;
+                        RPG.defaultBonuses(tempScores);
+                        scoreFields = tempScores;
+                    }
+
                     myParticles.burst(32), timer_heroMode.start();
                 }
                 Particles {

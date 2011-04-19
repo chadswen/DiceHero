@@ -99,13 +99,24 @@ Rectangle {
 
     Text{
         id: critrangetext
-        text: "Hello2"
+        text: "20"
         anchors{
             left: critrange.right
             top: attbonustext.bottom
         }
         anchors.leftMargin: 26
         anchors.topMargin: 56
+    }
+
+    Text{
+        id: critrangemax
+        text:  "to 20"
+        anchors{
+            left: critrangetext.right
+            top: attbonustext.bottom
+        }
+        anchors.leftMargin: 10
+        anchors.topMargin:  56
     }
 
     Button {

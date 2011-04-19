@@ -40,3 +40,7 @@ function motherloadDice(myDice)
 {
         myDice[1] = 5;
 }
+function loadeddice(myDice)
+{
+        myDice[2]= 2;
+}
