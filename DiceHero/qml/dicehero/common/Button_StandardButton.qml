@@ -40,7 +40,7 @@ import QtQuick 1.0
 
      Text {
          id: buttonLabel
-         font.pixelSize: 24
+         font.pixelSize: 26
          font.bold: false
          anchors.centerIn: container
          color: main.color_OFFBLACK
