@@ -119,7 +119,7 @@ Rectangle {
                         var temp = myDice;
                         VarHold.loadedDice(temp);
                         myDice = temp;
-                        returnFile="modes/loadeddice.qml";
+                        returnFile="modes/LoadedDice.qml";
                     }
                     if( bText == "RPG Attack!"){
                         var tempScores = scoreFields;
