@@ -87,7 +87,7 @@ signal showScreen(string msg)
             id: playButton
             anchors {
                 bottom: screen.bottom;
-                bottomMargin: 75
+                bottomMargin: 155
                 horizontalCenter: textHolder.horizontalCenter
             }
             text: "PLAY"
