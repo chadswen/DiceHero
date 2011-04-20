@@ -79,13 +79,13 @@ Rectangle {
         ListElement{
             bText: "Loaded Dice"
             file: "engine/engine.qml"
-            modeText: "Coming Soon: A drinking game. Don't drink and drive!'"
+            modeText: "A drinking game, for responsible adults."
         }
 
         ListElement{
             bText: "RPG Attack!"
-            file: "RPGStartScreen.qml"
-            modeText: "Coming Soon: RPG combat just got simpler."
+            file: "rpgattackTitleScreen.qml"
+            modeText: "RPG combat just got simpler."
         }
     }
 
@@ -125,6 +125,7 @@ Rectangle {
                         var tempScores = scoreFields;
                         RPG.defaultBonuses(tempScores);
                         scoreFields = tempScores;
+						returnFile="modes/rpgattackTitleScreen.qml";
                     }
 
                     myParticles.burst(32), timer_heroMode.start();
