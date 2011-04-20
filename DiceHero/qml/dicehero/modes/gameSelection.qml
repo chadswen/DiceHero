@@ -191,6 +191,11 @@ Rectangle {
             height: parent.height - 50
             model: modeListModel
             delegate: modeDelegate
+            preferredHighlightBegin: 0
+            preferredHighlightEnd: modeListModel.count
+            highlightRangeMode: ListView.StrictlyEnforceRange
+
+
             clip: true
             spacing: 40
             keyNavigationWraps: true
