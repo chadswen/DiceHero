@@ -106,7 +106,7 @@ signal showScreen(string msg)
 			horizontalCenter: screen.horizontalCenter
 		}
 		text: "?"
-		onClicked: infoPopup.visible = true;
+                onClicked: screen.showScreen("browser/webbrowser.qml");
 	}
 
         Button_StandardButton {
