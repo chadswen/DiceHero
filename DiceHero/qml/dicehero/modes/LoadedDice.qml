@@ -1,6 +1,7 @@
 import QtQuick 1.0
 import "../common"
 import "../common/createDice.js" as Creator
+import "motherload/holdingDice.js" as VarHold
 import Qt.labs.particles 1.0
 Rectangle {
     signal showScreen(string msg)
@@ -29,7 +30,7 @@ Rectangle {
     property string drinkwater	: "Take a break and drink some water - you can thank us in the morning!"
     property string playresponsibly	: "Please play responsibly. Designate a sober driver, know your limits, and for God's sake don't drop the phone in the toilet!"
     property string nominors	: "Remember, providing alcohol to minors isn't just against the law - it's wrong."
-    property string alcoholpoisoning: "Be a Hero - learn to recognize the symptoms of alcohol poisoning:\n1. Extreme confusion\n2. Seizure activity\n3. Weak and slow breathing\n4. Decreased body temperature\n 5. Loss of consciousness.\n\nContact emergency personnel immediately upon suspecting a victim of alcohol poisoning. Help turn the victim on their side in the "recovery position" in the event of vomiting."
+    property string alcoholpoisoning: "Be a Hero - learn to recognize the symptoms of alcohol poisoning:\n1. Extreme confusion\n2. Seizure activity\n3. Weak and slow breathing\n4. Decreased body temperature\n 5. Loss of consciousness.\n\nContact emergency personnel immediately upon suspecting a victim of alcohol poisoning. Help turn the victim on their side in the \"recovery position\" in the event of vomiting."
     property string nodrunktexts	: "Yes, you've been playing for a while. No, it's a terrible idea to text anyone. For real."
     property string nouploadingpics	: "Yes, you've been playing for a while. No, it's a terrible idea to upload pictures of this on the internet. Your grandma might see."
     property string proptip	: "Grab a snack, buddy. And have you ever thought about maybe playing Loaded Dice with an assortment of craft beers? It's an easy, interesting, and tasty twist!"
@@ -146,7 +147,13 @@ Rectangle {
                 anchors.rightMargin:10
                 anchors.leftMargin:30
                 text: {"Start Over"}
-                        onClicked: returnFile="modes/LoadedDice.qml", screenBase.showScreen("engine/engine.qml")
+                onClicked: {
+                    var temp = myDice;
+                    Creator.clearData(temp);
+                    VarHold.loadeddice(temp);
+                    myDice = temp;
+                    returnFile="modes/LoadedDice.qml", screenBase.showScreen("engine/engine.qml")
+                }
                 }
                 Button {
                     id: returnButton

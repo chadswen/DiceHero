@@ -117,7 +117,7 @@ Rectangle {
                     }
                     if( bText == "Loaded Dice"){
                         var temp = myDice;
-                        VarHold.loadedDice(temp);
+                        VarHold.loadeddice(temp);
                         myDice = temp;
                         returnFile="modes/LoadedDice.qml";
                     }
