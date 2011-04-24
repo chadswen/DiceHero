@@ -83,7 +83,7 @@ signal showScreen(string msg)
         }
 
 
-        Button_PlayButton {
+        Button_Playbutton {
             id: playButton
             anchors {
                 bottom: screen.bottom;
@@ -109,7 +109,7 @@ signal showScreen(string msg)
             Timer {
                 id: timer
                 interval: 900; running: false; repeat: false;
-                onTriggered: screen.showScreen("rpgattack/RPGStartScreen.qml");
+                onTriggered: screen.showScreen("modes/rpgattack/RPGStartScreen.qml");
             }
         }
 }

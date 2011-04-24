@@ -9,5 +9,5 @@ function defaultBonuses(tempScores)
 {
     tempScores[0] = 0
     tempScores[1] = 20
-    tempScores[2] = x2
+    tempScores[2] = "x2"
 }

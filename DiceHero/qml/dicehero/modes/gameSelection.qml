@@ -4,7 +4,7 @@ import "../common"
 import "../common/createDice.js" as Script
 import "motherload/holdingDice.js" as VarHold
 import "motherload/scoringRules.js" as Scoring
-import "motherload/RpgFunctions.js" as RPG
+import "rpgattack/RpgFunctions.js" as RPG
 
 Rectangle {
 
@@ -84,7 +84,7 @@ Rectangle {
 
         ListElement{
             bText: "RPG Attack!"
-            file: "rpgattackTitleScreen.qml"
+            file: "modes/rpgattackTitleScreen.qml"
             modeText: "RPG combat just got simpler."
         }
     }

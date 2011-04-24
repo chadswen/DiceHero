@@ -1,7 +1,7 @@
 import QtQuick 1.0
-import "../common"
-import "../common/createDice.js" as Script
-import "motherload/RpgFunctions.js" as RPG
+import "../../common"
+import "../../common/createDice.js" as Script
+import "RpgFunctions.js" as RPG
 
 Rectangle {
     signal showScreen(string msg)
