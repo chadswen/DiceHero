@@ -41,6 +41,7 @@
 
  import QtQuick 1.0
  import QtWebKit 1.0
+ import "../common"
 
  Flickable {
      property alias title: webView.title
@@ -191,5 +192,17 @@
              }
          }
          onZoomTo: doZoom(zoom,centerX,centerY)
+     }
+     WaitIndicator {
+         id: waitIndicator
+         // Always define the size for the WaitIndicator.
+         anchors.fill: parent
+
+         // Start showing the WaitIndicator immediately.
+         delay: 0
+
+         // Make sure it's on top of everything
+         z: 120
+         show: 1-webView.progress
      }
  }

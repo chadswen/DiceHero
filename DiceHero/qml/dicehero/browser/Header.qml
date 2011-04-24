@@ -41,13 +41,13 @@
 
  import QtQuick 1.0
 
- Image {
+ Item {
      id: header
 
     // property alias editUrl: urlInput.url
      property bool urlChanged: false
 
-     source: "pics/titlebar-bg.png"; fillMode: Image.TileHorizontally
+
 
      x: webView.contentX < 0 ? -webView.contentX : webView.contentX > webView.contentWidth-webView.width
         ? -webView.contentX+webView.contentWidth-webView.width : 0
@@ -112,7 +112,7 @@
                  horizontalAlignment: Text.AlignHCenter
                  font.pixelSize: 18
                  width: 60
-                 text: "Quit"
+                 text: "Return"
                  MouseArea {
                      anchors.fill: parent
                      onClicked: showScreen("../dicehero/common/titlescreen.qml")
@@ -131,17 +131,6 @@
                  anchors { right: quitButton.left; rightMargin: 10 }
                  action: webView.stop; image: "stop.png"
                  visible: webView.progress < 1.0 && !header.urlChanged
-             }
-
-             Button {
-                 id: goButton
-                 anchors { right: parent.right; rightMargin: 4 }
-                 onClicked: {
-                     webBrowser.urlString = urlInput.url
-                     webBrowser.focus = true
-                     header.urlChanged = false
-                 }
-                 image: "pics/go-jump-locationbar.png"; visible: header.urlChanged
              }
          }
      }

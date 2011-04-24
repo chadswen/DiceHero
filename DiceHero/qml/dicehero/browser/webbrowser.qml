@@ -51,7 +51,7 @@
 
      signal showScreen(string msg)
 
-     width: screenHeight; height: screenWidth
+     width:screenWidth ; height: screenHeight
      color: "#343434"
 
      FlickableWebView {
