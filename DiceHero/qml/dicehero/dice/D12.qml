@@ -5,6 +5,8 @@ Die {
     id: d12
     currentSource: "../images/d12_1.png"
     sides: 12
+    cornerFrame: 3
+    lastFrame: 5
 
     fixtures: Polygon {
         density: myDensity

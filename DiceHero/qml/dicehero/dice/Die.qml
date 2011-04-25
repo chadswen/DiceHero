@@ -11,6 +11,8 @@ Body {
 
     property string currentSource
     property int sides: 0
+    property int cornerFrame: 0
+    property int lastFrame: 0
     property real myDensity: 50
     property real myFriction: .3
     property real myRestitution: .65
@@ -70,14 +72,14 @@ Body {
             if(linearVelocity.x != 0 || linearVelocity.y != 0
                     || (!currentlyRolling & currentFrame!=2)){
 
-                if( Math.abs(linearVelocity.x)  <10 || Math.abs(linearVelocity.y)<10)
-                    dieSpeed = 300
-                else if( Math.abs(linearVelocity.x)  >10 || Math.abs(linearVelocity.y)>10)
-                    dieSpeed = 200
+                if( Math.abs(linearVelocity.x)  <5 || Math.abs(linearVelocity.y)<10)
+                    dieSpeed = 125
+                else if( Math.abs(linearVelocity.x)  >5 || Math.abs(linearVelocity.y)>10)
+                    dieSpeed = 100
                 else if( Math.abs(linearVelocity.x)  >50 || Math.abs(linearVelocity.y)>50)
-                    dieSpeed = 100;
+                    dieSpeed = 75;
 
-                if(currentFrame == 3){
+                if(currentFrame == cornerFrame){
                     number.visible = false;
                     if(currentlyRolling)
                         number.text= Math.floor(Math.random()*sides) +1;
@@ -85,7 +87,7 @@ Body {
                 else{number.visible = true;}
                 state = currentFrame;
 
-                if(currentFrame == 5)
+                if(currentFrame == lastFrame)
                     currentFrame = 0;
 
                 currentFrame++;
