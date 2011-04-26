@@ -96,39 +96,51 @@ Rectangle {
             style: Text.Raised
             text: "This is the dice bag of the 21st Century! All the common dice types are included - just pick your favorite, give them a shake, and watch them roll!"
         }
-    }
 
-    Button_AffirmativeButton {
-        id: selectGameButton
-        anchors {
-            bottom: screen.bottom;
-            bottomMargin: 130
-            horizontalCenter: textHolder.horizontalCenter
+        Button_AffirmativeButton {
+            id: selectGameButton
+            anchors {
+                bottom: textHolder.bottom;
+                bottomMargin: 20
+                horizontalCenter: textHolder.horizontalCenter
+            }
+            text: "Play!"
+            Particles {
+                id: particles
+                width: 1; height: 1
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+                emissionRate: 0
+                lifeSpan: 900; lifeSpanDeviation: 600
+                angle: 0; angleDeviation: 360
+                velocity: 350; velocityDeviation: 60
+                source: "../images/logo_small.png"
+            }
+            onClicked: particles.burst(14), timer.start();
         }
-        text: "Play!"
-        Particles {
-            id: particles
-            width: 1; height: 1
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.verticalCenter: parent.verticalCenter
-            emissionRate: 0
-            lifeSpan: 900; lifeSpanDeviation: 600
-            angle: 0; angleDeviation: 360
-            velocity: 350; velocityDeviation: 60
-            source: "../images/logo_small.png"
-        }
-        onClicked: particles.burst(14), timer.start();
     }
 
     Button_StandardButton {
         id: instructionsButton
         anchors {
-            top: selectGameButton.bottom
-            topMargin: 5
             horizontalCenter: screen.horizontalCenter
+            top: standardButton.bottom
+            topMargin: 5
+
         }
         text: "Instructions"
         onClicked: screen.showScreen("browser/webbrowser.qml");
+    }
+
+    Button_StandardButton {
+        id: standardButton
+        anchors {
+            horizontalCenter: screen.horizontalCenter
+            bottom: screen.bottom
+            bottomMargin: 130
+        }
+        text: "Settings"
+        onClicked: screen.showScreen("common/Settings.qml");
     }
 
     Button_InfoButton {
