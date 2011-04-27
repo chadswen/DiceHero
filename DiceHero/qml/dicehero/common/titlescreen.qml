@@ -14,7 +14,6 @@ Rectangle {
         id: activePalette
     }
 
-
     Item {
         id: titleBackground
         width: parent.width; height: parent.height

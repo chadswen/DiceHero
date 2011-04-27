@@ -8,6 +8,7 @@ import "modes"
 
 import "common/globalDice.js" as GlobalDice
 import "common/createDice.js" as Script
+import "common/backgroundHolder.js" as BG
 
 Rectangle {
 
@@ -37,11 +38,11 @@ Rectangle {
     property string color_DARKRED: "#632423"
     property string color_DARKTEXT: color_OFFBLACK
     property string color_LIGHTTEXT: color_WHITE
-    
 
 
     property string returnFile
 
+    property variant myBackground: BG.backgroundString
     property variant myDice: GlobalDice.numDice
     property variant rollResults: GlobalDice.rollResults
     property variant dieClicks: GlobalDice.dieClicks

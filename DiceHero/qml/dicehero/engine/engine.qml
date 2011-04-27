@@ -5,23 +5,24 @@ import QtMultimediaKit 1.1
 import "../common"
 import "../common/createDice.js" as Script
 
-
 Image {
     signal showScreen(string msg)
     id: engine
     width: screenWidth;
     height: screenHeight;
-    
+
+    property string bgString: "../images/backgrounds/"
+    property string bgStringComplete: bgString+myBackground
+
     property int timeout: 1500 //in ms
     property int timein: 0
     property bool countdownDone: false
-    
-    
+
     SystemPalette {
         id: activePalette
     }
     anchors.fill: parent
-    source: "../images/board.png"
+    source: bgStringComplete
     smooth: true
     
     //top bar
@@ -111,9 +112,6 @@ Image {
             }
         }
     }
-    
-    
-    
     
     // box2d elements start here
     World {
