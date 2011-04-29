@@ -1,6 +1,7 @@
 import QtQuick 1.0
 import Qt.labs.particles 1.0
 import "../common"
+import "rpgattack/RpgFunctions.js" as RPG
 
 
 Rectangle {
@@ -102,7 +103,13 @@ signal showScreen(string msg)
                  velocity: 350; velocityDeviation: 60
                  source: "../images/logo_small.png"
            }
-           onClicked: particles.burst(14), timer.start();
+           onClicked:
+               {
+                   particles.burst(14), timer.start();
+                   var tempScores = scoreFields;
+                   RPG.defaultBonuses(tempScores);
+                   scoreFields = tempScores;
+               }
         }
 
         Item {

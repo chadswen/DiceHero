@@ -14,9 +14,10 @@ Rectangle {
         var temp = myDice;
         Script.clearData(temp);
         myDice = temp;
-        main.clearAll();
         var tempScores = scoreFields;
-        RPG.loadBonuses(tempScores);
+        attbonustext.text = RPG.loadAttBonus(tempScores);
+        critrangetext.text = RPG.loadCritRange(tempScores);
+        critmulttext.text = RPG.loadCritMult(tempScores);
         scoreFields = tempScores;
     }
 
@@ -43,7 +44,7 @@ Rectangle {
             anchors.leftMargin: 0
             anchors.topMargin: 0
             anchors.fill: parent
-            source: "../images/board.png"
+            source: "../../images/board.png"
 
             Text {
                 id: text1
@@ -68,13 +69,13 @@ Rectangle {
         y: 150
         text: "Set Attack Bonus"
         onClicked: {
-
+            screenBase.showScreen("modes/rpgattack/AttackBonus.qml")
         }
     }
 
     Text{
         id: attbonustext
-        text: "Hello"
+        text: "--"
         y: 170
         anchors{
             left: attbonus.right
@@ -92,31 +93,20 @@ Rectangle {
         }
         text: "Set Critical Range"
         onClicked: {
-
+            screenBase.showScreen("modes/rpgattack/CritRange.qml")
         }
         anchors.topMargin: 26
     }
 
     Text{
         id: critrangetext
-        text: "20"
+        text: "--"
         anchors{
             left: critrange.right
             top: attbonustext.bottom
         }
         anchors.leftMargin: 26
         anchors.topMargin: 56
-    }
-
-    Text{
-        id: critrangemax
-        text:  "to 20"
-        anchors{
-            left: critrangetext.right
-            top: attbonustext.bottom
-        }
-        anchors.leftMargin: 10
-        anchors.topMargin:  56
     }
 
     Button {
@@ -129,14 +119,14 @@ Rectangle {
         }
         text: "Set Critical Multiplier"
         onClicked: {
-
+            screenBase.showScreen("modes/rpgattack/CritMultiplier.qml")
         }
         anchors.topMargin: 26
     }
 
     Text{
         id: critmulttext
-        text: "Hello2"
+        text: "--"
         anchors{
             left: critmult.right
             top: critrangetext.bottom
@@ -165,7 +155,7 @@ Rectangle {
             var temp = myDice;
             Script.incd20(temp);
             myDice = temp;
-            returnFile="modes/RPGStartScreen.qml"       //Note: this should be changed to the damage Screen.
+            returnFile="modes/rpgattack/HitMissScreen.qml"
             screenBase.showScreen("engine/engine.qml")
         }
     }

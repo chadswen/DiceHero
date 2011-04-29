@@ -121,13 +121,6 @@ Rectangle {
                         myDice = temp;
                         returnFile="modes/LoadedDice.qml";
                     }
-                    if( bText == "RPG Attack!"){
-                        var tempScores = scoreFields;
-                        RPG.defaultBonuses(tempScores);
-                        scoreFields = tempScores;
-						returnFile="modes/rpgattackTitleScreen.qml";
-                    }
-
                     myParticles.burst(32), timer_heroMode.start();
                 }
                 Particles {

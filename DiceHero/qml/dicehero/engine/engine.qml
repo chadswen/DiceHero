@@ -323,9 +323,12 @@ Image {
                 return "Return"}
         onClicked: {
             //Clear select dice
-            var temp = myDice;
-            Script.clearData(temp);
-            myDice = temp;
+            if(returnFile != "modes/rpgattack/DamageTotal.qml")
+            {
+                var temp = myDice;
+                Script.clearData(temp);
+                myDice = temp;
+            }
             showScreen(returnFile)
         }
         anchors.bottom: resultsHolder.bottom
