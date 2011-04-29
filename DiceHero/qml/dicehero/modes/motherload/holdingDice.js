@@ -44,3 +44,11 @@ function loadeddice(myDice)
 {
         myDice[2]= 2;
 }
+
+function loadedSum(rollResults)
+{
+
+    var sum = 0;
+    sum = Number(rollResults[2][0]) + Number(rollResults[2][1])
+    return sum;
+}
