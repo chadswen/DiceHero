@@ -166,8 +166,10 @@ Rectangle {
                 anchors.leftMargin:30
                 text: {"Next Turn"}
                 onClicked: {
-                    Creator.clearData(myDice);
-                    VarHold.loadeddice(myDice);
+                    var temp = myDice
+                    Creator.clearData(temp);
+                    VarHold.loadeddice(temp);
+                    myDice = temp
                     returnFile="modes/LoadedDice.qml", screenBase.showScreen("engine/engine.qml")
                 }
                 }
