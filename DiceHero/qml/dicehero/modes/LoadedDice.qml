@@ -7,6 +7,8 @@ import Qt.labs.particles 1.0
 Rectangle {
     signal showScreen(string msg)
     property variant resArray
+    property variant colors: [color_RED, color_BLUE, color_ORANGE, "#CCCCCC", color_GREEN]
+    property string topcolor: colors[2] // We will be randomly picking a color for the top rectangle
 
         // Text Instructions
 
@@ -17,8 +19,8 @@ Rectangle {
     property string alcoholpoisoning: "Be a Hero - learn to recognize the symptoms of alcohol poisoning:\n1. Extreme confusion\n2. Seizure activity\n3. Weak and slow breathing\n4. Decreased body temperature\n 5. Loss of consciousness.\n\nContact emergency personnel immediately upon suspecting a victim of alcohol poisoning. Help turn the victim on their side in the \"recovery position\" in the event of vomiting."
     property string nodrunktexts	: "Yes, you've been playing for a while. No, it's a terrible idea to text anyone. For real."
     property string nouploadingpics	: "Yes, you've been playing for a while. No, it's a terrible idea to upload pictures of this on the internet. Your grandma might see."
-    property string proptip	: "Grab a snack, buddy. And have you ever thought about maybe playing Loaded Dice with an assortment of craft beers? It's an easy, interesting, and tasty twist!"
-
+    property string protip	: "Grab a snack, buddy. And have you ever thought about maybe playing Loaded Dice with an assortment of craft beers? It's an easy, interesting, and tasty twist!"
+    property variant notices: [drinkwater, playresponsibly, nominors, alcoholpoisoning, nodrunktexts, nouploadingpics, protip];
     id: screenBase
 
     width: 360; height: 640
@@ -70,7 +72,7 @@ Rectangle {
             opacity: 0.9
             width: 150
             height: 400
-            border.color: "#CCCCCC"
+            border.color: color_GREEN
             border.width: 4
             smooth: true
             radius: 20
@@ -81,25 +83,25 @@ Rectangle {
             id: p2Text
             font.bold: false
             smooth: true
-            width: parent.width - 30
+            width: parent.width - 40
 
             anchors {
                 top: parent.top;
-                topMargin: 20
+                topMargin: 30
                 bottomMargin: 20
                 left: parent.left
-                leftMargin: 30
+                leftMargin: 20
             }
 
             text:{
                 var temp = rollResults;
                 var sum = VarHold.loadedSum(temp);
                 rollResults = temp;
-                var     temp_string = SRules.loadedDiceText(sum);
+                var temp_string = SRules.loadedDiceText(sum);
                 return temp_string;
             }
-            font.pixelSize: 26
-            color: "#CCCCCC"
+            font.pixelSize: 36
+            color: color_JADE
             style: Text.Raised
             horizontalAlignment: Text.AlignHCenter
             wrapMode: Text.WordWrap
@@ -110,10 +112,10 @@ Rectangle {
         Rectangle {
             id: topRectBorder
             height: 70; width: 300
-            border.color:  "#CCCCCC"
+            border.color: color_ORANGE
             color: "black"
-            border.width:  4
-            opacity: .7
+            border.width:  5
+            opacity: .9
             radius: 10
             anchors {
                 top: parent.top
@@ -124,19 +126,21 @@ Rectangle {
 
         Text {
             id: p1Text
-            font.bold: false
+            font.bold: true
             smooth: true
-
             text:{
                 var temp = rollResults;
                 var sum = VarHold.loadedSum(temp);
                 rollResults = temp;
-                var     temp_string = SRules.loadedDice(sum);
+                var temp_string = SRules.loadedDice(sum);
+                // TODO: Randomly assign a color to this rectangle's
+                //       border and text.
+                //topcolor = colors[Math.random(0, colors.length)];
                 return temp_string;
             }
-            font.pixelSize: 20
-            color: "#CCCCCC"
-            style: Text.Raised
+            font.pixelSize: 26
+            color: topcolor
+            style: Text.Outline
             anchors.centerIn: topRectBorder
         }
 
@@ -153,23 +157,21 @@ Rectangle {
                 horizontalCenter: parent.horizontalCenter
             }
 
-            Button {
+            Button_AffirmativeButton {
                 id: finalize
                 anchors.bottom: parent.bottom
                 anchors.left: parent.left
                 anchors.right: parent.horizontalCenter
                 anchors.rightMargin:10
                 anchors.leftMargin:30
-                text: {"Start Over"}
+                text: {"Next Turn"}
                 onClicked: {
-                    var temp = myDice;
-                    Creator.clearData(temp);
-                    VarHold.loadeddice(temp);
-                    myDice = temp;
+                    Creator.clearData(myDice);
+                    VarHold.loadeddice(myDice);
                     returnFile="modes/LoadedDice.qml", screenBase.showScreen("engine/engine.qml")
                 }
                 }
-                Button {
+                Button_NegativeButton {
                     id: returnButton
                     text: "Back to Modes"
                     anchors.bottom: parent.bottom

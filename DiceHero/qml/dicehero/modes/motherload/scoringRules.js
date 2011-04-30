@@ -291,63 +291,63 @@ function loadedDice(sum)                  //used for loadeddice
             case 1:
                     break;
             case 2:
-                    var Result_String = "snakeeyes";
+                    var Result_String = "SNAKE EYES";
                     return Result_String;
                     break;
             case 3:
-                    var Result_String = "threeisforme";
+                    var Result_String = "THREE IS FOR ME";
                     return Result_String;
                     break;
             case 4:
-                    var Result_String = "firedrill";
+                    var Result_String = "FIRE DRILL";
                     return Result_String;
                     break;
             case 5:
-                    var Result_String = "fiveforthefellas";
+                    var Result_String = "FIVE FOR THE FELLAS";
                     return Result_String;
                     break;
             case 6:
-                    var Result_String = "sixforthechicks";
+                    var Result_String = "SIX FOR THE CHICKS";
                     return Result_String;
                     break;
             case 7:
-                    var Result_String = "heaven";
+                    var Result_String = "HEAVEN";
                     return Result_String;
                     break;
             case 8:
-                    var Result_String = "drinkingmate";
+                    var Result_String = "DRINKING MATE";
                     return Result_String;
                     break;
             case 9:
-                    var Result_String = "rhymetime";
+                    var Result_String = "RHYME TIME";
                     return Result_String;
                     break;
             case 10:
-                    var Result_String = "again";
+                    var Result_String = "AGAIN";
                     return Result_String;
                     break;
             case 11:
-                    var Result_String = "neverhaveiever";
+                    var Result_String = "NEVER HAVE I EVER";
                     return Result_String;
                     break;
             case 12:
-                    var Result_String = "thequeen";
+                    var Result_String = "THE QUEEN";
                     return Result_String;
                     break;
             case 13:
-                    var Result_String = "theking";
+                    var Result_String = "THE KING";
                     return Result_String;
                     break;
             case 14:
-                    var Result_String = "hitthefloor";
+                    var Result_String = "HIT THE FLOOR";
                     return Result_String;
                     break;
             case 15:
-                    var Result_String = "jackpot";
+                    var Result_String = "JACKPOT";
                     return Result_String;
                     break;
             case 16:
-                    var Result_String = "crazyeights";
+                    var Result_String = "CRAZY EIGHTS";
                     return Result_String;
                     break;
             case 0:
