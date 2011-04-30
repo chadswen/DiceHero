@@ -94,9 +94,52 @@ function decCritRange(tempScores)
 
 function defaultBonuses(tempScores)
 {
-    tempScores[0] = "0"
-    tempScores[1] = "20"
-    tempScores[2] = "2"
+    tempScores[0] = "0" //att. bon.
+    tempScores[1] = "20" //crit. range
+    tempScores[2] = "2" //crit. multi. 3 is damage sum
+    tempScores[4] = "0" //damage bonus
+    tempScores[5] = "false" //critical hit?
+}
+
+function loadDamageBonus(tempScores)
+{
+    return tempScores[4];
+}
+
+function incAttBonus(tempScores)
+{
+    if(Number(tempScores[4]) < 100)
+    {
+        tempScores[4] = Number(tempScores[4]) + 1;       //attack bonus
+        return tempScores[4];
+    }
+}
+
+function inc5AttBonus(tempScores)
+{
+    if(Number(tempScores[4]) < 100)
+    {
+        tempScores[4] = Number(tempScores[4]) + 5;       //attack bonus
+        return tempScores[4];
+    }
+}
+
+function decAttBonus(tempScores)
+{
+    if(Number(tempScores[4]) > -100)
+    {
+        tempScores[4] = Number(tempScores[4]) - 1;       //attack bonus
+        return tempScores[4];
+    }
+}
+
+function dec5AttBonus(tempScores)
+{
+    if(Number(tempScores[4]) > -100)
+    {
+        tempScores[4] = Number(tempScores[4]) - 5;       //attack bonus
+        return tempScores[4];
+    }
 }
 
 function sum(myDice, rollResults, tempScores)
@@ -111,7 +154,13 @@ function sum(myDice, rollResults, tempScores)
             sum = sum + Number(rollResults[i][j])
         }
     }
-    console.log("sum is " + sum);
+    if(tempScores[5] == "true")        //if this is a confirmed critical hit
+    {
+        console.log("multiplying hit. sum is: " + sum + "\n")
+        sum = sum * tempScores[2]    //multiplies damage sum by crit. multiplier
+        console.log("sum is now: " + sum + "\n")
+    }
+
     tempScores[3] = sum;
     return sum;
 }

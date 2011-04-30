@@ -11,7 +11,7 @@ Rectangle {
     width: screenWidth; height: screenHeight
 
     Component.onCompleted: {
-
+        rolls++;
     }
 
 
@@ -42,7 +42,7 @@ Rectangle {
       Text {
             id: critText
             y: 30
-            text: if(rollResults[5][0] > scoreFields[1])
+            text: if(rollResults[5][0] > scoreFields[1] && rolls == 1)
                   {return "Critical!"}
                   else
                   {return ""}
@@ -79,7 +79,7 @@ Rectangle {
 
     Button_AffirmativeButton {
         id: finalize
-        text: if(rollResults[5][0] > scoreFields[1])
+        text: if(rollResults[5][0] > scoreFields[1] && rolls == 1)
               {return "Confirm"}
               else
               {return "Hit"}
@@ -94,10 +94,21 @@ Rectangle {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.topMargin: 40
         onClicked: {
-            var temp = myDice;
-            Script.incd20(temp);
-            myDice = temp;
-            screenBase.showScreen("modes/rpgattack/DamageDice.qml")
+            if(rollResults[5][0] > scoreFields[1] && rolls == 1)
+            {
+                var temp = myDice;
+                Script.incd20(temp);
+                myDice = temp;
+                temp = scoreFields
+                temp[5] = "true";
+                scoreFields = temp;
+                returnFile="modes/rpgattack/HitMissScreen.qml"
+                screenBase.showScreen("engine/engine.qml")
+            }
+            else
+            {
+                screenBase.showScreen("modes/rpgattack/DamageDice.qml")
+            }
         }
     }
 

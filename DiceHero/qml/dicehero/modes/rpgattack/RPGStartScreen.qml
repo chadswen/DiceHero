@@ -19,6 +19,8 @@ Rectangle {
         critrangetext.text = RPG.loadCritRange(tempScores);
         critmulttext.text = RPG.loadCritMult(tempScores);
         scoreFields = tempScores;
+        scoreFields[5] = false;         //sets critical value to false.
+        rolls = 0;
     }
 
     Item {
