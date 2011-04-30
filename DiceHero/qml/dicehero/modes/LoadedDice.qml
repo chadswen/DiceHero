@@ -61,18 +61,19 @@ Rectangle {
 
             anchors {
                 top: screen.top;
-                topMargin: 149
+                topMargin: 130
                 bottomMargin: 150
                 left: parent.left
                 leftMargin: 25
             }
             color: "black"
+            opacity: 0.9
             width: 150
-            height: 250
+            height: 400
             border.color: "#CCCCCC"
             border.width: 4
             smooth: true
-            radius: 50
+            radius: 20
             anchors.horizontalCenterOffset: 0
             anchors.horizontalCenter: parent.horizontalCenter
 
@@ -80,6 +81,14 @@ Rectangle {
             id: p2Text
             font.bold: false
             smooth: true
+
+            anchors {
+                top: parent.top;
+                topMargin: 20
+                bottomMargin: 20
+                left: parent.left
+                leftMargin: 30
+            }
 
             text:{
                 var temp = rollResults;
@@ -93,14 +102,13 @@ Rectangle {
             style: Text.Raised
             horizontalAlignment: Text.AlignHCenter
             wrapMode: Text.WordWrap
-            anchors.centerIn: topRect.horizontalCenter
          }
         }
 
 
         Rectangle {
             id: topRectBorder
-            height: 70; width: 150
+            height: 70; width: 300
             border.color:  "#CCCCCC"
             color: "black"
             border.width:  4
