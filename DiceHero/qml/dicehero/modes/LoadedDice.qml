@@ -81,6 +81,7 @@ Rectangle {
             id: p2Text
             font.bold: false
             smooth: true
+            width: parent.width - 30
 
             anchors {
                 top: parent.top;
@@ -97,7 +98,7 @@ Rectangle {
                 var     temp_string = SRules.loadedDiceText(sum);
                 return temp_string;
             }
-            font.pixelSize: 20
+            font.pixelSize: 26
             color: "#CCCCCC"
             style: Text.Raised
             horizontalAlignment: Text.AlignHCenter
