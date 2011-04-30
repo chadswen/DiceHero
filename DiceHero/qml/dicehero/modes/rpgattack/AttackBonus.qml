@@ -15,10 +15,6 @@ Rectangle {
         scoreFields = tempScores;
     }
 
-    SystemPalette {
-        id: activePalette
-    }
-
     Image {
         x: 0
         y: 0
@@ -27,7 +23,9 @@ Rectangle {
         anchors.leftMargin: 0
         anchors.topMargin: 0
         anchors.fill: parent
-        source: "../../images/board.png"
+        property string bgString: "../../images/backgrounds/"
+        property string bgStringComplete: bgString+myBackground
+        source: bgStringComplete
 
         Text {
             id: text1

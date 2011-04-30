@@ -43,10 +43,6 @@ Rectangle {
         myDice = temp;
     }
 
-    SystemPalette {
-        id: activePalette
-    }
-
     Item {
         id: screen
         width: parent.width; height: parent.height
@@ -59,7 +55,9 @@ Rectangle {
 
         Image {
             anchors.fill: parent
-            source: "../images/board.png"
+            property string bgString: "../images/backgrounds/"
+            property string bgStringComplete: bgString+myBackground
+            source: bgStringComplete
         }
 
 

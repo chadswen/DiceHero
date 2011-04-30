@@ -12,10 +12,6 @@ signal showScreen(string msg)
 
         width: screenWidth; height: screenHeight
 
-        SystemPalette {
-                id: activePalette
-        }
-
 
         Item {
             id: titleBackground

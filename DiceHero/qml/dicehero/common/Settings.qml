@@ -120,7 +120,7 @@ Rectangle {
                 id: greenfeltImage
                 width: 100
                 height: 100
-                source: "../images/backgrounds/greenfelt.png"
+                source: "../images/backgrounds/greenfelt.jpg"
             }
             Text {
                 anchors.top: greenfelt.bottom

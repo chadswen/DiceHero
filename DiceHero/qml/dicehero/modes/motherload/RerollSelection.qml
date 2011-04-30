@@ -45,10 +45,6 @@ Rectangle {
 
     }
 
-    SystemPalette {
-        id: activePalette
-    }
-
 
     Item {
         id: screen
@@ -68,7 +64,9 @@ Rectangle {
             anchors.leftMargin: 0
             anchors.topMargin: 0
             anchors.fill: parent
-            source: "../../images/board.png"
+            property string bgString: "../../images/backgrounds/"
+            property string bgStringComplete: bgString+myBackground
+            source: bgStringComplete
 
             Text {
                 id: text1

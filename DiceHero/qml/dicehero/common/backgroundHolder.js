@@ -1,1 +1,1 @@
-var backgroundString;
+var backgroundString = "greenfelt.jpg";

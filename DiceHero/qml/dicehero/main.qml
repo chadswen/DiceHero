@@ -98,6 +98,10 @@ Rectangle {
         temp = 0;
     }
 
+    SystemPalette {
+        id: activePalette
+    }
+
     Loader {
         id: loader
         source: "common/titlescreen.qml"

@@ -68,9 +68,6 @@ Rectangle {
             }
     }
 
-    SystemPalette {
-        id: activePalette
-    }
 
     function sum(resArray)
     {
@@ -94,7 +91,9 @@ Rectangle {
 
         Image {
             anchors.fill: parent
-            source: "../images/board.png"
+            property string bgString: "../images/backgrounds/"
+            property string bgStringComplete: bgString+myBackground
+            source: bgStringComplete
         }
 
 

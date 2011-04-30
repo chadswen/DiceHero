@@ -24,10 +24,6 @@ Rectangle {
         }
     }
 
-    SystemPalette {
-        id: activePalette
-    }
-
     Component.onCompleted: {            //this code bit is needed or else nulls will be added to nulls upon use of the engine.qml file creating a NAN.
         var temp = myDice;
         Script.clearData(temp);

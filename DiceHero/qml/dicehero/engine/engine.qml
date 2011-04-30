@@ -18,9 +18,6 @@ Image {
     property int timein: 0
     property bool countdownDone: false
 
-    SystemPalette {
-        id: activePalette
-    }
     anchors.fill: parent
     source: bgStringComplete
     smooth: true
