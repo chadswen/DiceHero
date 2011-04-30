@@ -251,7 +251,10 @@ Image {
     Rectangle {
         id: resultsHolder
         
-        anchors.centerIn: parent
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.verticalCenterOffset: 20
+
         
         color: "black"
         width: 320

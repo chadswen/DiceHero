@@ -124,7 +124,7 @@ Rectangle {
             topMargin: 5
 
         }
-        text: "Instructions"
+        text: "Online Manual"
         onClicked: screen.showScreen("browser/webbrowser.qml");
     }
 

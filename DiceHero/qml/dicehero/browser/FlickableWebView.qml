@@ -112,8 +112,8 @@
          Keys.onLeftPressed: webView.contentsScale -= 0.1
          Keys.onRightPressed: webView.contentsScale += 0.1
 
-         preferredWidth: flickable.width
-         preferredHeight: flickable.height
+         preferredWidth: webView.width
+         preferredHeight: webView.height
          contentsScale: 1
          onContentsSizeChanged: {
              // zoom out
