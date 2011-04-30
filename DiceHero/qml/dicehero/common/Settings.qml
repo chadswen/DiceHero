@@ -111,7 +111,7 @@ Rectangle {
             height:100
             width:100
             function show() { greenfeltImage.opacity = 1; selected = 0; selectionContainer.isSelected = 0; screen.currentlySelected = ""}
-            function hide() { greenfeltImage.opacity = 0.25; selected = 1; selectionContainer.isSelected = 1; screen.currentlySelected = "greenfelt.png"}
+            function hide() { greenfeltImage.opacity = 0.25; selected = 1; selectionContainer.isSelected = 1; screen.currentlySelected = "greenfelt.jpg"}
             onClicked: {
                 if (selected == 0 && selectionContainer.isSelected == 0) hide();
                 else if (selected == 1) show();
