@@ -39,14 +39,66 @@ Rectangle {
         }
       }
 
+    Rectangle{
+        id: textholder1
+        anchors.horizontalCenter: parent.horizontalCenter
+        y:30
+        width: 200
+        height: 60
+        border.color:  "#CCCCCC"
+        color: "black"
+        border.width:  3
+        visible: {
+            if(rollResults[5][0] > scoreFields[1] && rolls == 1 && scoreFields[6] == "true")
+                return true
+            else
+                return false
+        }
+    }
+
+    Rectangle{
+        id: textholder2
+        x:50
+        y:250
+        width: 280
+        height: 70
+        anchors{
+            top: textholder1.bottom
+            topMargin: 50
+        }
+        anchors.horizontalCenter: screenBase.horizontalCenter
+        border.color:  "#CCCCCC"
+        color: "black"
+        border.width:  3
+    }
+
+    Rectangle{
+        id: textholder3
+        x:50
+        y:250
+        width: 260
+        height: 70
+        anchors{
+            top: textholder2.bottom
+            topMargin: 50
+        }
+        anchors.horizontalCenter: screenBase.horizontalCenter
+        border.color:  "#CCCCCC"
+        color: "black"
+        border.width:  3
+    }
+
       Text {
             id: critText
             y: 30
-            text: if(rollResults[5][0] > scoreFields[1] && rolls == 1)
+            text:{
+                if(rollResults[5][0] > scoreFields[1] && rolls == 1 && scoreFields[6] == "true")
                   {return "Critical!"}
-                  else
+                else
                   {return ""}
-            anchors.horizontalCenter: parent.horizontalCenter
+            }
+            color: "white"
+            anchors.centerIn: textholder1
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: 40
         }
@@ -58,7 +110,8 @@ Rectangle {
             }
             y: 30
             anchors.topMargin: 50
-            anchors.horizontalCenter: parent.horizontalCenter
+            color: "white"
+            anchors.centerIn: textholder2
             text: "Attack Total: " + Number(Number(rollResults[5][0]) + Number(scoreFields[0]))
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: 40
@@ -66,12 +119,9 @@ Rectangle {
 
       Text {
             id: breakdown
-            anchors{
-                top: totalIdentifier.bottom
-            }
-            anchors.horizontalCenter: screenBase.horizontalCenter
             y: 30
-            anchors.topMargin: 50
+            anchors.centerIn: textholder3
+            color: "white"
             text: "Breakdown: " + rollResults[5][0] + " + " + scoreFields[0]
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: 30
@@ -79,10 +129,12 @@ Rectangle {
 
     Button_AffirmativeButton {
         id: finalize
-        text: if(rollResults[5][0] > scoreFields[1] && rolls == 1)
+        text: {
+            if(rollResults[5][0] > scoreFields[1] && rolls == 1 && scoreFields[6] == "true")
               {return "Confirm"}
-              else
+            else
               {return "Hit"}
+        }
         //enabled:{
             //if()
               //  return true;
@@ -94,7 +146,7 @@ Rectangle {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.topMargin: 40
         onClicked: {
-            if(rollResults[5][0] > scoreFields[1] && rolls == 1)
+            if(rollResults[5][0] > scoreFields[1] && rolls == 1 && scoreFields[6] == "true")
             {
                 var temp = myDice;
                 Script.incd20(temp);

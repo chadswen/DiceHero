@@ -55,18 +55,25 @@ Rectangle {
             font.pixelSize: 40
         }
 
-//      Text {
-//          id: breakdown
-//          anchors{
-//              top: totalIdentifier.bottom
-//          }
-//          anchors.horizontalCenter: screenBase.horizontalCenter
-//          y: 30
-//          anchors.topMargin: 50
-//          text: "Breakdown: " + rollResults[5][0] + " + " + scoreFields[0]
-//          horizontalAlignment: Text.AlignHCenter
-//          font.pixelSize: 30
-//      }
+      Text {
+          id: breakdown
+          anchors{
+              top: total.bottom
+          }
+          anchors.horizontalCenter: screenBase.horizontalCenter
+          y: 30
+          anchors.topMargin: 50
+          text: {
+              if(scoreFields[5] == "false")
+                  return "Breakdown: " + Number(Number(total.text)- Number(scoreFields[4])) + " + " + Number(scoreFields[4])
+              else if(scoreFields[7] == "true")
+                  return "Breakdown: " + Number(Number(total.text) / 2 - Number(scoreFields[4])) + " + " + Number(scoreFields[4]) + ")*" + Number(scoreFields[2])
+              else if(scoreFields[7] == "false")
+                  return "Breakdown: (" + Number((Number(total.text) - Number(scoreFields[4]))/2) + " + " + Number(scoreFields[4]) + ")*" + Number(scoreFields[2])
+          }
+          horizontalAlignment: Text.AlignHCenter
+          font.pixelSize: 30
+      }
 
     Button_AffirmativeButton {
         id: finalize
@@ -77,7 +84,7 @@ Rectangle {
             //else
               //  return false;
         anchors{
-            top: total.bottom
+            top: breakdown.bottom
         }
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.topMargin: 40

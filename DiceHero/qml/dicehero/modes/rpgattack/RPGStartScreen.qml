@@ -18,6 +18,7 @@ Rectangle {
         attbonustext.text = RPG.loadAttBonus(tempScores);
         critrangetext.text = RPG.loadCritRange(tempScores);
         critmulttext.text = RPG.loadCritMult(tempScores);
+        damagebonustext.text = RPG.loadDamageBonus(tempScores);
         scoreFields = tempScores;
         scoreFields[5] = false;         //sets critical value to false.
         rolls = 0;
@@ -44,20 +45,89 @@ Rectangle {
             property string bgString: "../../images/backgrounds/"
             property string bgStringComplete: bgString+myBackground
             source: bgStringComplete
-
-            Text {
-                id: text1
-                x: 80
-                y: 30
-                anchors.rightMargin: 50
-                anchors.bottomMargin: 50
-                anchors.leftMargin: 100
-                anchors.topMargin: 50
-                text: "Please enter the \nAttacker's information."
-                horizontalAlignment: Text.AlignHCenter
-                font.pixelSize: 24
-            }
         }
+    }
+
+    Rectangle{
+        id: toptextholder
+        anchors.horizontalCenter: parent.horizontalCenter
+        y:20
+        width: 240
+        height: 60
+        border.color:  "#CCCCCC"
+        color: "black"
+        border.width:  3
+    }
+
+    Text {
+        id: text1
+        x: 80
+        y: 20
+        anchors.centerIn: toptextholder
+        text: "Please enter the \nAttacker's information."
+        color: "white"
+        horizontalAlignment: Text.AlignHCenter
+        font.pixelSize: 24
+    }
+
+    Rectangle{
+        id: textholder1
+        x:240
+        y:100
+        width: 100
+        height: 60
+        border.color:  "#CCCCCC"
+        color: "black"
+        border.width:  3
+    }
+
+    Rectangle{
+        id: textholder2
+        x:240
+        anchors.top: textholder1.bottom
+        anchors.topMargin: 26
+        width: 100
+        height: 60
+        border.color:  "#CCCCCC"
+        color: "black"
+        border.width:  3
+    }
+
+    Rectangle{
+        id: textholder3
+        x:240
+        anchors.top: textholder2.bottom
+        anchors.topMargin: 26
+        width: 100
+        height: 60
+        border.color:  "#CCCCCC"
+        color: "black"
+        border.width:  3
+    }
+
+    Rectangle{
+        id: textholder4
+        x:240
+        anchors.top: textholder3.bottom
+        anchors.topMargin: 26
+        width: 100
+        height: 60
+        border.color:  "#CCCCCC"
+        color: "black"
+        border.width:  3
+    }
+
+    Rectangle{
+        id: textholder5
+        anchors.left: nonlethal.right
+        anchors.top: textholder4.bottom
+        anchors.topMargin: 26
+        anchors.leftMargin: 26
+        width: 100
+        height: 35
+        border.color:  "#CCCCCC"
+        color: "black"
+        border.width:  3
     }
 
     Button {
@@ -65,7 +135,7 @@ Rectangle {
         width: 200
         height: 60
         x: 20
-        y: 150
+        y: 100
         text: "Set Attack Bonus"
         onClicked: {
             screenBase.showScreen("modes/rpgattack/AttackBonus.qml")
@@ -75,10 +145,12 @@ Rectangle {
     Text{
         id: attbonustext
         text: "--"
-        y: 170
+        y: 120
         anchors{
             left: attbonus.right
+            centerIn: textholder1
         }
+        color: "white"
         anchors.leftMargin: 26
     }
 
@@ -103,7 +175,9 @@ Rectangle {
         anchors{
             left: critrange.right
             top: attbonustext.bottom
+            centerIn: textholder2
         }
+        color: "white"
         anchors.leftMargin: 26
         anchors.topMargin: 56
     }
@@ -129,9 +203,92 @@ Rectangle {
         anchors{
             left: critmult.right
             top: critrangetext.bottom
+            centerIn: textholder3
         }
+        color: "white"
         anchors.leftMargin: 26
         anchors.topMargin: 60
+    }
+
+    Button {
+        id: damagebonus
+        x: 20
+        width: 200
+        height: 60
+        anchors {
+            top: critmult.bottom
+        }
+        text: "Set Damage Bonus"
+        onClicked: {
+            screenBase.showScreen("modes/rpgattack/DamageBonus.qml")
+        }
+        anchors.topMargin: 26
+    }
+
+    Text{
+        id: damagebonustext
+        text: "--"
+        anchors{
+            left: damagebonus.right
+            top: critmulttext.bottom
+            centerIn: textholder4
+        }
+        color: "white"
+        anchors.leftMargin: 26
+        anchors.topMargin: 56
+    }
+
+    GrayOutButton{
+        id: nonlethal
+        text: "Lethal?"
+        x:20
+        anchors.top:  damagebonus.bottom
+        anchors.topMargin: 26
+        onClicked: {
+            var tempScores = scoreFields
+            RPG.toggleLethal(tempScores)
+            scoreFields = tempScores
+        }
+    }
+
+    Text{
+        id: nonlethaltext
+        text:
+        {
+            if(nonlethal.opacity == 1)
+                return "Yes"
+            else
+                return "No"
+        }
+        color: "white"
+        anchors{
+            left: nonlethal.right
+            top: damagebonus.bottom
+            centerIn: textholder5
+        }
+        anchors.leftMargin: 26
+        anchors.topMargin: 26
+    }
+
+    GrayOutButton{
+        id: damageaddition
+        text:
+        {
+            color: "white"
+            if(damageaddition.opacity == 1)
+                return "Add Dam. Bon. BEFORE Multiplying"
+            else
+                return "Add Dam. Bon. AFTER Multiplying"
+        }
+        x:20
+        color: "black"
+        anchors.top:  nonlethal.bottom
+        anchors.topMargin: 26
+        onClicked: {
+            var tempScores = scoreFields
+            RPG.toggleDamageAdd(tempScores)
+            scoreFields = tempScores
+        }
     }
 
     Button_AffirmativeButton {
@@ -149,7 +306,7 @@ Rectangle {
 
         text: "Roll Attack"
         anchors.horizontalCenterOffset: 0
-        anchors.bottomMargin: 40
+        anchors.bottomMargin: 30
         onClicked: {
             var temp = myDice;
             Script.incd20(temp);
@@ -167,7 +324,7 @@ Rectangle {
         anchors.right: parent.right
         anchors.rightMargin:30
         anchors.leftMargin:10
-        anchors.bottomMargin: 40
+        anchors.bottomMargin: 30
         onClicked: {
             main.clearAll();
             screenBase.showScreen("modes/gameSelection.qml");

@@ -26,20 +26,44 @@ Rectangle {
         property string bgString: "../../images/backgrounds/"
         property string bgStringComplete: bgString+myBackground
         source: bgStringComplete
+    }
 
-        Text {
-            id: text1
-            x: 80
-            y: 30
-            anchors.rightMargin: 50
-            anchors.bottomMargin: 50
-            anchors.leftMargin: 100
-            anchors.topMargin: 50
-            text: "Use Buttons to\nChange Attack Bonus."
-            horizontalAlignment: Text.AlignHCenter
-            anchors.horizontalCenter: parent.horizontalCenter
-            font.pixelSize: 24
-        }
+    Rectangle{
+        id: toptextholder
+        anchors.horizontalCenter: parent.horizontalCenter
+        y:30
+        width: 240
+        height: 60
+        border.color:  "#CCCCCC"
+        color: "black"
+        border.width:  3
+    }
+
+    Rectangle{
+        id: textholder1
+        x:50
+        y:250
+        width: 140
+        height: 70
+        border.color:  "#CCCCCC"
+        color: "black"
+        border.width:  3
+    }
+
+    Text {
+        id: text1
+        x: 80
+        y: 30
+        anchors.rightMargin: 50
+        anchors.bottomMargin: 50
+        anchors.leftMargin: 100
+        anchors.topMargin: 50
+        anchors.centerIn: toptextholder
+        text: "Use Buttons to\nChange Attack Bonus."
+        color: "white"
+        horizontalAlignment: Text.AlignHCenter
+        anchors.horizontalCenter: parent.horizontalCenter
+        font.pixelSize: 24
     }
 
     Text{
@@ -47,6 +71,8 @@ Rectangle {
         text: "--"
         x: 50
         y: 250
+        anchors.centerIn: textholder1
+        color: "white"
         font.pixelSize: 60
     }
 

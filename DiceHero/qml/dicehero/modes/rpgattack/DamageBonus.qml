@@ -11,10 +11,9 @@ Rectangle {
 
     Component.onCompleted: {
         var tempScores = scoreFields;
-        critrange.text = RPG.loadCritRange(tempScores);
+        damagebonus.text = RPG.loadDamageBonus(tempScores);
         scoreFields = tempScores;
     }
-
 
     Image {
         x: 0
@@ -33,7 +32,7 @@ Rectangle {
         id: toptextholder
         anchors.horizontalCenter: parent.horizontalCenter
         y:30
-        width: 260
+        width: 240
         height: 60
         border.color:  "#CCCCCC"
         color: "black"
@@ -42,9 +41,9 @@ Rectangle {
 
     Rectangle{
         id: textholder1
-        anchors.horizontalCenter: parent.horizontalCenter
+        x:50
         y:250
-        width: 220
+        width: 140
         height: 70
         border.color:  "#CCCCCC"
         color: "black"
@@ -53,37 +52,54 @@ Rectangle {
 
     Text {
         id: text1
-        anchors.horizontalCenter: parent.horizontalCenter
+        x: 80
         y: 30
-        color: "white"
-        anchors.centerIn: toptextholder
         anchors.rightMargin: 50
         anchors.bottomMargin: 50
         anchors.leftMargin: 100
         anchors.topMargin: 50
-        text: "Use Buttons to\nChange Critical Range."
+        anchors.centerIn: toptextholder
+        text: "Use Buttons to\nChange Damage Bonus."
         horizontalAlignment: Text.AlignHCenter
+        anchors.horizontalCenter: parent.horizontalCenter
+        color: "white"
         font.pixelSize: 24
     }
 
     Text{
-        id: critrange
+        id: damagebonus
         text: "--"
-        color: "white"
-        anchors.centerIn: textholder1
-        anchors.horizontalCenter: parent.horizontalCenter
+        x: 50
         y: 250
+        anchors.centerIn: textholder1
+        color: "white"
         font.pixelSize: 60
+    }
+
+    Button{
+        id: inc5
+        text: "+5"
+        x: 200
+        y: 135
+        onClicked:{
+            var tempScores = scoreFields;
+            damagebonus.text = RPG.inc5DamageBonus(tempScores);
+            scoreFields = tempScores;
+        }
     }
 
     Button{
         id: inc1
         text: "+1"
-        anchors.horizontalCenter: parent.horizontalCenter
-        y: 150
+        x: 200
+        y: 100
+        anchors{
+            top: inc5.bottom
+        }
+        anchors.topMargin: 45
         onClicked:{
             var tempScores = scoreFields;
-            critrange.text = RPG.incCritRange(tempScores);
+            damagebonus.text = RPG.incDamageBonus(tempScores);
             scoreFields = tempScores;
         }
     }
@@ -91,14 +107,31 @@ Rectangle {
     Button{
         id: dec1
         text: "-1"
-        anchors.horizontalCenter: parent.horizontalCenter
+        x: 200
+        y: 100
         anchors{
-            top: critrange.bottom
+            top: inc1.bottom
         }
-        anchors.topMargin: 50
+        anchors.topMargin: 25
         onClicked:{
             var tempScores = scoreFields;
-            critrange.text = RPG.decCritRange(tempScores);
+            damagebonus.text = RPG.decDamageBonus(tempScores);
+            scoreFields = tempScores;
+        }
+    }
+
+    Button{
+        id: dec5
+        text: "-5"
+        x: 200
+        y: 100
+        anchors{
+            top: dec1.bottom
+        }
+        anchors.topMargin: 45
+        onClicked:{
+            var tempScores = scoreFields;
+            damagebonus.text = RPG.dec5DamageBonus(tempScores);
             scoreFields = tempScores;
         }
     }
@@ -106,9 +139,9 @@ Rectangle {
     Button_AffirmativeButton {
         id: finished
         text: "Done"
-        anchors.horizontalCenter: parent.horizontalCenter
+        x: 70
         anchors{
-            top: critrange.bottom
+            top: damagebonus.bottom
         }
         anchors.topMargin: 200
         onClicked:

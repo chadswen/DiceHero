@@ -2,6 +2,7 @@ import QtQuick 1.0
 
  Rectangle {
      id: container
+
      property string text: "Button"
 
      signal clicked
@@ -14,13 +15,16 @@ import QtQuick 1.0
      smooth: true
      radius: 8
 
-
      // color the button with a gradient
      gradient: Gradient {
          GradientStop {
-             id: gStop
              position: 0.0
-             color: activePalette.light
+             color: {
+                 if (mouseArea.pressed)
+                     return activePalette.dark
+                 else
+                     return activePalette.light
+             }
          }
          GradientStop { position: 1.0; color: activePalette.button }
      }
@@ -29,19 +33,20 @@ import QtQuick 1.0
          id: mouseArea
          anchors.fill: parent
          onClicked: {
-            if (gStop.color == activePalette.light)
-            {
-                container.clicked();
-                gStop.color = activePalette.dark;
-            }
-                //else nothing happens the scoring option has already been used.
+             container.clicked();
+
+             if (container.opacity == 1)
+                 container.opacity = .8;
+             else if(container.opacity == .8)
+                 container.opacity = 1;
+
 
          }
      }
 
      Text {
          id: buttonLabel
-         font.pixelSize: 12
+         font.pixelSize: 20
          anchors.centerIn: container
          color: activePalette.buttonText
          text: container.text

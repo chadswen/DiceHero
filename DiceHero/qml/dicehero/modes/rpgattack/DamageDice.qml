@@ -99,6 +99,21 @@ Rectangle {
             }
         }
 
+        Rectangle {
+            id: resultsholder
+            height: 70; width: 320
+            border.color:  "#CCCCCC"
+            color: "black"
+            border.width:  4
+            opacity: .7
+            radius: 10
+            anchors {
+                top: buttonHolder.bottom
+                topMargin:20
+                horizontalCenter:parent.horizontalCenter
+            }
+        }
+
         Text {
             id: statusDynamicText
             font.bold: false
@@ -296,54 +311,60 @@ Rectangle {
 
         Text{
             id:d4s
+            color: "white"
             text: "0d4 + "
             anchors.right: d6s.left
             anchors.rightMargin: 5
             anchors.top: buttonHolder.bottom
-            anchors.topMargin: 15
+            anchors.topMargin: 20
         }
 
         Text{
             id:d6s
+            color: "white"
             text: "0d6 + "
             anchors.top: buttonHolder.bottom
             anchors.horizontalCenter: parent.horizontalCenter
-            anchors.topMargin: 15
+            anchors.topMargin: 20
         }
 
         Text{
             id:d8s
+            color: "white"
             text: "0d8 + "
             anchors.left: d6s.right
             anchors.leftMargin: 5
             anchors.top: buttonHolder.bottom
-            anchors.topMargin: 15
+            anchors.topMargin: 20
         }
 
         Text{
             id:d10s
+            color: "white"
             anchors.right: d12s.left
             anchors.rightMargin: 5
             text: "0d10 + "
             anchors.top: d4s.bottom
-            anchors.topMargin: 15
+            anchors.topMargin: 10
         }
 
         Text{
             id:d12s
+            color: "white"
             text: "0d12 + "
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: d4s.bottom
-            anchors.topMargin: 15
+            anchors.topMargin: 10
         }
 
         Text{
             id:d20s
+            color: "white"
             text: "0d20"
             anchors.left: d12s.right
             anchors.leftMargin: 5
             anchors.top: d4s.bottom
-            anchors.topMargin: 15
+            anchors.topMargin: 10
         }
 
 

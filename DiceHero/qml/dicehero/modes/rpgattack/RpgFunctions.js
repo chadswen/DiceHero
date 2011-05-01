@@ -7,7 +7,10 @@ function loadBonuses(tempScores)
 
 function loadAttBonus(tempScores)
 {
-    return tempScores[0]       //attack bonus
+    if(tempScores[0]>=0)
+        return "+" + tempScores[0]       //attack bonus
+    else
+        return tempScores[0]
 }
 
 function loadCritMult(tempScores)
@@ -27,6 +30,8 @@ function incAttBonus(tempScores)
         tempScores[0] = Number(tempScores[0]) + 1;       //attack bonus
         return tempScores[0];
     }
+    else
+        return tempScores[0];
 }
 
 function inc5AttBonus(tempScores)
@@ -36,6 +41,8 @@ function inc5AttBonus(tempScores)
         tempScores[0] = Number(tempScores[0]) + 5;       //attack bonus
         return tempScores[0];
     }
+    else
+        return tempScores[0];
 }
 
 function decAttBonus(tempScores)
@@ -45,6 +52,8 @@ function decAttBonus(tempScores)
         tempScores[0] = Number(tempScores[0]) - 1;       //attack bonus
         return tempScores[0];
     }
+    else
+        return tempScores[0];
 }
 
 function dec5AttBonus(tempScores)
@@ -54,6 +63,8 @@ function dec5AttBonus(tempScores)
         tempScores[0] = Number(tempScores[0]) - 5;       //attack bonus
         return tempScores[0];
     }
+    else
+        return tempScores[0];
 }
 
 function incCritMult(tempScores)
@@ -63,6 +74,8 @@ function incCritMult(tempScores)
         tempScores[2] = Number(Number(tempScores[2]) + 1);
         return "x" + tempScores[2];
     }
+    else
+        return "x" + tempScores[2];
 }
 
 function decCritMult(tempScores)
@@ -72,6 +85,8 @@ function decCritMult(tempScores)
         tempScores[2] = Number(Number(tempScores[2]) - 1);
         return "x" + tempScores[2];
     }
+    else
+        return "x" + tempScores[2];
 }
 
 function incCritRange(tempScores)
@@ -81,6 +96,8 @@ function incCritRange(tempScores)
         tempScores[1] = Number(tempScores[1]) + 1;
         return tempScores[1] + " to 20";
     }
+    else
+        return tempScores[1] + " to 20";
 }
 
 function decCritRange(tempScores)
@@ -90,6 +107,8 @@ function decCritRange(tempScores)
         tempScores[1] = Number(tempScores[1]) - 1;
         return tempScores[1] + " to 20";
     }
+    else
+        return tempScores[1] + " to 20";
 }
 
 function defaultBonuses(tempScores)
@@ -99,47 +118,60 @@ function defaultBonuses(tempScores)
     tempScores[2] = "2" //crit. multi. 3 is damage sum
     tempScores[4] = "0" //damage bonus
     tempScores[5] = "false" //critical hit?
+    tempScores[6] = "true" //weapon is lethal? (can score critical hits)
+    tempScores[7] = "true"  //add damage bonus before multiplying?
 }
 
 function loadDamageBonus(tempScores)
 {
-    return tempScores[4];
+    if(tempScores[4]>=0)
+        return "+" + tempScores[4];
+    else
+        return tempScores[4];
 }
 
-function incAttBonus(tempScores)
+function incDamageBonus(tempScores)
 {
     if(Number(tempScores[4]) < 100)
     {
         tempScores[4] = Number(tempScores[4]) + 1;       //attack bonus
         return tempScores[4];
     }
+    else
+        return tempScores[4];
 }
 
-function inc5AttBonus(tempScores)
+function inc5DamageBonus(tempScores)
 {
     if(Number(tempScores[4]) < 100)
     {
         tempScores[4] = Number(tempScores[4]) + 5;       //attack bonus
         return tempScores[4];
     }
+    else
+        return tempScores[4];
 }
 
-function decAttBonus(tempScores)
+function decDamageBonus(tempScores)
 {
     if(Number(tempScores[4]) > -100)
     {
         tempScores[4] = Number(tempScores[4]) - 1;       //attack bonus
         return tempScores[4];
     }
+    else
+        return tempScores[4];
 }
 
-function dec5AttBonus(tempScores)
+function dec5DamageBonus(tempScores)
 {
     if(Number(tempScores[4]) > -100)
     {
         tempScores[4] = Number(tempScores[4]) - 5;       //attack bonus
         return tempScores[4];
     }
+    else
+        return tempScores[4];
 }
 
 function sum(myDice, rollResults, tempScores)
@@ -154,13 +186,37 @@ function sum(myDice, rollResults, tempScores)
             sum = sum + Number(rollResults[i][j])
         }
     }
-    if(tempScores[5] == "true")        //if this is a confirmed critical hit
+    if(tempScores[7] == "true")
+    {
+        sum = sum + tempScores[4];
+    }
+    if(tempScores[5] == "true" && tempScores[6] == "true")        //if this is a confirmed critical hit & lethal
     {
         console.log("multiplying hit. sum is: " + sum + "\n")
         sum = sum * tempScores[2]    //multiplies damage sum by crit. multiplier
         console.log("sum is now: " + sum + "\n")
     }
+    if(tempScores[7] == "false")
+    {
+        sum = sum + tempScores[4];
+    }
 
     tempScores[3] = sum;
     return sum;
+}
+
+function toggleLethal(tempScores)
+{
+    if(tempScores[6] == "true")
+        tempScores[6] = "false";
+    else if(tempScores[6] == "false")
+        tempScores[6] = "true";
+}
+
+function toggleDamageAdd(tempScores)
+{
+    if(tempScores[7] == "true")
+        tempScores[7] = "false";
+    else if(tempScores[7] == "false")
+        tempScores[7] = "true";
 }
