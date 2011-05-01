@@ -284,75 +284,15 @@ function count(value, dice)         //used for ones, twos, threes, fours, fives,
 
 function loadedDice(sum)                  //used for loadeddice
 {
+    var names = new Array("", "", "SNAKE EYES", "THREE IS FOR ME",
+                          "FIRE DRILL", "FIVE FOR THE FELLAS",
+                          "SIX FOR THE CHICKS", "HEAVEN",
+                          "DRINKING MATE", "RHYME TIME",
+                          "AGAIN", "NEVER HAVE I EVER", "THE QUEEN",
+                          "THE KING", "HIT THE FLOOR", "JACKPOT",
+                          "CRAZY EIGHTS");
 
-
-    switch (sum)
-    {
-            case 1:
-                    break;
-            case 2:
-                    var Result_String = "SNAKE EYES";
-                    return Result_String;
-                    break;
-            case 3:
-                    var Result_String = "THREE IS FOR ME";
-                    return Result_String;
-                    break;
-            case 4:
-                    var Result_String = "FIRE DRILL";
-                    return Result_String;
-                    break;
-            case 5:
-                    var Result_String = "FIVE FOR THE FELLAS";
-                    return Result_String;
-                    break;
-            case 6:
-                    var Result_String = "SIX FOR THE CHICKS";
-                    return Result_String;
-                    break;
-            case 7:
-                    var Result_String = "HEAVEN";
-                    return Result_String;
-                    break;
-            case 8:
-                    var Result_String = "DRINKING MATE";
-                    return Result_String;
-                    break;
-            case 9:
-                    var Result_String = "RHYME TIME";
-                    return Result_String;
-                    break;
-            case 10:
-                    var Result_String = "AGAIN";
-                    return Result_String;
-                    break;
-            case 11:
-                    var Result_String = "NEVER HAVE I EVER";
-                    return Result_String;
-                    break;
-            case 12:
-                    var Result_String = "THE QUEEN";
-                    return Result_String;
-                    break;
-            case 13:
-                    var Result_String = "THE KING";
-                    return Result_String;
-                    break;
-            case 14:
-                    var Result_String = "HIT THE FLOOR";
-                    return Result_String;
-                    break;
-            case 15:
-                    var Result_String = "JACKPOT";
-                    return Result_String;
-                    break;
-            case 16:
-                    var Result_String = "CRAZY EIGHTS";
-                    return Result_String;
-                    break;
-            case 0:
-                    break;
-    }
+    return names[sum];
 }
 
 
@@ -368,75 +308,18 @@ function loadedDiceText(sum)                  //used for loadeddice
    var drinkingmate= "Pick someone to be your \"mate.\" Any time YOU take a drink, your mate has to drink, too!"
    var rhymetime= "Take turns rhyming words. The first person who repeats a word or fails to rhyme must take a drink!"
    var again="Choose someone who has to take a drink - then roll again!"
-   var neverhaveiever	="Say \"Never have I ever _______.\" Anyone who HAS done it, however, must take a drink!"
+   var neverhaveiever = "Say \"Never have I ever _______.\" Anyone who HAS done it, however, must take a drink!"
    var thequeen	="Choose someone to take YOUR drink!"
    var theking	= "Everyone EXCEPT you must take a drink!"
    var hitthefloor	= "Last person to touch the floor takes a drink. Ready? Go!"
    var jackpot	= "Start drinking! Everyone must drink with you, until you stop!"
    var fight	= "Rock-Paper-Scissors with another player. Loser must take a drink!"
    var crazyeights	= "Make your own rule that must be followed for the remainder of the game!"
+   var orders = new Array("", "", snakeeyes, threeisforme, firedrill,
+                          fiveforthefellas, sixforthechicks, heaven,
+                          drinkingmate, rhymetime, again, neverhaveiever,
+                          thequeen, theking, hitthefloor, jackpot, fight,
+                          crazyeights);
 
-
-switch (sum)
-{
-        case 1:
-                break;
-        case 2:
-
-                return snakeeyes;
-                break;
-        case 3:
-                return threeisforme;
-                break;
-        case 4:
-
-                return firedrill;
-                break;
-        case 5:
-
-                return fiveforthefellas;
-                break;
-        case 6:
-
-                return sixforthechicks;
-                break;
-        case 7:
-                return heaven;
-                break;
-        case 8:
-                return drinkingmate;
-                break;
-        case 9:
-
-                return rhymetime;
-                break;
-        case 10:
-
-                return again;
-                break;
-        case 11:
-
-            return neverhaveiever;
-            break;
-        case 12:
-
-                return thequeen;
-                break;
-        case 13:
-
-                return theking;
-                break;
-        case 14:
-                return hitthefloor;
-                break;
-        case 15:
-
-                return jackpot;
-                break;
-        case 16:
-                return crazyeights;
-                break;
-        case 0:
-                break;
-}
+    return orders[sum];
 }
