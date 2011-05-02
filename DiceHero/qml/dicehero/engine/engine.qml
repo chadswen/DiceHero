@@ -179,17 +179,26 @@ Image {
     }
     
     //countdown
+    Rectangle {
+        id: startRect
+        height: 100; width: 350
+        border.color: color_JADE
+        color: "black"
+        border.width:  5
+        opacity: .7
+        radius: 10
+        anchors.centerIn: parent
+    }
+
     Text {
         id: startText
         text: "Ready"
         font.pixelSize: 60
         anchors.centerIn: parent
-        color:  "white"
+        color:  color_JADE
         styleColor: "black"
         style: Text.Outline
         font.bold: true
-        font.italic: true
-        font.family: "Impact"
         visible: false
         
         onVisibleChanged:
@@ -199,11 +208,14 @@ Image {
             PropertyAction{ target: startText; property: "text"; value: "Set"}
             NumberAnimation { target: startText; property: "opacity"; to: 1; }
             NumberAnimation { target: startText; property: "opacity"; easing.type: Easing.InExpo; to: 0; duration: 700 }
-            PropertyAction{ target: startText; property: "font.pixelSize"; value: 110}
+            PropertyAction{ target: startText; property: "font.pixelSize"; value: 100}
             PropertyAction{ target: startText; property: "text"; value: "ROLL!"}
             NumberAnimation { target: startText; property: "opacity"; to: 1; }
             PropertyAction{ target: engine; property: "countdownDone"; value: true}
-            NumberAnimation { target: startText; property: "opacity"; easing.type: Easing.InCirc; to: 0; duration: 1500 }
+            NumberAnimation { target: startText; property: "opacity"; easing.type: Easing.InCirc; to: 0; duration: 1200 }
+            PropertyAction{ target: startRect; property: "visible"; value: false}
+            NumberAnimation {target: startRect; property: "opacity";
+                easing.type: Easing.OutExpo; to: 0; duration: 300; }
             PropertyAction{ target: startText; property: "visible"; value: false}
         }
     }
