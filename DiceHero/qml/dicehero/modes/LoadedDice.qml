@@ -2,26 +2,16 @@ import QtQuick 1.0
 import "../common"
 import "../common/createDice.js" as Creator
 import "motherload/holdingDice.js" as VarHold
-import "motherload/scoringRules.js" as SRules
+import "loadeddice/loadedDice.js" as SRules
 import Qt.labs.particles 1.0
 Rectangle {
     signal showScreen(string msg)
     property variant resArray
+    // property int turnCount: 0
     property variant colors: [color_RED, color_BLUE, color_ORANGE, "#CCCCCC", color_GREEN]
     property string topcolor: colors[2] // We will be randomly picking a color for the top rectangle
 
-        // Text Instructions
 
-// Notices (Because we're responsible like that)
-    property string drinkwater	: "Take a break and drink some water - you can thank us in the morning!"
-    property string playresponsibly	: "Please play responsibly. Designate a sober driver, know your limits, and for God's sake don't drop the phone in the toilet!"
-    property string nominors	: "Remember, providing alcohol to minors isn't just against the law - it's wrong."
-    property string alcoholpoisoning: "Be a Hero - learn to recognize the symptoms of alcohol poisoning:\n1. Extreme confusion\n2. Seizure activity\n3. Weak and slow breathing\n4. Decreased body temperature\n 5. Loss of consciousness.\n\nContact emergency personnel immediately upon suspecting a victim of alcohol poisoning. Help turn the victim on their side in the \"recovery position\" in the event of vomiting."
-    property string nodrunktexts	: "Yes, you've been playing for a while. No, it's a terrible idea to text anyone. For real."
-    property string nouploadingpics	: "Yes, you've been playing for a while. No, it's a terrible idea to upload pictures of this on the internet. Your grandma might see."
-    property string protip	: "Grab a snack, buddy. And have you ever thought about maybe playing Loaded Dice with an assortment of craft beers? It's an easy, interesting, and tasty twist!"
-    property variant notices: [drinkwater, playresponsibly, nominors, alcoholpoisoning, nodrunktexts, nouploadingpics, protip];
-    id: screenBase
 
     width: 360; height: 640
 
@@ -30,11 +20,7 @@ Rectangle {
         //create one of each die
         var y;
         var z;
-
-
     }
-
-
 
     Item {
         id: screen
@@ -52,9 +38,6 @@ Rectangle {
             property string bgStringComplete: bgString+myBackground
             source: bgStringComplete
         }
-
-
-
 
         Rectangle {
             id: topRect
@@ -169,8 +152,13 @@ Rectangle {
                     var temp = myDice
                     Creator.clearData(temp);
                     VarHold.loadeddice(temp);
-                    myDice = temp
-                    returnFile="modes/LoadedDice.qml", screenBase.showScreen("engine/engine.qml")
+                    myDice = temp;
+                    /*
+                    turnCount: turnCount + 1;
+                    var n = SRules.checkForNotice(turnCount);
+                    if(n == 0) SRules.showNotice("notice");
+                    */
+                    returnFile="modes/LoadedDice.qml", screenBase.showScreen("engine/engine.qml");
                 }
                 }
                 Button_NegativeButton {
