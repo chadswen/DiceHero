@@ -14,7 +14,8 @@ Rectangle {
         var temp = myDice
         var temp2 = rollResults
         var temp3 = scoreFields
-        total.text = "Damage Total: " + RPG.sum(temp, temp2, temp3)
+        total.text = "Damage Total: \n" + RPG.sum(temp, temp2, temp3)
+        breakdown.text = RPG.breakdowndamage(temp3)
         myDice = temp
         rollResults = temp2
         scoreFields = temp3
@@ -45,11 +46,36 @@ Rectangle {
         }
       }
 
+    Rectangle{
+        id: textholder1
+        anchors.horizontalCenter: parent.horizontalCenter
+        y:30
+        width: 350
+        height: 100
+        border.color:  "#CCCCCC"
+        color: "black"
+        border.width:  3
+    }
+
+    Rectangle{
+        id: textholder2
+        width: 350
+        height: 100
+        anchors{
+            top: textholder1.bottom
+            topMargin: 50
+        }
+        anchors.horizontalCenter: screenBase.horizontalCenter
+        border.color:  "#CCCCCC"
+        color: "black"
+        border.width:  3
+    }
+
       Text {
             id: total
             y: 30
-            anchors.topMargin: 50
-            anchors.horizontalCenter: parent.horizontalCenter
+            color: "white"
+            anchors.centerIn:  textholder1
             text: "--"
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: 40
@@ -57,23 +83,25 @@ Rectangle {
 
       Text {
           id: breakdown
-          anchors{
-              top: total.bottom
-          }
-          anchors.horizontalCenter: screenBase.horizontalCenter
+          anchors.centerIn: textholder2
           y: 30
-          anchors.topMargin: 50
-          text: {
-              if(scoreFields[5] == "false")
-                  return "Breakdown: " + Number(Number(total.text)- Number(scoreFields[4])) + " + " + Number(scoreFields[4])
-              else if(scoreFields[7] == "true")
-                  return "Breakdown: " + Number(Number(total.text) / 2 - Number(scoreFields[4])) + " + " + Number(scoreFields[4]) + ")*" + Number(scoreFields[2])
-              else if(scoreFields[7] == "false")
-                  return "Breakdown: (" + Number((Number(total.text) - Number(scoreFields[4]))/2) + " + " + Number(scoreFields[4]) + ")*" + Number(scoreFields[2])
-          }
+          text: "--"
+          color: "white"
           horizontalAlignment: Text.AlignHCenter
           font.pixelSize: 30
       }
+
+    Button{
+        id: damagemultiplier
+        text: "Apply Damage Multiplier"
+        width: Number(text.length*10) + 30
+        anchors.top: breakdown.bottom
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.topMargin: 40
+        onClicked:{
+            screenBase.showScreen("modes/rpgattack/DamageMultiplier.qml")
+        }
+    }
 
     Button_AffirmativeButton {
         id: finalize
@@ -84,7 +112,7 @@ Rectangle {
             //else
               //  return false;
         anchors{
-            top: breakdown.bottom
+            top: damagemultiplier.bottom
         }
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.topMargin: 40

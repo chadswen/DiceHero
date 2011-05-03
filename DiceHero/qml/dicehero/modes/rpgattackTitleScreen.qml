@@ -76,7 +76,7 @@ signal showScreen(string msg)
                 horizontalCenter: textHolder.horizontalCenter
             }
             text: "Return"
-           onClicked: screen.showScreen("gameSelection.qml");
+           onClicked: screen.showScreen("modes/gameSelection.qml");
         }
 
 

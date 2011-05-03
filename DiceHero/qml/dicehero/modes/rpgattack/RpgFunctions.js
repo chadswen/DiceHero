@@ -1,8 +1,14 @@
-function loadBonuses(tempScores)
+function defaultBonuses(tempScores)
 {
-    attbonustext.text = tempScores[0]       //attack bonus
-    critrangetext.text = tempScores[1]       //critical range
-    critmulttext.text = "x" + tempScores[2]       // critical multiplier
+    tempScores[0] = "0" //att. bon.
+    tempScores[1] = "20" //crit. range
+    tempScores[2] = "2" //crit. multi. 3 is damage sum
+    tempScores[4] = "0" //damage bonus
+    //tempScores[3] is the damage sum
+    tempScores[5] = "false" //critical hit?
+    tempScores[6] = "true" //weapon is lethal? (can score critical hits)
+    tempScores[7] = "true"  //add damage bonus before multiplying?
+    tempScores[8] = "1"     //damage multiplier
 }
 
 function loadAttBonus(tempScores)
@@ -16,6 +22,11 @@ function loadAttBonus(tempScores)
 function loadCritMult(tempScores)
 {
     return "x" + tempScores[2]       //critical multiplier
+}
+
+function loadDamageMult(tempScores)
+{
+    return "x" + tempScores[8]       //damage multiplier
 }
 
 function loadCritRange(tempScores)
@@ -111,17 +122,6 @@ function decCritRange(tempScores)
         return tempScores[1] + " to 20";
 }
 
-function defaultBonuses(tempScores)
-{
-    tempScores[0] = "0" //att. bon.
-    tempScores[1] = "20" //crit. range
-    tempScores[2] = "2" //crit. multi. 3 is damage sum
-    tempScores[4] = "0" //damage bonus
-    tempScores[5] = "false" //critical hit?
-    tempScores[6] = "true" //weapon is lethal? (can score critical hits)
-    tempScores[7] = "true"  //add damage bonus before multiplying?
-}
-
 function loadDamageBonus(tempScores)
 {
     if(tempScores[4]>=0)
@@ -183,22 +183,28 @@ function sum(myDice, rollResults, tempScores)
     {
         for(j=0; j < myDice[i]; j++)
         {
-            sum = sum + Number(rollResults[i][j])
+            console.log("Adding dice. sum is currently: " + sum + "\n")
+            sum = Number(Number(sum) + Number(rollResults[i][j]))
+            console.log("Added dice. sum is: " + sum + "\n")
         }
     }
-    if(tempScores[7] == "true")
+    if(tempScores[7] == "true")                                  //damage bonus is added before multiplying
     {
-        sum = sum + tempScores[4];
+        console.log("adding damage bonus current: " + sum + "\n")
+        sum = Number((Number(sum) + Number(tempScores[4]))*Number(tempScores[8]));
+        console.log("after adding damage bonus: " + sum + "\n")
     }
     if(tempScores[5] == "true" && tempScores[6] == "true")        //if this is a confirmed critical hit & lethal
     {
-        console.log("multiplying hit. sum is: " + sum + "\n")
-        sum = sum * tempScores[2]    //multiplies damage sum by crit. multiplier
-        console.log("sum is now: " + sum + "\n")
+        //Debugging:console.log("multiplying hit. sum is: " + sum + "\n")
+        sum = Number(sum) * tempScores[2]   //multiplies damage sum by crit. multiplier
+        //Debugging: console.log("sum is now: " + sum + "\n")
     }
-    if(tempScores[7] == "false")
+    if(tempScores[7] == "false")                                //damage bonus is added after multiplying
     {
-        sum = sum + tempScores[4];
+        console.log("adding damage bonus current: " + sum + "\n")
+        sum = Number(Number(sum)* Number(tempScores[8]) + Number(tempScores[4]));
+        console.log("after adding damage bonus: " + sum + "\n")
     }
 
     tempScores[3] = sum;
@@ -213,10 +219,99 @@ function toggleLethal(tempScores)
         tempScores[6] = "true";
 }
 
+function getSum(tempScores)
+{
+    return tempScores[3];
+}
+
 function toggleDamageAdd(tempScores)
 {
     if(tempScores[7] == "true")
         tempScores[7] = "false";
     else if(tempScores[7] == "false")
         tempScores[7] = "true";
+}
+
+function breakdowndamage(scoreFields)
+{
+        if((scoreFields[5] == "false") || (scoreFields[6] == "false"))        //If not a critical hit or the weapon is not lethal
+        {
+            if(scoreFields[8] == "1")   //no damage multiplier has been chosen
+                return "Breakdown: \n" + Number(Number(scoreFields[3]) - Number(scoreFields[4])) + " + " + Number(scoreFields[4])
+            else if(scoreFields[7] == "true")   //damage multiplier has been chosen and the damage is added before multiplying
+                return "Breakdown: \n(" + Number(Number(Number(scoreFields[3]) / Number(scoreFields[8]) - Number(scoreFields[4]))) + " + " + Number(scoreFields[4]) + ")*" + Number(scoreFields[8])
+            else if(scoreFields[7] == "false")  //damage multiplier has been chosen and the damage is added after multiplying
+                return "Breakdown: \n(" + Number((Number(scoreFields[3]) - Number(scoreFields[4]))/ Number(scoreFields[8])) + ")*" + Number(scoreFields[8]) + " + " + Number(scoreFields[4])
+        }
+        else if(scoreFields[7] == "true")                                 //If damage is added before multiplying
+            return "Breakdown: \n(" + Number(Number(Number(scoreFields[3]) / (Number(scoreFields[2]*Number(scoreFields[8]))) - Number(scoreFields[4]))) + " + " + Number(scoreFields[4]) + ")*" + Number(scoreFields[2])*Number(scoreFields[8])
+        else if(scoreFields[7] == "false")                                //If damage is added after multiplying
+            return "Breakdown: \n(" + Number((Number(scoreFields[3]) - Number(scoreFields[4]))/ (Number(scoreFields[2])*Number(scoreFields[8]))) + ")*" + Number(scoreFields[2])*Number(scoreFields[8]) + " + " + Number(scoreFields[4])
+}
+
+function decDamageMult(tempScores)
+{
+    if(Number(tempScores[8]) > 1)
+    {
+        tempScores[8] = Number(tempScores[8]) - 1;       //damage multiplier
+        return "x" + tempScores[8];
+    }
+    else
+        return "x" + tempScores[8];
+}
+
+function incDamageMult(tempScores)
+{
+    if(Number(tempScores[8]) < 50)
+    {
+        tempScores[8] = Number(tempScores[8]) + 1;       //damage multiplier
+        return "x" + tempScores[8];
+    }
+    else
+        return "x" + tempScores[8];
+}
+
+function decSmallDamageMult(tempScores)
+{
+    if(Number(tempScores[8]) > .25)
+    {
+        tempScores[8] = Number(tempScores[8]) - .25;       //damage multiplier
+        return "x" + tempScores[8];
+    }
+    else
+        return "x" + tempScores[8];
+}
+
+function decBigDamageMult(tempScores)
+{
+    if(Number(tempScores[8]) >= 10.25)
+    {
+        tempScores[8] = Number(tempScores[8]) - 10;       //damage multiplier
+        return "x" + tempScores[8];
+    }
+    else
+        return "x" + tempScores[8];
+}
+
+function incSmallDamageMult(tempScores)
+{
+    if(Number(tempScores[8]) < 50)
+    {
+        tempScores[8] = Number(tempScores[8]) + .25;       //damage multiplier
+        return "x" + tempScores[8];
+    }
+    else
+        return "x" + tempScores[8];
+}
+
+
+function incBigDamageMult(tempScores)
+{
+    if(Number(tempScores[8]) <= 40)
+    {
+        tempScores[8] = Number(tempScores[8]) + 10;       //damage multiplier
+        return "x" + tempScores[8];
+    }
+    else
+        return "x" + tempScores[8];
 }

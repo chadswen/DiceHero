@@ -19,8 +19,10 @@ Rectangle {
         critrangetext.text = RPG.loadCritRange(tempScores);
         critmulttext.text = RPG.loadCritMult(tempScores);
         damagebonustext.text = RPG.loadDamageBonus(tempScores);
+        if(tempScores[6] == "false")    //if the saved status of the weapon is non-lethal then the opacity should reflect this.
+            nonlethal.opacity = .8
+        tempScores[5] = "false";         //sets critical value to false.
         scoreFields = tempScores;
-        scoreFields[5] = false;         //sets critical value to false.
         rolls = 0;
     }
 

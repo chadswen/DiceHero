@@ -49,7 +49,7 @@ Rectangle {
         color: "black"
         border.width:  3
         visible: {
-            if(rollResults[5][0] > scoreFields[1] && rolls == 1 && scoreFields[6] == "true")
+            if((Number(rollResults[5][0]) >= Number(scoreFields[1])) && rolls == 1 && scoreFields[6] == "true")
                 return true
             else
                 return false
@@ -60,7 +60,7 @@ Rectangle {
         id: textholder2
         x:50
         y:250
-        width: 280
+        width: 300
         height: 70
         anchors{
             top: textholder1.bottom
@@ -76,7 +76,7 @@ Rectangle {
         id: textholder3
         x:50
         y:250
-        width: 260
+        width: 280
         height: 70
         anchors{
             top: textholder2.bottom
@@ -92,8 +92,10 @@ Rectangle {
             id: critText
             y: 30
             text:{
-                if(rollResults[5][0] > scoreFields[1] && rolls == 1 && scoreFields[6] == "true")
-                  {return "Critical!"}
+                if((Number(rollResults[5][0]) >= Number(scoreFields[1])) && rolls == 1 && scoreFields[6] == "true")
+                  {
+                    console.log("result: " + rollResults[5][0] + ">" + scoreFields[1] + "rolls = " + rolls + "== 1 Lethal: " + scoreFields[6])
+                    return "Critical!"}
                 else
                   {return ""}
             }
@@ -130,7 +132,7 @@ Rectangle {
     Button_AffirmativeButton {
         id: finalize
         text: {
-            if(rollResults[5][0] > scoreFields[1] && rolls == 1 && scoreFields[6] == "true")
+            if((Number(rollResults[5][0]) >= Number(scoreFields[1])) && rolls == 1 && scoreFields[6] == "true")
               {return "Confirm"}
             else
               {return "Hit"}
@@ -146,7 +148,7 @@ Rectangle {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.topMargin: 40
         onClicked: {
-            if(rollResults[5][0] > scoreFields[1] && rolls == 1 && scoreFields[6] == "true")
+            if((Number(rollResults[5][0]) >= Number(scoreFields[1])) && rolls == 1 && scoreFields[6] == "true")
             {
                 var temp = myDice;
                 Script.incd20(temp);
