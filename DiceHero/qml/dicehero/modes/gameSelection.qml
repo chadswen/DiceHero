@@ -115,7 +115,7 @@ Rectangle {
                         var temp = myDice;
                         VarHold.loadeddice(temp);
                         myDice = temp;
-                        returnFile="modes/LoadedDice.qml";
+                        returnFile="modes/loadeddice/LoadedDice.qml";
                     }
                     myParticles.burst(32), timer_heroMode.start();
                 }
