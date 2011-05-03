@@ -11,8 +11,7 @@ Rectangle {
     property int turnCount: 0
     property variant colors: [color_RED, color_BLUE, color_ORANGE, "#CCCCCC", color_GREEN]
     property string topcolor: colors[2] // We will be randomly picking a color for the top rectangle
-
-
+    property bool instruct: true
 
     width: 360; height: 640
 
@@ -183,14 +182,12 @@ Rectangle {
 
         Rectangle {
             id: notice
-            x: 25
-            y: 25
-            visible: false
+            visible: true
             anchors.centerIn: parent
             color: "black"
-            opacity: 0.9
-            width: 200
-            height: 430
+            opacity: .95
+            width: 350
+            height: 630
             border.color: color_BLUE
             border.width: 4
             smooth: true
@@ -210,21 +207,35 @@ Rectangle {
                     leftMargin: 20
                 }
 
-                text: ""
+                text: {
+                    if(instruct)
+                    {
+                        SRules.showNotice("instructions");
+                        instruct = false;
+                    }
+                    else
+                    {
+                        if(SRules.checkForNotice(turnCount))
+                            SRules.showNotice("notice");
+                        else
+                            notice.visible = false;
+                    }
+                }
                 font.pixelSize: 22
                 color: color_BLUE
                 style: Text.Raised
                 horizontalAlignment: Text.AlignHCenter
+                anchors.centerIn: parent
                 wrapMode: Text.WordWrap
              }
 
             Button_StandardButton {
                 id: okButton
-                anchors.bottom: parent.bottom
-                anchors.left: parent.left
-                anchors.right: parent.horizontalCenter
-                anchors.rightMargin:10
-                anchors.leftMargin:30
+                anchors {
+                    bottom: parent.bottom
+                    bottomMargin: 20
+                    horizontalCenter: parent.horizontalCenter
+                }
                 text: {"OK"}
                 onClicked: {
                     notice.visible = false;

@@ -45,12 +45,12 @@ function showNotice(mode) // mode is either "instructions" or "notice"
     "Yes, you've been playing for a while. No, it's a terrible idea to upload pictures of this on the internet. Your grandma might see.",
     "Grab a snack, buddy. And have you ever thought about maybe playing Loaded Dice with an assortment of craft beers? It's an easy, interesting, and tasty twist!");
 	
-	if(mode == "instructions")
+   if(mode == "notice")
 	{
 		var r = Math.random(0, notices.length);
 		return notices[r];
 	}
-	else if(mode == "notice")
+   else if(mode == "instructions")
 	{
 		return instructions;
 	}
