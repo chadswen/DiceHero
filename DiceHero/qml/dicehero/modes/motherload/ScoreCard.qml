@@ -278,14 +278,23 @@ Rectangle {
                         }
                     }
 
+                    Rectangle{
+                        id: threeholder
+                        x:140
+                        y:257
+                        width: 70
+                        height: 25
+                        border.color:  "#CCCCCC"
+                        color: "black"
+                        border.width:  3
+                    }
+
                     Text {
                         id: threeofkindscore
-                        x: 142
-                        y: 257
-                        width: 80
-                        height: 20
+                        color: "white"
                         text: "--"
                         horizontalAlignment: Text.AlignHCenter
+                        anchors.centerIn: threeholder
                         font.pixelSize: 20
                     }
 
@@ -329,26 +338,44 @@ Rectangle {
                         }
                     }
 
+                    Rectangle{
+                        id: fourholder
+                        x:140
+                        y:320
+                        width: 70
+                        height: 25
+                        border.color:  "#CCCCCC"
+                        color: "black"
+                        border.width:  3
+                    }
+
                     Text {
                         id: fourofkindscore
-                        x: 142
-                        y: 326
-                        width: 80
-                        height: 20
+                        color: "white"
                         text: "--"
                         horizontalAlignment: Text.AlignHCenter
+                        anchors.centerIn: fourholder
                         font.bold: false
                         font.pixelSize: 20
                     }
 
+                    Rectangle{
+                        id: fullHouseholder
+                        x:275
+                        y:257
+                        width: 70
+                        height: 25
+                        border.color:  "#CCCCCC"
+                        color: "black"
+                        border.width:  3
+                    }
+
                     Text {
                         id: fullhousescore
-                        x: 301
-                        y: 257
-                        width: 80
-                        height: 20
                         text: "--"
                         font.pixelSize: 20
+                        color: "white"
+                        anchors.centerIn: fullHouseholder
                     }
 
                     TwoStateButton {
@@ -460,36 +487,63 @@ Rectangle {
                         horizontalAlignment: Text.AlignHCenter
                     }
 
+                    Rectangle{
+                        id: smallholder
+                        x:275
+                        y:320
+                        width: 70
+                        height: 25
+                        border.color:  "#CCCCCC"
+                        color: "black"
+                        border.width:  3
+                    }
+
                     Text {
                         id: smallstraightscore
-                        x: 268
-                        y: 326
-                        width: 80
-                        height: 20
                         text: "--"
+                        color: "white"
+                        anchors.centerIn: smallholder
                         horizontalAlignment: Text.AlignHCenter
                         font.pixelSize: 20
                     }
 
+                    Rectangle{
+                        id: chanceholder
+                        x:140
+                        y:394
+                        width: 70
+                        height: 25
+                        border.color:  "#CCCCCC"
+                        color: "black"
+                        border.width:  3
+                    }
+
                     Text {
                         id: chancescore
-                        x: 142
-                        y: 394
-                        width: 80
-                        height: 20
                         text: "--"
+                        color: "white"
+                        anchors.centerIn: chanceholder
                         horizontalAlignment: Text.AlignHCenter
                         font.pixelSize: 20
                         font.bold: false
                     }
 
+                    Rectangle{
+                        id: largeholder
+                        x:275
+                        y:394
+                        width: 70
+                        height: 25
+                        border.color:  "#CCCCCC"
+                        color: "black"
+                        border.width:  3
+                    }
+
                     Text {
                         id: largestraightscore
-                        x: 268
-                        y: 394
-                        width: 80
-                        height: 20
                         text: "--"
+                        color: "white"
+                        anchors.centerIn: largeholder
                         horizontalAlignment: Text.AlignHCenter
                         font.pixelSize: 20
                         font.bold: false
@@ -561,88 +615,160 @@ Rectangle {
                         }
                     }
 
+                    Rectangle{
+                        id: motherloadholder1
+                        x:142
+                        y:463
+                        width: 50
+                        height: 25
+                        border.color:  "#CCCCCC"
+                        color: "black"
+                        border.width:  3
+                    }
+
                     Text {
                         id: motherload1
-                        x: 142
-                        y: 463
-                        width: 80
-                        height: 20
                         text: "--"
+                        color: "white"
+                        anchors.centerIn: motherloadholder1
                         horizontalAlignment: Text.AlignHCenter
                         font.pixelSize: 20
+                    }
+
+                    Rectangle{
+                        id: motherloadholder2
+                        x:204
+                        y:463
+                        width: 50
+                        height: 25
+                        border.color:  "#CCCCCC"
+                        color: "black"
+                        border.width:  3
                     }
 
                     Text {
                         id: motherload2
-                        x: 204
-                        y: 463
-                        width: 80
-                        height: 20
                         text: "--"
+                        color: "white"
+                        anchors.centerIn: motherloadholder2
                         horizontalAlignment: Text.AlignHCenter
                         font.pixelSize: 20
+                    }
+
+                    Rectangle{
+                        id: motherloadholder3
+                        x:268
+                        y:463
+                        width: 50
+                        height: 25
+                        border.color:  "#CCCCCC"
+                        color: "black"
+                        border.width:  3
                     }
 
                     Text {
                         id: motherload3
-                        x: 268
-                        y: 463
-                        width: 80
-                        height: 20
                         text: "--"
+                        color: "white"
+                        anchors.centerIn: motherloadholder3
                         horizontalAlignment: Text.AlignHCenter
                         font.pixelSize: 20
+                    }
+
+                    Rectangle{
+                        id: totaltextholder
+                        x:70
+                        y:520
+                        width: 60
+                        height: 25
+                        border.color:  "#CCCCCC"
+                        color: "black"
+                        border.width:  3
                     }
 
                     Text {
                         id: text27
-                        x: 85
-                        y: 522
-                        width: 80
-                        height: 20
                         text: "Total:"
+                        color: "white"
+                        anchors.centerIn: totaltextholder
                         font.pixelSize: 20
+                    }
+
+                    Rectangle{
+                        id: bonusholder
+                        x:295
+                        y:207
+                        width: 50
+                        height: 25
+                        border.color:  "#CCCCCC"
+                        color: "black"
+                        border.width:  3
                     }
 
                     Text {
                         id: bonusscore
-                        x: 268
-                        y: 207
-                        width: 80
-                        height: 20
                         text: "0"
+                        color: "white"
                         horizontalAlignment: Text.AlignHCenter
+                        anchors.centerIn: bonusholder
                         font.pixelSize: 20
+                    }
+
+                    Rectangle{
+                        id: totalholder
+                        x:142
+                        y:520
+                        width: 65
+                        height: 25
+                        border.color:  "#CCCCCC"
+                        color: "black"
+                        border.width:  3
                     }
 
                     Text {
                         id: totalscore
-                        x: 142
-                        y: 522
-                        width: 80
-                        height: 20
                         text: "0"
+                        color: "white"
+                        anchors.centerIn: totalholder
                         horizontalAlignment: Text.AlignHCenter
                         font.pixelSize: 20
                     }
 
+                    Rectangle{
+                        id: topholder
+                        x:20
+                        y:207
+                        width: 110
+                        height: 25
+                        border.color:  "#CCCCCC"
+                        color: "black"
+                        border.width:  3
+                    }
+
                     Text {
                         id: text30
-                        x: 26
-                        y: 207
-                        width: 80
-                        height: 20
                         text: "Top Section:"
+                        color: "white"
+                        anchors.centerIn: topholder
                         font.pixelSize: 20
+                    }
+
+                    Rectangle{
+                        id: toptextholder
+                        x:140
+                        y:207
+                        width: 70
+                        height: 25
+                        border.color:  "#CCCCCC"
+                        color: "black"
+                        border.width:  3
                     }
 
                     Text {
                         id: topscore
-                        x: 142
-                        y: 207
-                        width: 80
-                        height: 20
                         text: "0"
+                        color: "white"
+                        anchors.centerIn: toptextholder
                         horizontalAlignment: Text.AlignHCenter
                         font.pixelSize: 20
                     }
@@ -667,100 +793,181 @@ Rectangle {
                         font.pixelSize: 11
                     }
 
+                    Rectangle{
+                        id: dicetextholder
+                        x:10
+                        y:590
+                        width: 40
+                        height: 25
+                        border.color:  "#CCCCCC"
+                        color: "black"
+                        border.width:  3
+                    }
+
                     Text {
                         id: text34
-                        x: 10
-                        y: 589
-                        width: 80
-                        height: 20
                         text: "Dice:"
+                        color: "white"
+                        anchors.centerIn: dicetextholder
                         font.bold: true
                         font.pixelSize: 16
                     }
+
+                    Rectangle{
+                        id: scoretextholder
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        y:7
+                        width: 80
+                        height: 25
+                        border.color:  "#CCCCCC"
+                        color: "black"
+                        border.width:  3
+                    }
+
                     Text {
                         id: text1
-                        x: 143
-                        y: 7
-                        width: 80
-                        height: 20
                         text: "Scores"
+                        color: "white"
+                        anchors.centerIn: scoretextholder
                         font.bold: true
                         font.pixelSize: 22
                     }
 
+                    Rectangle{
+                        id: threesholder
+                        x:268
+                        y:90
+                        width: 80
+                        height: 25
+                        border.color:  "#CCCCCC"
+                        color: "black"
+                        border.width:  3
+                    }
+
                     Text {
                         id: threescore
-                        x: 268
-                        y: 86
-                        width: 80
-                        height: 20
                         text: "--"
+                        color: "white"
+                        anchors.centerIn: threesholder
                         horizontalAlignment: Text.AlignHCenter
                         font.pixelSize: 20
+                    }
+
+                    Rectangle{
+                        id: fiveholder
+                        x:142
+                        y:173
+                        width: 80
+                        height: 25
+                        border.color:  "#CCCCCC"
+                        color: "black"
+                        border.width:  3
                     }
 
                     Text {
                         id: fivescore
-                        x: 142
-                        y: 173
-                        width: 80
-                        height: 20
                         text: "--"
+                        color: "white"
+                        anchors.centerIn: fiveholder
                         horizontalAlignment: Text.AlignHCenter
                         font.pixelSize: 20
+                    }
+
+                    Rectangle{
+                        id: twoholder
+                        x:140
+                        y:90
+                        width: 80
+                        height: 25
+                        border.color:  "#CCCCCC"
+                        color: "black"
+                        border.width:  3
                     }
 
                     Text {
                         id: twoscore
-                        x: 142
-                        y: 86
-                        width: 80
-                        height: 20
                         text: "--"
+                        color: "white"
+                        anchors.centerIn: twoholder
                         horizontalAlignment: Text.AlignHCenter
                         font.pixelSize: 20
+                    }
+
+                    Rectangle{
+                        id: oneholder
+                        x:4
+                        y:90
+                        width: 80
+                        height: 25
+                        border.color:  "#CCCCCC"
+                        color: "black"
+                        border.width:  3
                     }
 
                     Text {
                         id: onescore
-                        x: 4
-                        y: 86
-                        width: 80
-                        height: 20
                         text: "--"
+                        color: "white"
+                        anchors.centerIn: oneholder
                         horizontalAlignment: Text.AlignHCenter
                         font.pixelSize: 20
+                    }
+
+                    Rectangle{
+                        id: sixholder
+                        x:268
+                        y:173
+                        width: 80
+                        height: 25
+                        border.color:  "#CCCCCC"
+                        color: "black"
+                        border.width:  3
                     }
 
                     Text {
                         id: sixscore
-                        x: 268
-                        y: 173
-                        width: 80
-                        height: 20
                         text: "--"
+                        color: "white"
+                        anchors.centerIn: sixholder
                         horizontalAlignment: Text.AlignHCenter
                         font.pixelSize: 20
+                    }
+
+                    Rectangle{
+                        id: foursholder
+                        x:5
+                        y:173
+                        width: 80
+                        height: 25
+                        border.color:  "#CCCCCC"
+                        color: "black"
+                        border.width:  3
                     }
 
                     Text {
                         id: fourscore
-                        x: 4
-                        y: 173
-                        width: 80
-                        height: 20
                         text: "--"
+                        color: "white"
+                        anchors.centerIn: foursholder
                         horizontalAlignment: Text.AlignHCenter
                         font.pixelSize: 20
                     }
 
+                    Rectangle{
+                        id: bonustextholder
+                        x:215
+                        y:207
+                        width: 70
+                        height: 25
+                        border.color:  "#CCCCCC"
+                        color: "black"
+                        border.width:  3
+                    }
+
                     Text {
-                        id: text8
-                        x: 215
-                        y: 207
-                        width: 80
-                        height: 20
                         text: "Bonus:"
+                        color: "white"
+                        anchors.centerIn: bonustextholder
                         font.pixelSize: 20
                     }
 
