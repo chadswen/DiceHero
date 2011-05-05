@@ -58,18 +58,15 @@ Rectangle {
             modeText: "Freestyle Rolling. Play YOUR game, with our dice!"
         }
 
-
-        ListElement{
-            bText: "High Roller"
-            file: "modes/highRoller.qml"
-            modeText: "6 dice, 3 rounds, 2 players, 1 Hero. A game pure of chance, and of heart."
-        }
-
-
         ListElement{
             bText: "Motherload"
             file: "engine/engine.qml"
             modeText: "A \"Yahzt-ish\" family favorite!"
+        }
+        ListElement{
+            bText: "RPG Attack!"
+            file: "modes/rpgattackTitleScreen.qml"
+            modeText: "RPG combat just got simpler."
         }
 
         ListElement{
@@ -78,11 +75,13 @@ Rectangle {
             modeText: "A drinking game, for responsible adults."
         }
 
+
         ListElement{
-            bText: "RPG Attack!"
-            file: "modes/rpgattackTitleScreen.qml"
-            modeText: "RPG combat just got simpler."
+            bText: "High Roller"
+            file: "modes/highRoller.qml"
+            modeText: "6 dice, 3 rounds, 2 players, 1 Hero. A game pure of chance, and of heart."
         }
+
     }
 
     // delegate for the List

@@ -17,10 +17,10 @@ symbian:TARGET.UID3 = 0xE0947FC2
 DEFINES += ORIENTATIONLOCK
 
 # Needs to be defined for Symbian
-DEFINES += NETWORKACCESS
+#DEFINES += NETWORKACCESS
 
 # Allow network access on Symbian
-symbian:TARGET.CAPABILITY += NetworkServices
+#symbian:TARGET.CAPABILITY += NetworkServices
 
 
 CONFIG += mobility

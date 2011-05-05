@@ -126,6 +126,7 @@ Rectangle {
         }
         text: "Online Manual"
         onClicked: screen.showScreen("browser/webbrowser.qml");
+        visible:  false //online manual is disabled for now.
     }
 
     Button_StandardButton {

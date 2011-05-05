@@ -8,10 +8,8 @@ Rectangle {
     id: screenBase
     signal showScreen(string msg)
     property variant resArray
-    property int turnCount: 0
     property variant colors: [color_RED, color_BLUE, color_ORANGE, "#CCCCCC", color_GREEN]
     property string topcolor: colors[2] // We will be randomly picking a color for the top rectangle
-    property bool instruct: true
 
     width: 360; height: 640
 
@@ -20,6 +18,8 @@ Rectangle {
         //create one of each die
         var y;
         var z;
+        turnCount = turnCount + 1;
+
     }
 
     Item {
@@ -62,33 +62,36 @@ Rectangle {
             anchors.horizontalCenterOffset: 0
             anchors.horizontalCenter: parent.horizontalCenter
 
-        Text {
-            id: p2Text
-            font.bold: false
-            smooth: true
-            width: parent.width - 40
+            Text {
+                id: loadedMessage
+                font.bold: false
+                smooth: true
+                width: parent.width - 40
 
-            anchors {
-                top: parent.top;
-                topMargin: 30
-                bottomMargin: 20
-                left: parent.left
-                leftMargin: 20
-            }
+                anchors {
+                    top: parent.top;
+                    topMargin: 30
+                    bottomMargin: 20
+                    left: parent.left
+                    leftMargin: 20
+                }
 
-            text:{
-                var temp = rollResults;
-                var sum = VarHold.loadedSum(temp);
-                rollResults = temp;
-                var temp_string = SRules.loadedDiceText(sum);
-                return temp_string;
+                text:{
+                    var temp = rollResults;
+                    var sum = VarHold.loadedSum(temp);
+                    rollResults = temp;
+                    var temp_string = SRules.loadedDiceText(sum);
+                    if(temp_string!=null)
+                        return temp_string;
+                    else
+                        return "";
+                }
+                font.pixelSize: 36
+                color: color_JADE
+                style: Text.Raised
+                horizontalAlignment: Text.AlignHCenter
+                wrapMode: Text.WordWrap
             }
-            font.pixelSize: 36
-            color: color_JADE
-            style: Text.Raised
-            horizontalAlignment: Text.AlignHCenter
-            wrapMode: Text.WordWrap
-         }
         }
 
 
@@ -108,7 +111,7 @@ Rectangle {
         }
 
         Text {
-            id: p1Text
+            id: loadedTitle
             font.bold: true
             smooth: true
             text:{
@@ -119,7 +122,10 @@ Rectangle {
                 // TODO: Randomly assign a color to this rectangle's
                 //       border and text.
                 //topcolor = colors[Math.random(0, colors.length)];
-                return temp_string;
+                if(temp_string!=null)
+                    return temp_string;
+                else
+                    return "";
             }
             font.pixelSize: 26
             color: topcolor
@@ -148,41 +154,34 @@ Rectangle {
                 anchors.rightMargin:10
                 anchors.leftMargin:30
                 text: {"Next Turn"}
+                enabled: !notice.visible
                 onClicked: {
                     var temp = myDice
                     Creator.clearData(temp);
                     VarHold.loadeddice(temp);
                     myDice = temp;
-
-                    turnCount: turnCount + 1;
-                    var n = SRules.checkForNotice(turnCount);
-                    if(n == 0)
-                    {
-                        notice.visible = true;
-                        noticeText = SRules.showNotice("notice");
-                    }
-
                     returnFile="modes/loadeddice/LoadedDice.qml", screenBase.showScreen("engine/engine.qml");
                 }
-                }
-                Button_NegativeButton {
-                    id: returnButton
-                    text: "Back to Modes"
-                    anchors.bottom: parent.bottom
-                    anchors.left: parent.horizontalCenter
-                    anchors.right: parent.right
-                    anchors.rightMargin:30
-                    anchors.leftMargin:10
-                    onClicked: {
-                        main.clearAll();
-                        screenBase.showScreen("modes/gameSelection.qml");
-                    }
+            }
+            Button_NegativeButton {
+                id: returnButton
+                text: "Back to Modes"
+                anchors.bottom: parent.bottom
+                anchors.left: parent.horizontalCenter
+                anchors.right: parent.right
+                anchors.rightMargin:30
+                anchors.leftMargin:10
+                enabled: !notice.visible
+                onClicked: {
+                    main.clearAll();
+                    screenBase.showScreen("modes/gameSelection.qml");
                 }
             }
+        }
 
         Rectangle {
             id: notice
-            visible: true
+            visible: (instruct || SRules.checkForNotice(turnCount))
             anchors.centerIn: parent
             color: "black"
             opacity: .95
@@ -209,17 +208,12 @@ Rectangle {
 
                 text: {
                     if(instruct)
-                    {
-                        SRules.showNotice("instructions");
-                        instruct = false;
-                    }
+                        return SRules.showNotice("instructions");
                     else
-                    {
                         if(SRules.checkForNotice(turnCount))
-                            SRules.showNotice("notice");
-                        else
-                            notice.visible = false;
-                    }
+                            return SRules.showNotice("notice");
+                         else return ""
+
                 }
                 font.pixelSize: 22
                 color: color_BLUE
@@ -227,7 +221,7 @@ Rectangle {
                 horizontalAlignment: Text.AlignHCenter
                 anchors.centerIn: parent
                 wrapMode: Text.WordWrap
-             }
+            }
 
             Button_StandardButton {
                 id: okButton
@@ -238,10 +232,11 @@ Rectangle {
                 }
                 text: {"OK"}
                 onClicked: {
-                    notice.visible = false;
-                    }
+                    instruct = false;
+                    turnCount = 1;
                 }
+            }
         }
 
-        }
     }
+}

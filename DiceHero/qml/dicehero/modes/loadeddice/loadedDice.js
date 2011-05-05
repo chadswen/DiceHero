@@ -27,11 +27,9 @@ function checkForNotice(turnCount)
 {
 	var n = 8; // Number of turns between each notice
 	
-	if(turnCount == 0)
-		return -1;
-	else if(turnCount%n == 0)
-		return 1;
-	else return 0;
+        if(turnCount != n)
+                return  0;
+        else return 1;
 }
 
 function showNotice(mode) // mode is either "instructions" or "notice"
@@ -47,7 +45,7 @@ function showNotice(mode) // mode is either "instructions" or "notice"
 	
    if(mode == "notice")
 	{
-		var r = Math.random(0, notices.length);
+                var r = Math.floor(Math.random()*notices.length) +1;
 		return notices[r];
 	}
    else if(mode == "instructions")

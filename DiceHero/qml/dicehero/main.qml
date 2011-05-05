@@ -51,7 +51,11 @@ Rectangle {
     property variant p2Array: GlobalDice.p2Array
     property variant scoreFields: GlobalDice.scoreFields
 
+    //loaded dice vars
+    property int turnCount: 0
+    property bool instruct: true
 
+    //motherload vars
     property int reRolls: 0
     property int rolls: 0
 
@@ -90,6 +94,11 @@ Rectangle {
 
         temp = new Array(18);
         scoreFields = temp;
+
+
+        turnCount = 0;
+        instruct = true;
+
 
         p1Turn = true;
         reRolls = 0;
