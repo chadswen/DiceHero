@@ -45,7 +45,7 @@ function showNotice(mode) // mode is either "instructions" or "notice"
 	
    if(mode == "notice")
 	{
-                var r = Math.floor(Math.random()*notices.length) +1;
+                var r = Math.floor(Math.random()*notices.length);
 		return notices[r];
 	}
    else if(mode == "instructions")

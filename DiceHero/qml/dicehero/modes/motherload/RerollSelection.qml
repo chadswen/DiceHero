@@ -68,15 +68,29 @@ Rectangle {
             property string bgStringComplete: bgString+myBackground
             source: bgStringComplete
 
+
+            Rectangle {
+                id: selectTextRect
+                height: text1.height + 10; width: text1.width + 15
+                border.color:  "#CCCCCC"
+                color: "black"
+                border.width:  2
+                opacity: .7
+                radius: 10
+                anchors {
+                    centerIn:text1
+                }
+            }
+
             Text {
                 id: text1
                 x: 59
                 y: 255
-                width: 80
-                height: 20
+                color: "white"
                 text: "Select Dice You Want to Reroll."
                 font.pixelSize: 18
             }
+
         }
     }
     Rectangle {
