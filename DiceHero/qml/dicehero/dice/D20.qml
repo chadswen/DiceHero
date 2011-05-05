@@ -25,7 +25,7 @@ Die {
     states: [
         State {
             name: "1"
-            PropertyChanges { target: d20; currentSource: "../images/d20_1.png"; xPos:35; yPos:35; yAngle:0; textRot:23}
+            PropertyChanges { target: d20; currentSource: "../images/d20_1.png"; xPos:35; yPos:30; yAngle:0; textRot:23}
         },
         State {
             name: "2"
@@ -33,11 +33,11 @@ Die {
         },
         State {
             name: "3"
-            PropertyChanges { target: d20; currentSource: "../images/d20_3.png"; xPos:49; yPos:38; yAngle:-30; textRot:22}
+            PropertyChanges { target: d20; currentSource: "../images/d20_3.png"; xPos:49; yPos:35; yAngle:-30; textRot:22}
         },
         State {
             name: "4"
-            PropertyChanges { target: d20; currentSource: "../images/d20_4.png";  xPos:46; yPos:43; yAngle:-50; textRot:22}
+            PropertyChanges { target: d20; currentSource: "../images/d20_4.png";  xPos:46; yPos:35; yAngle:-50; textRot:22}
         },
         State {
             name: "5"
@@ -49,19 +49,19 @@ Die {
         },
         State {
             name: "7"
-            PropertyChanges { target: d20; currentSource: "../images/d20_7.png"; xPos:15; yPos:53; yAngle:-20; textRot:40}
+            PropertyChanges { target: d20; currentSource: "../images/d20_7.png"; xPos:10; yPos:10; yAngle:-80; textRot:40}
         },
         State {
             name: "8"
-            PropertyChanges { target: d20; currentSource: "../images/d20_8.png"; xPos:20; yPos:53; yAngle:-20; textRot:40}
+            PropertyChanges { target: d20; currentSource: "../images/d20_8.png"; xPos:15; yPos:15; yAngle:-50; textRot:40}
         },
         State {
             name: "9"
-            PropertyChanges { target: d20; currentSource: "../images/d20_9.png"; xPos:22; yPos:53; yAngle:-20; textRot:25}
+            PropertyChanges { target: d20; currentSource: "../images/d20_9.png"; xPos:25; yPos:20; yAngle:-30; textRot:25}
         },
         State {
             name: "10"
-            PropertyChanges { target: d20; currentSource: "../images/d20_10.png";xPos:20; yPos:40; yAngle:-20; textRot:25}
+            PropertyChanges { target: d20; currentSource: "../images/d20_10.png";xPos:33; yPos:25; yAngle:-20; textRot:25}
         }
     ]
 }
