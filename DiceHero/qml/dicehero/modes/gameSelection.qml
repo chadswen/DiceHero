@@ -24,7 +24,7 @@ Rectangle {
         }
     }
 
-    Component.onCompleted: {            //this code bit is needed or else nulls will be added to nulls upon use of the engine.qml file creating a NAN.
+    Component.onCompleted: {
         var temp = myDice;
         Script.clearData(temp);
         myDice = temp;
@@ -65,7 +65,7 @@ Rectangle {
         }
         ListElement{
             bText: "RPG Attack!"
-            file: "modes/rpgattackTitleScreen.qml"
+            file: "modes/rpgattack/RPGStartScreen.qml"
             modeText: "RPG combat just got simpler."
         }
 
@@ -116,7 +116,8 @@ Rectangle {
                         myDice = temp;
                         returnFile="modes/loadeddice/LoadedDice.qml";
                     }
-                    myParticles.burst(32), timer_heroMode.start();
+
+                    myParticles.burst(32), timer_Mode.start();
                 }
                 Particles {
                     id: myParticles
@@ -148,7 +149,7 @@ Rectangle {
             }
             Item {
                 Timer {
-                    id: timer_heroMode
+                    id: timer_Mode
                     interval: 275; running: false; repeat: false;
                     onTriggered: screen.showScreen(file);
                 }
@@ -202,12 +203,25 @@ Rectangle {
     }
 
 
+    Button_OrangeButton {
+        id: backButton
+        text: "Back"
+        fontSize: 22
+        opacity: .9
+        anchors.bottom: parent.bottom
+        anchors.right: parent.horizontalCenter
+        anchors.rightMargin: 20
+        onClicked: screen.showScreen("common/titlescreen.qml");
+    }
+
+
     Button_NegativeButton {
         id: quitButton
         text: "Quit"
         opacity: .9
         anchors.bottom: parent.bottom
-        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.left: parent.horizontalCenter
+        anchors.leftMargin: 20
         onClicked: Qt.quit()
     }
 }

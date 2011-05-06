@@ -240,12 +240,14 @@ Rectangle {
         anchors.topMargin: 56
     }
 
-    GrayOutButton{
+    TwoStateButton {
         id: nonlethal
         text: "Lethal?"
         x:20
         anchors.top:  damagebonus.bottom
         anchors.topMargin: 26
+        color: "black"
+        textColor: "white"
         onClicked: {
             var tempScores = scoreFields
             RPG.toggleLethal(tempScores)
@@ -272,11 +274,10 @@ Rectangle {
         anchors.topMargin: 26
     }
 
-    GrayOutButton{
+    TwoStateButton  {
         id: damageaddition
         text:
         {
-            color: "white"
             if(damageaddition.opacity == 1)
                 return "Add Dam. Bon. BEFORE Multiplying"
             else
@@ -284,6 +285,7 @@ Rectangle {
         }
         x:20
         color: "black"
+        textColor: "white"
         anchors.top:  nonlethal.bottom
         anchors.topMargin: 26
         onClicked: {

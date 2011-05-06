@@ -3,6 +3,8 @@ import QtQuick 1.0
  Rectangle {
      id: container
      property string text: "Button"
+     property int fontSize: 20
+     property color textColor: "black"
 
      signal clicked
 
@@ -34,9 +36,9 @@ import QtQuick 1.0
 
      Text {
          id: buttonLabel
-         font.pixelSize: 20
+         font.pixelSize: fontSize
          anchors.centerIn: container
-         color: "black"
+         color: textColor
          text: container.text
      }
  }

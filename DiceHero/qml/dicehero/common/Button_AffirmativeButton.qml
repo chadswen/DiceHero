@@ -4,6 +4,7 @@ import QtQuick 1.0
      id: container
 
      property string text: "AffirmativeButton"
+     property int fontSize: 22
 
      signal clicked
 
@@ -36,7 +37,7 @@ import QtQuick 1.0
 
      Text {
          id: buttonLabel
-         font.pixelSize: 22
+         font.pixelSize: fontSize
          font.bold: true
          anchors.centerIn: container
          color: main.color_WHITE

@@ -100,6 +100,7 @@ Rectangle {
                 bottomMargin: 20
                 horizontalCenter: textHolder.horizontalCenter
             }
+            fontSize: 30
             text: "Play!"
             Particles {
                 id: particles
@@ -134,7 +135,7 @@ Rectangle {
         anchors {
             horizontalCenter: screen.horizontalCenter
             bottom: screen.bottom
-            bottomMargin: 130
+            bottomMargin: 100
         }
         text: "Settings"
         onClicked: screen.showScreen("common/Settings.qml");
@@ -145,8 +146,8 @@ Rectangle {
         width: 60
         height: 60
         anchors {
-            top: instructionsButton.bottom;
-            topMargin: 5
+            bottom: screen.bottom
+            bottomMargin: 5
             horizontalCenter: screen.horizontalCenter
         }
         text: "?"
@@ -278,6 +279,5 @@ Rectangle {
                 anchors.rightMargin: 2
                 anchors.top: infoList.top
             }
-
         }
     }

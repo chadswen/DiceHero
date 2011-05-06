@@ -9,6 +9,7 @@ import "modes"
 import "common/globalDice.js" as GlobalDice
 import "common/createDice.js" as Script
 import "common/backgroundHolder.js" as BG
+import "modes/rpgattack/RpgFunctions.js" as RPG
 
 Rectangle {
 
@@ -95,6 +96,9 @@ Rectangle {
         temp = new Array(18);
         scoreFields = temp;
 
+        var tempScores = scoreFields;
+        RPG.defaultBonuses(tempScores);
+        scoreFields = tempScores;
 
         turnCount = 0;
         instruct = true;
