@@ -247,6 +247,7 @@ Rectangle {
         anchors.top:  damagebonus.bottom
         anchors.topMargin: 26
         color: "black"
+        fontSize: 22
         textColor: "white"
         onClicked: {
             var tempScores = scoreFields
@@ -285,6 +286,7 @@ Rectangle {
         }
         x:20
         color: "black"
+        fontSize: 22
         textColor: "white"
         anchors.top:  nonlethal.bottom
         anchors.topMargin: 26

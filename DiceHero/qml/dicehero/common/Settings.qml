@@ -112,6 +112,8 @@ Rectangle {
                 id: bgImage
                 anchors.fill: parent
                 source: bgSource
+                sourceSize.width: 100
+                sourceSize.height: 100
                 opacity: (screen.currentlySelected == bgFileName) ? .5 : 1
             }
             Text {

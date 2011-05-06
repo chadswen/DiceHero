@@ -32,13 +32,15 @@ Body {
             y = Math.random() * (engine.height / 3);
     }
 
-
     Image {
         id:die
 
         anchors.fill: parent
         smooth: false // once animations stop, we can turn on smooth, otherwise it's a performance hit
+        sourceSize.width: 90
+        sourceSize.height: 90
         source: currentSource
+        //asynchronous: true
     }
 
     Text {
