@@ -5,6 +5,7 @@ import QtQuick 1.0
      id: container
 
      property string text: "OrangeButton"
+     property int fontSize: 26
 
      signal clicked
 
@@ -40,7 +41,7 @@ import QtQuick 1.0
 
      Text {
          id: buttonLabel
-         font.pixelSize: 26
+         font.pixelSize: fontSize
          font.bold: false
          anchors.centerIn: container
          color: main.color_LIGHTTEXT

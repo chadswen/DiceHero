@@ -27,19 +27,19 @@ Die {
         },
         State {
             name: "2"
-            PropertyChanges { target: d10; currentSource: "../images/d10_2.png"; xPos:41; yPos:20; yAngle:-10; textRot:0}
+            PropertyChanges { target: d10; currentSource: "../images/d10_2.png"; xPos:41; yPos:20; yAngle:10; textRot:0}
         },
         State {
             name: "3"
-            PropertyChanges { target: d10; currentSource: "../images/d10_3.png"; xPos:49; yPos:20; yAngle:-30; textRot:-15}
+            PropertyChanges { target: d10; currentSource: "../images/d10_3.png"; xPos:49; yPos:20; yAngle:30; textRot:-15}
         },
         State {
             name: "4"
-            PropertyChanges { target: d10; currentSource: "../images/d10_4.png";  xPos:46; yPos:20; yAngle:-50; textRot:-20}
+            PropertyChanges { target: d10; currentSource: "../images/d10_4.png";  xPos:46; yPos:20; yAngle:50; textRot:-20}
         },
         State {
             name: "5"
-            PropertyChanges { target: d10; currentSource: "../images/d10_5.png"; xPos:40; yPos:20; yAngle:-80; textRot:-25}
+            PropertyChanges { target: d10; currentSource: "../images/d10_5.png"; xPos:40; yPos:20; yAngle:80; textRot:-35}
         },
         State {
             name: "6"

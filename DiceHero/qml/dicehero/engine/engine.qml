@@ -5,6 +5,7 @@ import QtMultimediaKit 1.1
 import "../common"
 import "../common/createDice.js" as Script
 
+
 Image {
     signal showScreen(string msg)
     id: engine
@@ -21,7 +22,7 @@ Image {
     anchors.fill: parent
     source: bgStringComplete
     smooth: true
-    
+
     //top bar
     Item {
         id: topToolbar
@@ -77,38 +78,6 @@ Image {
         }
     }
     
-    // fill bar for timed no move
-    Rectangle {
-        id: timeBar
-        height: 20
-        width: ((parent.width * (timeout-timein)) / (timeout))
-        Behavior on width { SmoothedAnimation { velocity: 1000 } }
-        border.color:  "#CCCCCC"
-        color: "black"
-        border.width:  4
-        opacity: .7
-        radius: 10
-        anchors {
-            bottom: parent.bottom
-            bottomMargin: 4
-        }
-        gradient: Gradient {
-            GradientStop { id: gradient1; position: 0.0 }
-            GradientStop { id: gradient2; position: 1.0 }
-        }
-
-        // hidden debugging click zone to end rolling without accelerometer
-        MouseArea{
-            width: 10
-            height: parent.height
-            anchors.left:parent.left
-            onClicked: {
-                if(!currentlyRolling){
-                    currentlyRolling = true; timein = timeout;
-                }
-            }
-        }
-    }
     
     // box2d elements start here
     World {
@@ -130,7 +99,7 @@ Image {
         
         Wall {
             id: ground
-            height: 40
+            height: 70
             anchors { left: parent.left; right: parent.right; bottom: parent.bottom;}
         }
         Wall {
@@ -177,11 +146,61 @@ Image {
             onPressed: debugDraw.visible = !debugDraw.visible
         }*/
     }
+
+
+    // fill bar for timed no move
+    Rectangle {
+        id: timeBar
+        height: 50
+        width: (((parent.width - 70) * (timeout-timein)) / (timeout))
+        Behavior on width { SmoothedAnimation { velocity: 1000 } }
+        border.color:  "#CCCCCC"
+        color: "black"
+        opacity: .7
+        border.width: 8
+        radius: 10
+        anchors {
+            verticalCenter: stopButton.verticalCenter
+            left: stopButton.right
+            leftMargin: 5
+        }
+    }
+
+    // stop button to the left of time bar.
+    Button_NegativeButton{
+        id: stopButton
+        width: 60
+        height: 60
+        anchors.left:engine.left
+        anchors.leftMargin: 5
+        anchors.bottom:engine.bottom
+        anchors.bottomMargin: 4
+        text: "STOP"
+
+        onClicked: {
+            if(!currentlyRolling){
+                currentlyRolling = true; timein = timeout;
+            }
+            else{
+                timein = timeout;
+            }
+        }
+    }
+
+    //grey out box before and after rolling starts
+    Rectangle {
+        id: greyOutBox
+        anchors.fill: parent
+        color: "black"
+        opacity: .7
+
+    }
+
     
     //countdown
     Rectangle {
         id: startRect
-        height: 100; width: 350
+        height: startText.height+20; width: startText.width+20
         border.color: color_JADE
         color: "black"
         border.width:  5
@@ -200,6 +219,8 @@ Image {
         style: Text.Outline
         font.bold: true
         visible: false
+        horizontalAlignment: Text.AlignHCenter
+        verticalAlignment: Text.AlignVCenter
         
         onVisibleChanged:
             SequentialAnimation {
@@ -209,14 +230,18 @@ Image {
             NumberAnimation { target: startText; property: "opacity"; to: 1; }
             NumberAnimation { target: startText; property: "opacity"; easing.type: Easing.InExpo; to: 0; duration: 700 }
             PropertyAction{ target: startText; property: "font.pixelSize"; value: 100}
-            PropertyAction{ target: startText; property: "text"; value: "ROLL!"}
+            PropertyAction{ target: startText; property: "text"; value: "Shake\nand\nROLL!"}
             NumberAnimation { target: startText; property: "opacity"; to: 1; }
             PropertyAction{ target: engine; property: "countdownDone"; value: true}
-            NumberAnimation { target: startText; property: "opacity"; easing.type: Easing.InCirc; to: 0; duration: 1200 }
-            PropertyAction{ target: startRect; property: "visible"; value: false}
-            NumberAnimation {target: startRect; property: "opacity";
-                easing.type: Easing.OutExpo; to: 0; duration: 300; }
+            ParallelAnimation {
+                NumberAnimation{ target: greyOutBox; property: "opacity"; easing.type: Easing.OutExpo; to: 0; duration: 1200; }
+                NumberAnimation{ target: startText; property: "opacity"; easing.type: Easing.InCirc; to: 0; duration: 1200; }
+                NumberAnimation{target: startRect; property: "opacity"; easing.type: Easing.InCirc; to: 0; duration: 1200; }
+            }
+            PropertyAction{ target: greyOutBox; property: "visible"; value: false}
             PropertyAction{ target: startText; property: "visible"; value: false}
+            PropertyAction{ target: startRect; property: "visible"; value: false}
+
         }
     }
 
@@ -235,7 +260,7 @@ Image {
             console.log("Played sound: "+sound);
         }
     }*/
-    
+
     //timer to stop rolling, timeout = milliseconds of no movement.
     Timer{
         interval: 50; running: currentlyRolling; repeat: true;
@@ -244,30 +269,33 @@ Image {
                 timein+=50;
             else
                 timein=0;
-            
+
             if(timein>=timeout){
                 currentlyRolling = false;
                 resultsHolder.visible= true;
                 resultsText.visible= true;
                 returnButton.visible= true;
                 rerollButton.visible= true;
-                
+                greyOutBox.opacity = .7;
+                greyOutBox.visible = true;
+                stopButton.visible = false;
+
                 for(var i = 0; i<6; i++)
                     console.log("Rolls of diceNumType "+i+": "+rollResults[i]);
             }
         }
     }
-    
+
     // after, rolling display results and click to return
-    
+
     Rectangle {
         id: resultsHolder
-        
+
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
         anchors.verticalCenterOffset: 20
 
-        
+
         color: "black"
         width: 320
         height: 550
@@ -277,10 +305,11 @@ Image {
         radius: 50
         visible: false
         opacity: .7
-        
+
         onVisibleChanged: {
             var output = "";
-            
+            var sum = Number(0);
+
             for(var i = 0; i<6; i++){
                 if(i == 0 & rollResults[i][0] != null)
                     output+= "D4 Rolls:\n";
@@ -294,18 +323,24 @@ Image {
                     output+= "D12 Rolls:\n";
                 if(i == 5 & rollResults[i][0] != null)
                     output+= "D20 Rolls:\n";
-                
-                for(var k in rollResults[i])
+
+                for(var k in rollResults[i]){
                     if(k == rollResults[i].length -1)
                         output+= rollResults[i][k];
                     else
                         output+= rollResults[i][k]+ ', ';
-                
-                
+
+                    sum+=Number(rollResults[i][k]);
+                }
+
+
                 if(rollResults[i][0]!=null)
                     output+= '\n';
             }
-            
+
+            if (returnFile == "modes/selectdice.qml")
+                    output+= "\tTOTAL: " +Number(sum)
+
             resultsText.text= output;
         }
     }
@@ -322,11 +357,11 @@ Image {
         anchors.top: resultsHolder.top
         anchors.topMargin: 30
         visible: false
-        
+
     }
-    
-    
-    
+
+
+
     Button_AffirmativeButton {
         id: returnButton
         text: {if (returnFile == "modes/selectdice.qml")

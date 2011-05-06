@@ -12,8 +12,6 @@ Rectangle {
         target: main
         onMyDiceChanged:{
             statusDynamicText.text = "Selected: "+Script.getNumberDice(myDice);
-            finalize.enabled = true;
-            finalize.opacity = 1;
 
             if(Script.getNumberDice(myDice) >= 20){
                 statusDynamicText.color = "red";
@@ -68,13 +66,12 @@ Rectangle {
 
             anchors {
                 top: screen.top;
-                topMargin: 150
-                bottomMargin: 150
+                topMargin: 130
                 horizontalCenter: parent.horizontalCenter
             }
             color: "black"
             width: 250
-            height: 350
+            height: 400
             border.color: "#CCCCCC"
             border.width: 4
             smooth: true
@@ -116,16 +113,18 @@ Rectangle {
                 top: parent.top
                 left: parent.left
                 leftMargin: 90
-                topMargin: 180
+                topMargin: 160
             }
             Text {
-                text: "D4"
+                text: "D4\n" + myDice[0]
                 anchors.centerIn: parent
                 color: "#CCCCCC"
                 styleColor: "black"
                 style: Text.Outline
                 font.bold: false
                 font.pixelSize: 20
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
             }
             MouseArea {
                 id: d4M
@@ -148,13 +147,15 @@ Rectangle {
                 top: selectD4.top
             }
             Text {
-                text: "D6"
+                text: "D6\n" + myDice[1]
                 anchors.centerIn: parent
                 color: "#CCCCCC"
                 styleColor: "black"
                 style: Text.Outline
                 font.bold: false
                 font.pixelSize: 20
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
             }
             MouseArea {
                 id: d6M
@@ -177,13 +178,15 @@ Rectangle {
                 top: selectD4.bottom
             }
             Text {
-                text: "D8"
+                text: "D8\n" + myDice[2]
                 anchors.centerIn: parent
                 color: "#CCCCCC"
                 styleColor: "black"
                 style: Text.Outline
                 font.bold: false
                 font.pixelSize: 20
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
             }
             MouseArea {
                 id: d8M
@@ -206,13 +209,15 @@ Rectangle {
                 top: selectD4.bottom
             }
             Text {
-                text: "D10"
+                text: "D10\n" + myDice[3]
                 anchors.centerIn: parent
                 color: "#CCCCCC"
                 styleColor: "black"
                 style: Text.Outline
                 font.bold: false
                 font.pixelSize: 20
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
             }
             MouseArea {
                 id: d10M
@@ -235,13 +240,15 @@ Rectangle {
                 top: selectD8.bottom
             }
             Text {
-                text: "D12"
+                text: "D12\n " + myDice[4]
                 anchors.centerIn: parent
                 color: "#CCCCCC"
                 styleColor: "black"
                 style: Text.Outline
                 font.bold: false
                 font.pixelSize: 20
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
             }
             MouseArea {
                 id: d12M
@@ -264,13 +271,15 @@ Rectangle {
                 top: selectD10.bottom
             }
             Text {
-                text: "D20"
+                text: "D20\n " + myDice[5]
                 anchors.centerIn: parent
                 color: "#CCCCCC"
                 styleColor: "black"
                 style: Text.Outline
                 font.bold: false
                 font.pixelSize: 20
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
             }
             MouseArea {
                 id: d20M
@@ -286,6 +295,20 @@ Rectangle {
         }
 
 
+        Button_OrangeButton {
+            id: resetButton
+            fontSize: 18
+            anchors.bottom: buttonHolder.bottom
+            anchors.horizontalCenter: buttonHolder.horizontalCenter
+            anchors.bottomMargin: 10
+            text: "Reset Selection"
+            onClicked: {
+                var temp = myDice;
+                Script.clearData(temp);
+                myDice = temp;
+            }
+        }
+
         Item {
             id: bottomBar
             width: parent.width; height: parent.height
@@ -294,7 +317,6 @@ Rectangle {
                 bottomMargin: 20
                 horizontalCenter: parent.horizontalCenter
             }
-
             Button_AffirmativeButton {
                 id: finalize
                 anchors.bottom: parent.bottom
@@ -303,8 +325,8 @@ Rectangle {
                 anchors.rightMargin:10
                 anchors.leftMargin:30
                 text: "Roll Dice"
-                opacity: .5
-                enabled: false
+                opacity: (Script.getNumberDice(myDice)>0) ? 1 : .5
+                enabled: (Script.getNumberDice(myDice)>0)
                 onClicked: returnFile="modes/selectdice.qml", screenBase.showScreen("engine/engine.qml")
             }
             Button_NegativeButton {
